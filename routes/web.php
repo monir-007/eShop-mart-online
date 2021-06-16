@@ -19,9 +19,9 @@ Route::get('/', function () {
 });
 
 //Admin Login Route
-Route::group(['prefix'=>'admin', 'middleware' => ['admin:admin']], function (){
-    Route::get('/login',[AdminController::class, 'loginIndex']);
-    Route::post('/login',[AdminController::class, 'store'])->name('admin.login');
+Route::group(['prefix'=>'login', 'middleware' => ['admin:admin']], function (){
+    Route::get('/admin',[AdminController::class, 'loginIndex']);
+    Route::post('/admin',[AdminController::class, 'store'])->name('admin.login');
 });
 
 Route::middleware(['auth:sanctum,admin', 'verified'])->get('/admin/dashboard', function () {
