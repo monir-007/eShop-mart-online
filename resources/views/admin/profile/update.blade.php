@@ -62,10 +62,10 @@
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <h5>Upload Image <span class="text-danger">*</span></h5>
+                                                            <h5>Upload Image</h5>
                                                             <div class="controls">
                                                                 <input type="file" name="profile_photo_path" id="image"
-                                                                       class="form-control" required>
+                                                                       class="form-control">
                                                             </div>
                                                         </div>
                                                     </div>

@@ -85,11 +85,32 @@
 <script src="{{asset('assets/vendor_components/easypiechart/dist/jquery.easypiechart.js')}}"></script>
 <script src="{{asset('assets/vendor_components/apexcharts-bundle/irregular-data-series.js')}}"></script>
 <script src="{{asset('assets/vendor_components/apexcharts-bundle/dist/apexcharts.js')}}"></script>
+<script src="{{asset('assets/vendor_components/toastr/toastr.min.js')}}"></script>
 
 <!-- Sunny Admin App -->
 <script src="{{asset('admin/js/template.js')}}"></script>
 <script src="{{asset('admin/js/pages/dashboard.js')}}"></script>
 
+{{--Notifications Alert--}}
+<script>
+    @if(Session::has('message'))
+    const type = "{{ Session::get('alert-type','success') }}";
+    switch (type) {
+        case 'info':
+            toastr.info("{{Session::get('message')}}");
+            break;
+        case 'success':
+            toastr.success("{{Session::get('message')}}");
+            break;
+        case 'warning':
+            toastr.warning("{{Session::get('message')}}");
+            break;
+        case 'error':
+            toastr.error("{{Session::get('message')}}");
+            break;
+    }
+    @endif
+</script>
 
 </body>
 </html>

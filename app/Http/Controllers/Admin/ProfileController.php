@@ -34,6 +34,11 @@ class ProfileController extends Controller
             $storeData['profile_photo_path'] = $fileName;
         }
         $storeData->save();
-        return redirect()->route('admin.profile');
+
+        $notification = array(
+            'message'=>'Updated Successfully.',
+            'alert-type'=>'success'
+        );
+        return redirect()->route('admin.profile')->with($notification);
     }
 }
