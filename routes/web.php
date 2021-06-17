@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,6 +30,11 @@ Route::middleware(['auth:sanctum,admin', 'verified'])->get('/admin/dashboard', f
 })->name('dashboard');
 
 Route::get('/admin/logout', [AdminController::class, 'destroy'])->name('admin.logout');
+
+//Admin Profile Route
+Route::get('/admin/profile',[ProfileController::class, 'profile'])->name('admin.profile');
+Route::get('/admin/profile/update',[ProfileController::class, 'update'])->name('admin.profile.update');
+Route::post('/admin/profile/store',[ProfileController::class, 'store'])->name('admin.profile.store');
 
 
 Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
