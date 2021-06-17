@@ -24,9 +24,9 @@
 <div class="wrapper">
 
     <!-- Header Navbar -->
-    @include('admin.layouts.components._header')
+@include('admin.layouts.components._header')
 
-    <!-- Left side column. contains the logo and sidebar -->
+<!-- Left side column. contains the logo and sidebar -->
     <aside class="main-sidebar">
         <!-- sidebar-->
         <section class="sidebar">
@@ -44,7 +44,7 @@
             </div>
 
             <!-- sidebar menu-->
-@include('admin.layouts.components._sidebar-menu')
+            @include('admin.layouts.components._sidebar-menu')
         </section>
 
         <div class="sidebar-footer">
@@ -68,11 +68,11 @@
 
 
     <!-- Main Footer -->
-    @include('admin.layouts.components._footer')
+@include('admin.layouts.components._footer')
 
 
 
-    <!-- Add the sidebar's background. This div must be placed immediately after the control sidebar -->
+<!-- Add the sidebar's background. This div must be placed immediately after the control sidebar -->
     <div class="control-sidebar-bg"></div>
 
 </div>

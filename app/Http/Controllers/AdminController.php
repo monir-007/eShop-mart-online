@@ -39,7 +39,7 @@ class AdminController extends Controller
 
     public function loginIndex()
     {
-        return view('auth.login', ['guard'=>'admin']);
+        return view('auth.admin.login', ['guard'=>'admin']);
     }
 
     /**
