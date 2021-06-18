@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\ChangePasswordController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\UserView\IndexController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -41,6 +42,14 @@ Route::post('/admin/profile/store',[ProfileController::class, 'store'])->name('a
 Route::get('/admin/profile/change-password',[ChangePasswordController::class, 'passwordChange'])->name('admin.change.password');
 Route::post('/admin/profile/update-password',[ChangePasswordController::class, 'passwordUpdate'])->name('admin.update.password');
 
+/*
+User View Routes
+*/
 Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
+//User View Index Route
+Route::get('/',[IndexController::class, 'index']);
+
+
