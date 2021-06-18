@@ -17,10 +17,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 //Admin Login Route
 Route::group(['prefix'=>'admin', 'middleware' => ['admin:admin']], function (){
     Route::get('/login',[AdminController::class, 'loginIndex']);

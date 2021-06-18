@@ -1,7 +1,14 @@
 @extends('user-view.layouts.app')
 @section('content')
+    <div class="row">
+    <!-- ============================================== SIDEBAR ============================================== -->
+    @include('user-view.layouts.components._sidebar-menu')
+    <!-- /.sidemenu-holder -->
 
-    <!-- ============================================== SCROLL TABS ============================================== -->
+    <!-- ========================================== SECTION – HERO ================ -->
+   <div class="col-xs-12 col-sm-12 col-md-9 homebanner-holder">
+   @include('user-view.layouts.components._hero')
+   <!-- ============================================== SCROLL TABS ============================================== -->
     <div id="product-tabs-slider" class="scroll-tabs outer-top-vs wow fadeInUp">
         <div class="more-info-tab clearfix ">
             <h3 class="new-product-title pull-left">New Products</h3>
@@ -2297,4 +2304,7 @@
     </section>
     <!-- /.section -->
     <!-- ============================================== FEATURED PRODUCTS : END ============================================== -->
+   </div>
+    </div>
+    @include('user-view.layouts.components._brands')
 @endsection
