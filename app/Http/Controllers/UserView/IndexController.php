@@ -17,7 +17,11 @@ class IndexController extends Controller
     public function userLogout()
     {
         Auth::logout();
-        return redirect()->route('login');
+        $notification = array(
+            'message' => 'User logged out.',
+            'alert-type' => 'warning'
+        );
+        return redirect()->route('login')->with($notification);
     }
 
     public function userProfile()
@@ -44,7 +48,7 @@ class IndexController extends Controller
         $storeData->save();
 
         $notification = array(
-            'message' => 'Updated Successfully.',
+            'message' => 'Profile Updated Successfully.',
             'alert-type' => 'success'
         );
         return redirect()->route('dashboard')->with($notification);

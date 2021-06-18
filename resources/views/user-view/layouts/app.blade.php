@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="{{asset('user-view/assets/css/animate.min.css')}}">
     <link rel="stylesheet" href="{{asset('user-view/assets/css/rateit.css')}}">
     <link rel="stylesheet" href="{{asset('user-view/assets/css/bootstrap-select.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/vendor_components/toastr/toastr.min.css')}}">
 
     <!-- Icons/Glyphs -->
     <link rel="stylesheet" href="{{asset('user-view/assets/css/font-awesome.css')}}">
@@ -81,5 +82,28 @@
 <script src="{{asset('user-view/assets/js/bootstrap-select.min.js')}}"></script>
 <script src="{{asset('user-view/assets/js/wow.min.js')}}"></script>
 <script src="{{asset('user-view/assets/js/scripts.js')}}"></script>
+
+<script src="{{asset('assets/vendor_components/toastr/toastr.min.js')}}"></script>
+
+{{--Notifications Alert--}}
+<script>
+    @if(Session::has('message'))
+    const type = "{{ Session::get('alert-type','success') }}";
+    switch (type) {
+        case 'info':
+            toastr.info("{{Session::get('message')}}");
+            break;
+        case 'success':
+            toastr.success("{{Session::get('message')}}");
+            break;
+        case 'warning':
+            toastr.warning("{{Session::get('message')}}");
+            break;
+        case 'error':
+            toastr.error("{{Session::get('message')}}");
+            break;
+    }
+    @endif
+</script>
 </body>
 </html>
