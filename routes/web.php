@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ChangePasswordController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
@@ -36,6 +37,9 @@ Route::get('/admin/profile',[ProfileController::class, 'profile'])->name('admin.
 Route::get('/admin/profile/update',[ProfileController::class, 'update'])->name('admin.profile.update');
 Route::post('/admin/profile/store',[ProfileController::class, 'store'])->name('admin.profile.store');
 
+//Admin Password Change
+Route::get('/admin/profile/change-password',[ChangePasswordController::class, 'passwordChange'])->name('admin.change.password');
+Route::post('/admin/profile/update-password',[ChangePasswordController::class, 'passwordUpdate'])->name('admin.update.password');
 
 Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
