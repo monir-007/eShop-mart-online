@@ -46,6 +46,6 @@ Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function 
 })->name('dashboard');
 
 //User View Index Route
-Route::get('/',[IndexController::class, 'index']);
+Route::get('/',[IndexController::class, 'index'])->name('home');
 
 
