@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\BrandController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ChangePasswordController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\AdminController;
@@ -57,13 +58,26 @@ Route::post('/user/profile/store', [IndexController::class, 'userStore'])->name(
 Route::get('/user/profile/change-password', [IndexController::class, 'userChangePassword'])->name('user.change.password');
 Route::post('/user/profile/change-password', [IndexController::class, 'userUpdatePassword'])->name('user.change.password.update');
 
-
+/*
+Admin Brand Resource Routes
+*/
 Route::prefix('brand')->group(function () {
     Route::get('/brands', [BrandController::class, 'index'])->name('brand.index');
     Route::post('/store', [BrandController::class, 'store'])->name('brand.store');
     Route::get('/edit/{id}', [BrandController::class, 'edit'])->name('brand.edit');
     Route::post('/update/{id}', [BrandController::class, 'update'])->name('brand.update');
     Route::get('/delete/{id}', [BrandController::class, 'delete'])->name('brand.delete');
+});
+
+/*
+Admin Brand Resource Routes
+*/
+Route::prefix('category')->group(function () {
+    Route::get('/categories', [CategoryController::class, 'index'])->name('category.index');
+    Route::post('/store', [CategoryController::class, 'store'])->name('category.store');
+    Route::get('/edit/{id}', [CategoryController::class, 'edit'])->name('category.edit');
+    Route::post('/update/{id}', [CategoryController::class, 'update'])->name('category.update');
+    Route::get('/delete/{id}', [CategoryController::class, 'delete'])->name('category.delete');
 });
 
 
