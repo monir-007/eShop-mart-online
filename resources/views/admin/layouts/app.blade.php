@@ -3,6 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -16,6 +18,8 @@
     <!-- Style-->
     <link rel="stylesheet" href="{{asset('admin/css/style.css')}}">
     <link rel="stylesheet" href="{{asset('admin/css/skin_color.css ')}}">
+
+    @yield('style')
 
 </head>
 
@@ -92,6 +96,7 @@
 <script src="{{asset('admin/js/template.js')}}"></script>
 <script src="{{asset('admin/js/pages/dashboard.js')}}"></script>
 
+
 {{--Notifications Alert--}}
 <script>
     @if(Session::has('message'))
@@ -111,6 +116,36 @@
             break;
     }
     @endif
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+<script type="text/javascript">
+    $(function(){
+        $(document).on('click','#delete',function(e){
+            e.preventDefault();
+            var link = $(this).attr("href");
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You want to delete This Data?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3176d7',
+                cancelButtonColor: '#e83838',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = link
+                    Swal.fire(
+                        'Deleted!',
+                        'Your file has been deleted.',
+                        'success'
+                    )
+                }
+            })
+        });
+    });
 </script>
 
 </body>

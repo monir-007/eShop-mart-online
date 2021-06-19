@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\admin\BrandController;
+use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\ChangePasswordController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\AdminController;
@@ -20,9 +20,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 //Admin Login Route
-Route::group(['prefix'=>'admin', 'middleware' => ['admin:admin']], function (){
-    Route::get('/login',[AdminController::class, 'loginIndex']);
-    Route::post('/login',[AdminController::class, 'store'])->name('admin.login');
+Route::group(['prefix' => 'admin', 'middleware' => ['admin:admin']], function () {
+    Route::get('/login', [AdminController::class, 'loginIndex']);
+    Route::post('/login', [AdminController::class, 'store'])->name('admin.login');
 });
 
 Route::middleware(['auth:sanctum,admin', 'verified'])->get('/admin/dashboard', function () {
@@ -32,13 +32,13 @@ Route::middleware(['auth:sanctum,admin', 'verified'])->get('/admin/dashboard', f
 Route::get('/admin/logout', [AdminController::class, 'destroy'])->name('admin.logout');
 
 //Admin Profile Route
-Route::get('/admin/profile',[ProfileController::class, 'profile'])->name('admin.profile');
-Route::get('/admin/profile/update',[ProfileController::class, 'update'])->name('admin.profile.update');
-Route::post('/admin/profile/store',[ProfileController::class, 'store'])->name('admin.profile.store');
+Route::get('/admin/profile', [ProfileController::class, 'profile'])->name('admin.profile');
+Route::get('/admin/profile/update', [ProfileController::class, 'update'])->name('admin.profile.update');
+Route::post('/admin/profile/store', [ProfileController::class, 'store'])->name('admin.profile.store');
 
 //Admin Password Change
-Route::get('/admin/profile/change-password',[ChangePasswordController::class, 'passwordChange'])->name('admin.change.password');
-Route::post('/admin/profile/update-password',[ChangePasswordController::class, 'passwordUpdate'])->name('admin.update.password');
+Route::get('/admin/profile/change-password', [ChangePasswordController::class, 'passwordChange'])->name('admin.change.password');
+Route::post('/admin/profile/update-password', [ChangePasswordController::class, 'passwordUpdate'])->name('admin.update.password');
 
 /*
 User View Routes
@@ -50,16 +50,20 @@ Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function 
 })->name('dashboard');
 
 //User View Index Route
-Route::get('/',[IndexController::class, 'index'])->name('home');
-Route::get('/user/logout',[IndexController::class, 'userLogout'])->name('user.logout');
-Route::get('/user/profile',[IndexController::class, 'userProfile'])->name('user.profile');
-Route::post('/user/profile/store',[IndexController::class, 'userStore'])->name('user.profile.store');
-Route::get('/user/profile/change-password',[IndexController::class, 'userChangePassword'])->name('user.change.password');
-Route::post('/user/profile/change-password',[IndexController::class, 'userUpdatePassword'])->name('user.change.password.update');
+Route::get('/', [IndexController::class, 'index'])->name('home');
+Route::get('/user/logout', [IndexController::class, 'userLogout'])->name('user.logout');
+Route::get('/user/profile', [IndexController::class, 'userProfile'])->name('user.profile');
+Route::post('/user/profile/store', [IndexController::class, 'userStore'])->name('user.profile.store');
+Route::get('/user/profile/change-password', [IndexController::class, 'userChangePassword'])->name('user.change.password');
+Route::post('/user/profile/change-password', [IndexController::class, 'userUpdatePassword'])->name('user.change.password.update');
 
-Route::prefix('brand')->group(function (){
-Route::get('/brands',[BrandController::class, 'index'])->name('brand.index');
-Route::get('/store',[BrandController::class, 'store'])->name('brand.store');
+
+Route::prefix('brand')->group(function () {
+    Route::get('/brands', [BrandController::class, 'index'])->name('brand.index');
+    Route::post('/store', [BrandController::class, 'store'])->name('brand.store');
+    Route::get('/edit/{id}', [BrandController::class, 'edit'])->name('brand.edit');
+    Route::post('/update/{id}', [BrandController::class, 'update'])->name('brand.update');
+    Route::get('/delete/{id}', [BrandController::class, 'delete'])->name('brand.delete');
 });
 
 
