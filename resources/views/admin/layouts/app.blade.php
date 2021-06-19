@@ -86,7 +86,8 @@
 <script src="{{asset('assets/vendor_components/apexcharts-bundle/irregular-data-series.js')}}"></script>
 <script src="{{asset('assets/vendor_components/apexcharts-bundle/dist/apexcharts.js')}}"></script>
 <script src="{{asset('assets/vendor_components/toastr/toastr.min.js')}}"></script>
-
+<script src="{{asset('assets/vendor_components/datatable/datatables.min.js')}}"></script>
+<script src="{{asset('admin/js/pages/data-table.js')}}"></script>
 <!-- Sunny Admin App -->
 <script src="{{asset('admin/js/template.js')}}"></script>
 <script src="{{asset('admin/js/pages/dashboard.js')}}"></script>
