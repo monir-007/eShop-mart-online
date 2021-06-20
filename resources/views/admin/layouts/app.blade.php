@@ -89,12 +89,22 @@
 <script src="{{asset('assets/vendor_components/easypiechart/dist/jquery.easypiechart.js')}}"></script>
 <script src="{{asset('assets/vendor_components/apexcharts-bundle/irregular-data-series.js')}}"></script>
 <script src="{{asset('assets/vendor_components/apexcharts-bundle/dist/apexcharts.js')}}"></script>
+<!-- Toastr tags-->
 <script src="{{asset('assets/vendor_components/toastr/toastr.min.js')}}"></script>
+<!-- Datatables tags-->
 <script src="{{asset('assets/vendor_components/datatable/datatables.min.js')}}"></script>
 <script src="{{asset('admin/js/pages/data-table.js')}}"></script>
+
+<script src="{{asset('admin/js/pages/dashboard.js')}}"></script>
+<!-- Tag input tags-->
+<script src="{{asset('assets/vendor_components/bootstrap-tagsinput/dist/bootstrap-tagsinput.js')}}"></script>
+<!-- CK Editor tags-->
+<script src="{{ asset('assets/vendor_components/ckeditor/ckeditor.js') }}"></script>
+<script src="{{ asset('assets/vendor_plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.js') }}"></script>
+<script src="{{ asset('admin/js/pages/editor.js') }}"></script>
 <!-- Sunny Admin App -->
 <script src="{{asset('admin/js/template.js')}}"></script>
-<script src="{{asset('admin/js/pages/dashboard.js')}}"></script>
+
 
 @yield('script')
 
