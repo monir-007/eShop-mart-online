@@ -94,7 +94,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <h5>Subategory Name English <span class="text-danger">*</span></h5>
+                                        <h5>Subcategory Name English <span class="text-danger">*</span></h5>
                                         <div class="controls">
                                             <input type="text" name="name_eng" class="form-control">
                                             @error('name_eng')

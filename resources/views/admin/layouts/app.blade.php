@@ -96,6 +96,7 @@
 <script src="{{asset('admin/js/template.js')}}"></script>
 <script src="{{asset('admin/js/pages/dashboard.js')}}"></script>
 
+@yield('script')
 
 {{--Notifications Alert--}}
 <script>

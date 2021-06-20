@@ -88,6 +88,8 @@ Route::prefix('category')->group(function () {
     Route::get('/subcategory/delete/{id}', [SubCategoryController::class, 'delete'])->name('subcategory.delete');
 
     Route::get('/sub-subcategories', [SubsubcategoryController::class, 'index'])->name('sub-subcategory.index');
+    Route::get('/sub-subcategories/{categoryId}', [SubsubcategoryController::class, 'getSubcategory'])->name('sub-subcategory.subcategory');
+    Route::post('/sub-subcategories/store', [SubsubcategoryController::class, 'store'])->name('sub-subcategory.store');
 });
 
 
