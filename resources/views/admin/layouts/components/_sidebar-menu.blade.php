@@ -41,20 +41,22 @@
                         class="ti-more"></i>Categories</a></li>
             <li class="{{ ($route === 'subcategory.index') ? 'active':''}}"><a href="{{route('subcategory.index')}}"><i
                         class="ti-more"></i>Subcategories</a></li>
-            <li class="{{ ($route === 'sub-subcategory.index') ? 'active':''}}"><a href="{{route('sub-subcategory.index')}}"><i
+            <li class="{{ ($route === 'sub-subcategory.index') ? 'active':''}}"><a
+                    href="{{route('sub-subcategory.index')}}"><i
                         class="ti-more"></i>Sub-subcategories</a></li>
         </ul>
     </li>
 
-    <li class="treeview">
+    <li class="treeview {{($prefix === '/product') ? 'active' : ''}}">
         <a href="#">
-            <i data-feather="mail"></i> <span>Mailbox</span>
+            <i data-feather="mail"></i> <span>Product</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-right pull-right"></i>
             </span>
         </a>
         <ul class="treeview-menu">
-            <li><a href="mailbox_inbox.html"><i class="ti-more"></i>Inbox</a></li>
+            <li class="{{($route==='product.insert') ? 'active':''}}"><a href="{{route('product.insert')}}"><i
+                        class="ti-more"></i>Add Products</a></li>
             <li><a href="mailbox_compose.html"><i class="ti-more"></i>Compose</a></li>
             <li><a href="mailbox_read_mail.html"><i class="ti-more"></i>Read</a></li>
         </ul>

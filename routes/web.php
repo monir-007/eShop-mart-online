@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ChangePasswordController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\SubsubcategoryController;
@@ -93,6 +94,14 @@ Route::prefix('category')->group(function () {
     Route::get('/sub-subcategories/edit/{id}', [SubsubcategoryController::class, 'edit'])->name('sub-subcategory.edit');
     Route::post('/sub-subcategories/update/{id}', [SubsubcategoryController::class, 'update'])->name('sub-subcategory.update');
     Route::get('/sub-subcategories/delete/{id}', [SubsubcategoryController::class, 'delete'])->name('sub-subcategory.delete');
+});
+
+/*
+Admin Product Resource Routes
+*/
+
+Route::prefix('product')->group(function (){
+    Route::get('/new-product', [ProductController::class, 'insert'])->name('product.insert');
 });
 
 
