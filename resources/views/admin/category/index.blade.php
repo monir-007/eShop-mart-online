@@ -74,7 +74,7 @@
                 <div class="col-4">
                     <div class="box">
                         <div class="box-header with-border">
-                            <h3 class="box-title text-white">Add Category Brand</h3>
+                            <h3 class="box-title text-white">Add New Category</h3>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
