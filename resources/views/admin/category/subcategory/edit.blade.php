@@ -35,6 +35,7 @@
                                 <form method="post" action="{{ route('subcategory.update',$subcategory->id) }}">
                                     @csrf
 
+                                    <input type="hidden" name="id" value="{{$subcategory->id}}">
                                     <div class="form-group">
                                         <h5>Category Select <span class="text-danger">*</span></h5>
                                         <div class="controls">
@@ -51,7 +52,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <h5>Subategory Name English <span class="text-danger">*</span></h5>
+                                        <h5>Subcategory Name English <span class="text-danger">*</span></h5>
                                         <div class="controls">
                                             <input type="text" name="name_eng" value="{{$subcategory->name_eng}}"
                                                    class="form-control">
