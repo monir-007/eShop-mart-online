@@ -45,7 +45,7 @@
                                             <td>{{$item['categoryName']['name_eng']}}</td>
                                             <td>{{$item->name_eng}}</td>
                                             <td>{{$item->name_bng}}</td>
-                                            <td>
+                                            <td width="20%">
                                                 <a href="{{route('subcategory.edit',$item->id)}}"
                                                    class="btn btn-success btn-sm mr-1 "
                                                    data-toggle="tooltip"
