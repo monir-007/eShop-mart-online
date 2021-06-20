@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 class SubCategoryController extends Controller
 {
@@ -34,6 +35,7 @@ class SubCategoryController extends Controller
             'name_bng' => $request->name_bng,
             'slug_eng' => strtolower(str_replace(' ', '-',$request->name_eng)),
             'slug_bng' => strtolower(str_replace(' ', '-',$request->name_bng)),
+            'created_at'=>Carbon::now()
         ]);
 
         $notification = array(
