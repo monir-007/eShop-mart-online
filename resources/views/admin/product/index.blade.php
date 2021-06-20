@@ -188,10 +188,14 @@
                                             <div class="form-group">
                                                 <h5>Cover Thumbnail <span class="text-danger">*</span></h5>
                                                 <div class="controls">
-                                                    <input type="file" name="product_thumbnail" class="form-control">
+                                                    <input type="file" name="product_thumbnail"
+                                                           onchange="coverThamUrl(this)" class="form-control">
                                                     @error('product_thumbnail')
                                                     <span class="text-danger">{{ $message }}</span>
                                                     @enderror
+                                                    <div>
+                                                        <img id="coverTham" src="">
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div> <!-- end col md 6 -->
@@ -200,10 +204,14 @@
                                             <div class="form-group">
                                                 <h5>Product Images <span class="text-danger">*</span></h5>
                                                 <div class="controls">
-                                                    <input type="file" name="multi_img[]" class="form-control">
-                                                    @error('multi_img')
+                                                    <input type="file" id="multipleImage" name="multipleImage[]"
+                                                           multiple class="form-control">
+                                                    @error('multipleImage')
                                                     <span class="text-danger">{{ $message }}</span>
                                                     @enderror
+                                                    <div class="row" id="previewImage">
+
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div> <!-- end col md 6 -->
@@ -387,7 +395,8 @@
                                     </div>
                                     <!-- end 9th row -->
                                     <div class="text-xs-right">
-                                        <input type="submit" class="btn btn-rounded btn-primary float-right" value="Add Product">
+                                        <input type="submit" class="btn btn-rounded btn-primary float-right"
+                                               value="Add Product">
 
                                     </div>
                                 </form>
@@ -413,14 +422,15 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $('select[name="category_id"]').on('change', function () {
-                let category_id = $(this).val();
+                var category_id = $(this).val();
                 if (category_id) {
                     $.ajax({
-                        url: "{{url('/category/sub-subcategories')}}/" + category_id,
+                        url: "{{  url('/category/subcategories') }}/" + category_id,
                         type: "GET",
                         dataType: "json",
                         success: function (data) {
-                            let d = $('select[name="subcategory_id"]').empty();
+                            $('select[name="subsubcategory_id"]').html('');
+                            $('select[name="subcategory_id"]').empty();
                             $.each(data, function (key, value) {
                                 $('select[name="subcategory_id"]').append('<option value="' + value.id + '">' + value.name_eng + '</option>');
                             });
@@ -430,7 +440,68 @@
                     alert('danger');
                 }
             });
+            $('select[name="subcategory_id"]').on('change', function () {
+                let subcategory_id = $(this).val();
+                if (subcategory_id) {
+                    $.ajax({
+                        url: "{{  url('/category/sub-subcategories') }}/" + subcategory_id,
+                        type: "GET",
+                        dataType: "json",
+                        success: function (data) {
+                            $('select[name="subsubcategory_id"]').empty();
+                            $.each(data, function (key, value) {
+                                $('select[name="subsubcategory_id"]').append('<option value="' + value.id + '">' + value.name_eng + '</option>');
+                            });
+                        },
+                    });
+                } else {
+                    alert('danger');
+                }
+            });
+
         });
+    </script>
+
+    <script type="text/javascript">
+        function coverThamUrl(input) {
+            if (input.files && input.files[0]) {
+                let reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#coverTham').attr('src', e.target.result).width(80).height(80);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+
+    <script>
+
+        $(document).ready(function () {
+            $('#multipleImage').on('change', function () { //on file input change
+                if (window.File && window.FileReader && window.FileList && window.Blob) //check File API supported browser
+                {
+                    let data = $(this)[0].files; //this file data
+
+                    $.each(data, function (index, file) {    //loop though each file
+                        if (/(\.|\/)(gif|jpe?g|png)$/i.test(file.type)) {    //check supported file type
+                            let fRead = new FileReader();     //new filereader
+                            fRead.onload = (function (file) {    //trigger function on successful read
+                                return function (e) {
+                                    let img = $('<img/>').addClass('thumb').attr('src', e.target.result).width(80)
+                                        .height(80); //create image element
+                                    $('#previewImage').append(img); //append image to output element
+                                };
+                            })(file);
+                            fRead.readAsDataURL(file); //URL representing the file's data.
+                        }
+                    });
+
+                } else {
+                    alert("Your browser doesn't support File API!"); //if File API is absent
+                }
+            });
+        });
+
     </script>
 @endsection
 

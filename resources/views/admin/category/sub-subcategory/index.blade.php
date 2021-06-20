@@ -150,7 +150,7 @@
                 let category_id = $(this).val();
                 if (category_id) {
                     $.ajax({
-                        url: "{{url('/category/sub-subcategories')}}/" + category_id,
+                        url: "{{url('/category/subcategories')}}/" + category_id,
                         type: "GET",
                         dataType: "json",
                         success: function (data) {

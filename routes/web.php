@@ -89,7 +89,8 @@ Route::prefix('category')->group(function () {
     Route::get('/subcategory/delete/{id}', [SubCategoryController::class, 'delete'])->name('subcategory.delete');
 
     Route::get('/sub-subcategories', [SubsubcategoryController::class, 'index'])->name('sub-subcategory.index');
-    Route::get('/sub-subcategories/{categoryId}', [SubsubcategoryController::class, 'getSubcategory'])->name('sub-subcategory.subcategory');
+    Route::get('/subcategories/{categoryId}', [SubsubcategoryController::class, 'getSubcategory']);
+    Route::get('/sub-subcategories/{subcategoryId}', [SubsubcategoryController::class, 'getSubsubcategory']);
     Route::post('/sub-subcategories/store', [SubsubcategoryController::class, 'store'])->name('sub-subcategory.store');
     Route::get('/sub-subcategories/edit/{id}', [SubsubcategoryController::class, 'edit'])->name('sub-subcategory.edit');
     Route::post('/sub-subcategories/update/{id}', [SubsubcategoryController::class, 'update'])->name('sub-subcategory.update');

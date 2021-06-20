@@ -23,6 +23,11 @@ class SubsubcategoryController extends Controller
         $subcategories = SubCategory::where('category_id', $categoryId)->orderBy('name_eng', 'ASC')->get();
         return json_encode($subcategories);
     }
+    public function getSubsubcategory($subcategoryId)
+    {
+        $subSubcategories = SubSubcategory::where('subcategory_id', $subcategoryId)->orderBy('name_eng', 'ASC')->get();
+        return json_encode($subSubcategories);
+    }
 
     public function store(Request $request)
     {
@@ -82,7 +87,7 @@ class SubsubcategoryController extends Controller
     public function delete($id)
     {
         SubSubcategory::findOrFail($id)->delete();
-        
+
         $notification = array(
             'message' => 'Sub-SubCategory Deleted Successfully',
             'alert-type' => 'info'
