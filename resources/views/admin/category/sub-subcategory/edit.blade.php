@@ -22,86 +22,44 @@
         </div>
         <!-- Main content -->
         <section class="content">
-            <div class="row">
-                <div class="col-8">
-                    <div class="box">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">Sub | Subcategory List</h3>
-                        </div>
-                        <!-- /.box-header -->
-                        <div class="box-body">
-                            <div class="table-responsive">
-                                <table id="example1" class="table table-bordered table-striped">
-                                    <thead>
-                                    <tr>
-                                        <th>Category</th>
-                                        <th>Subcategory</th>
-                                        <th>Name English</th>
-                                        <th>Name Bangla</th>
-                                        <th>Action</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        @foreach($subsubcategory as $item)
-                                            <td width="15%">{{$item['categoryName']['name_eng']}}</td>
-                                            <td width="20%">{{$item['subcategoryName']['name_eng']}}</td>
-                                            <td width="20%">{{$item->name_eng}}</td>
-                                            <td width="20%">{{$item->name_bng}}</td>
-                                            <td width="25%">
-                                                <a href="{{route('sub-subcategory.edit',$item->id)}}"
-                                                   class="btn btn-success btn-sm mr-1 "
-                                                   data-toggle="tooltip"
-                                                   data-placement="right" title="Edit"> <i class="fa fa-edit"></i> </a>
-                                                <a href="{{ route('sub-subcategory.delete',$item->id) }}" id="delete"
-                                                   class="btn btn-danger btn-sm" data-toggle="tooltip"
-                                                   data-placement="right" title="Remove"> <i class="fa fa-trash"></i>
-                                                </a>
-                                            </td>
-                                    </tr>
-                                    @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        <!-- /.box-body -->
-                    </div>
-                    <!-- /.box -->
-                </div>
-                <!-- /.col -->
+            <div class="row justify-content-around">
 
                 <!-- =============== Add New Brand ================== -->
-                <div class="col-4">
+                <div class="col-6">
                     <div class="box">
                         <div class="box-header with-border">
-                            <h4 class="box-title text-white">Add New Sub subcategory</h4>
+                            <h3 class="box-title text-white">Edit Sub|Subcategory: <span class="text-secondary">{{$subsubcategories->name_eng}}</span></h3>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
                             <div class="table-responsive">
-                                <form method="post" action="{{ route('sub-subcategory.store') }}">
+                                <form method="post" action="{{ route('sub-subcategory.update',$subsubcategories->id) }}">
                                     @csrf
+
+                                    <input type="hidden" name="id" value="{{$subsubcategories->id}}">
+
                                     <div class="form-group">
                                         <h5>Category Select <span class="text-danger">*</span></h5>
                                         <div class="controls">
-                                            <select name="category_id" id="select" class="form-control">
-                                                <option value="" selected disabled>Select Category</option>
+                                            <select name="category_id" class="form-control"  >
+                                                <option value="" selected="" disabled="">Select Category</option>
                                                 @foreach($categories as $category)
-                                                    <option value="{{$category->id}}">{{$category->name_eng}}</option>
+                                                    <option value="{{ $category->id }}" {{ $category->id == $subsubcategories->category_id ? 'selected': ''}} >{{ $category->name_eng }}</option>
                                                 @endforeach
                                             </select>
-                                            @error('category_id ')
+                                            @error('category_id')
                                             <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
                                     </div>
-
                                     <div class="form-group">
                                         <h5>Subcategory Select <span class="text-danger">*</span></h5>
                                         <div class="controls">
                                             <select name="subcategory_id" class="form-control"  >
                                                 <option value="" selected="" disabled="">Select Subcategory</option>
-
+                                                @foreach($subcategories as $subcategory)
+                                                    <option value="{{ $subcategory->id }}" {{ $subcategory->id == $subsubcategories->subcategory_id ? 'selected': ''}} >{{ $subcategory->name_eng }}</option>
+                                                @endforeach
                                             </select>
                                             @error('subcategory_id')
                                             <span class="text-danger">{{ $message }}</span>
@@ -110,9 +68,10 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <h5>Name English <span class="text-danger">*</span></h5>
+                                        <h5> Name English <span class="text-danger">*</span></h5>
                                         <div class="controls">
-                                            <input type="text" name="name_eng" class="form-control">
+                                            <input type="text" name="name_eng" value="{{$subsubcategories->name_eng}}"
+                                                   class="form-control">
                                             @error('name_eng')
                                             <span class="text-danger">{{ $message }}</span>
                                             @enderror
@@ -122,7 +81,7 @@
                                     <div class="form-group">
                                         <h5>Name Bangla <span class="text-danger">*</span></h5>
                                         <div class="controls">
-                                            <input type="text" name="name_bng" class="form-control">
+                                            <input type="text" name="name_bng" value="{{$subsubcategories->name_bng}}" class="form-control">
                                             @error('name_bng')
                                             <span class="text-danger">{{ $message }}</span>
                                             @enderror
@@ -130,7 +89,7 @@
                                     </div>
 
                                     <input type="submit" class="btn btn-rounded btn-primary float-right"
-                                           value="Add New">
+                                           value="Update">
                                 </form>
                             </div>
                         </div>
@@ -167,6 +126,3 @@
         });
     </script>
 @endsection
-
-
-
