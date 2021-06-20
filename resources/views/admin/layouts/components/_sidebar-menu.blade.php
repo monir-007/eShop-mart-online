@@ -39,7 +39,10 @@
         <ul class="treeview-menu">
             <li class="{{ ($route === 'category.index') ? 'active':''}}"><a href="{{route('category.index')}}"><i
                         class="ti-more"></i>Categories</a></li>
-            <li class="{{ ($route === 'subcategory.index') ? 'active':''}}"><a href="{{route('subcategory.index')}}"><i class="ti-more"></i>Subcategories</a></li>
+            <li class="{{ ($route === 'subcategory.index') ? 'active':''}}"><a href="{{route('subcategory.index')}}"><i
+                        class="ti-more"></i>Subcategories</a></li>
+            <li class="{{ ($route === 'sub-subcategory.index') ? 'active':''}}"><a href="{{route('sub-subcategory.index')}}"><i
+                        class="ti-more"></i>Sub-subcategories</a></li>
         </ul>
     </li>
 

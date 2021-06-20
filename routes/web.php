@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ChangePasswordController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\SubCategoryController;
+use App\Http\Controllers\Admin\SubsubcategoryController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserView\IndexController;
 use App\Models\User;
@@ -85,6 +86,8 @@ Route::prefix('category')->group(function () {
     Route::get('/subcategory/edit/{id}', [SubCategoryController::class, 'edit'])->name('subcategory.edit');
     Route::post('/subcategory/update/{id}', [SubCategoryController::class, 'update'])->name('subcategory.update');
     Route::get('/subcategory/delete/{id}', [SubCategoryController::class, 'delete'])->name('subcategory.delete');
+
+    Route::get('/sub-subcategories', [SubsubcategoryController::class, 'index'])->name('sub-subcategory.index');
 });
 
 
