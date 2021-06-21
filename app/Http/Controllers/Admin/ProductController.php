@@ -87,7 +87,7 @@ class ProductController extends Controller
     public function productManage()
     {
         $products = Product::latest()->get();
-        return view('admin.product.product-view', compact('products'));
+        return view('admin.product.product-manage', compact('products'));
     }
 
     public function edit($id)

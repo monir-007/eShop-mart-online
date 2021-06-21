@@ -22,7 +22,7 @@
         <!-- Main content -->
         <section class="content">
             <div class="row">
-                <div class="box">
+                <div class="box bt-3 border-primary">
                     <div class="box-header with-border">
                         <h3 class="box-title">Add New Product</h3>
                     </div>

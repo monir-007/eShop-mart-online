@@ -24,7 +24,7 @@
         <section class="content">
             <div class="row">
                 <div class="col-8">
-                    <div class="box">
+                    <div class="box bt-3 border-primary">
                         <div class="box-header with-border">
                             <h3 class="box-title">Sub | Subcategory List</h3>
                         </div>
@@ -44,18 +44,18 @@
                                     <tbody>
                                     <tr>
                                         @foreach($subsubcategory as $item)
-                                            <td width="15%">{{$item['categoryName']['name_eng']}}</td>
-                                            <td width="20%">{{$item['subcategoryName']['name_eng']}}</td>
-                                            <td width="20%">{{$item->name_eng}}</td>
-                                            <td width="20%">{{$item->name_bng}}</td>
-                                            <td width="25%">
+                                            <td >{{$item['categoryName']['name_eng']}}</td>
+                                            <td >{{$item['subcategoryName']['name_eng']}}</td>
+                                            <td >{{$item->name_eng}}</td>
+                                            <td >{{$item->name_bng}}</td>
+                                            <td class="d-flex m-auto">
                                                 <a href="{{route('sub-subcategory.edit',$item->id)}}"
-                                                   class="btn btn-success btn-sm mr-1 "
+                                                   class="btn btn-success mr-2"
                                                    data-toggle="tooltip"
-                                                   data-placement="right" title="Edit"> <i class="fa fa-edit"></i> </a>
+                                                   data-placement="bottom" title="Edit"> <i class="fa fa-edit"></i> </a>
                                                 <a href="{{ route('sub-subcategory.delete',$item->id) }}" id="delete"
-                                                   class="btn btn-danger btn-sm" data-toggle="tooltip"
-                                                   data-placement="right" title="Remove"> <i class="fa fa-trash"></i>
+                                                   class="btn btn-danger" data-toggle="tooltip"
+                                                   data-placement="bottom" title="Remove"> <i class="fa fa-trash"></i>
                                                 </a>
                                             </td>
                                     </tr>
@@ -72,7 +72,7 @@
 
                 <!-- =============== Add New Brand ================== -->
                 <div class="col-4">
-                    <div class="box">
+                    <div class="box bt-3">
                         <div class="box-header with-border">
                             <h4 class="box-title text-white">Add New Sub subcategory</h4>
                         </div>

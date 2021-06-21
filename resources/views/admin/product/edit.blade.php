@@ -22,7 +22,7 @@
         <!-- Main content -->
         <section class="content">
             <div class="row">
-                <div class="box bt-3 border-success">
+                <div class="box bt-3 border-warning">
                     <div class="box-header with-border">
                         <h3 class="box-title">Edit Product</h3>
                     </div>
@@ -381,7 +381,7 @@
                                     </div>
                                     <!-- end 9th row -->
                                     <div class="text-xs-right">
-                                        <input type="submit" class="btn btn-rounded btn-primary float-right"
+                                        <input type="submit" class="btn btn-rounded btn-outline-warning float-right"
                                                value="Update Product">
                                     </div>
                                 </form>

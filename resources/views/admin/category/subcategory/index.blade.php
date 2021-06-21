@@ -23,7 +23,7 @@
         <section class="content">
             <div class="row">
                 <div class="col-8">
-                    <div class="box">
+                    <div class="box bt-3 border-primary">
                         <div class="box-header with-border">
                             <h3 class="box-title">Subcategory List</h3>
                         </div>
@@ -45,14 +45,14 @@
                                             <td>{{$item['categoryName']['name_eng']}}</td>
                                             <td>{{$item->name_eng}}</td>
                                             <td>{{$item->name_bng}}</td>
-                                            <td width="20%">
+                                            <td class="d-flex">
                                                 <a href="{{route('subcategory.edit',$item->id)}}"
-                                                   class="btn btn-success btn-sm mr-1 "
+                                                   class="btn btn-success mr-2 "
                                                    data-toggle="tooltip"
-                                                   data-placement="right" title="Edit"> <i class="fa fa-edit"></i> </a>
+                                                   data-placement="bottom" title="Edit"> <i class="fa fa-edit"></i> </a>
                                                 <a href="{{ route('subcategory.delete',$item->id) }}" id="delete"
-                                                   class="btn btn-danger btn-sm" data-toggle="tooltip"
-                                                   data-placement="right" title="Remove"> <i class="fa fa-trash"></i>
+                                                   class="btn btn-danger" data-toggle="tooltip"
+                                                   data-placement="bottom" title="Remove"> <i class="fa fa-trash"></i>
                                                 </a>
                                             </td>
                                     </tr>
@@ -69,7 +69,7 @@
 
                 <!-- =============== Add New Brand ================== -->
                 <div class="col-4">
-                    <div class="box">
+                    <div class="box bt-3">
                         <div class="box-header with-border">
                             <h4 class="box-title text-white">Add New Subcategory</h4>
                         </div>

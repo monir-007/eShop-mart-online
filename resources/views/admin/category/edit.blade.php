@@ -25,7 +25,7 @@
 
                 <!-- =============== Add New Brand ================== -->
                 <div class="col-6">
-                    <div class="box">
+                    <div class="box bt-3 border-warning">
                         <div class="box-header with-border">
                             <h3 class="box-title text-white">Edit Category: <span class="text-secondary">{{$category->name_eng}}</span></h3>
                         </div>
@@ -67,7 +67,7 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    <input type="submit" class="btn btn-rounded btn-primary float-right"
+                                    <input type="submit" class="btn btn-rounded btn-outline-warning float-right"
                                            value="Update">
                                 </form>
                             </div>

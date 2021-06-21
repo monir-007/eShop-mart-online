@@ -23,7 +23,7 @@
         <section class="content">
             <div class="row">
                 <div class="col-8">
-                    <div class="box">
+                    <div class="box bt-3 border-primary">
                         <div class="box-header with-border">
                             <h3 class="box-title">Brand List</h3>
                         </div>
@@ -47,13 +47,13 @@
                                             <td>{{$item->name_bng}}</td>
                                             <td><img src="{{asset($item->image)}}" alt=""
                                                      style="width: 70px; height: 40px;"></td>
-                                            <td>
-                                                <a href="{{route('brand.edit',$item->id)}}" class="btn btn-success mr-1 "
+                                            <td class="d-flex">
+                                                <a href="{{route('brand.edit',$item->id)}}" class="btn btn-success mr-2 "
                                                    data-toggle="tooltip"
-                                                   data-placement="right" title="Edit"> <i class="fa fa-edit"></i> </a>
+                                                   data-placement="bottom" title="Edit"> <i class="fa fa-edit"></i> </a>
                                                 <a href="{{ route('brand.delete',$item->id) }}" id="delete"
                                                    class="btn btn-danger" data-toggle="tooltip"
-                                                   data-placement="right" title="Remove"> <i class="fa fa-trash"></i>
+                                                   data-placement="bottom" title="Remove"> <i class="fa fa-trash"></i>
                                                 </a>
                                             </td>
                                     </tr>
@@ -70,7 +70,7 @@
 
                 <!-- =============== Add New Brand ================== -->
                 <div class="col-4">
-                    <div class="box">
+                    <div class="box bt-3">
                         <div class="box-header with-border">
                             <h3 class="box-title text-white">Add New Brand</h3>
                         </div>

@@ -23,7 +23,7 @@
         <section class="content">
             <div class="row">
                 <div class="col-12">
-                    <div class="box">
+                    <div class="box bt-3 border-primary">
                         <div class="box-header with-border">
                             <h3 class="box-title">Product List</h3>
                         </div>

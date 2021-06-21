@@ -8,14 +8,14 @@
 
     <li class="{{ ($route === 'dashboard') ? 'active':''}}">
         <a href="{{url('admin/dashboard')}}">
-            <i data-feather="pie-chart"></i>
+            <i data-feather="target"></i>
             <span>Dashboard</span>
         </a>
     </li>
 
     <li class="treeview {{ ($prefix === '/brand') ? 'active':''}}">
         <a href="#">
-            <i data-feather="message-circle"></i>
+            <i data-feather="grid"></i>
             <span>Brands</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-right pull-right"></i>
@@ -24,13 +24,12 @@
         <ul class="treeview-menu">
             <li class="{{ ($route === 'brand.index') ? 'active':''}}"><a href="{{route('brand.index')}}"><i
                         class="ti-more"></i>All Brands</a></li>
-            <li><a href="calendar.html"><i class="ti-more"></i>Calendar</a></li>
         </ul>
     </li>
 
     <li class="treeview {{ ($prefix === '/category') ? 'active':''}}">
         <a href="#">
-            <i data-feather="message-circle"></i>
+            <i data-feather="layers"></i>
             <span>Category</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-right pull-right"></i>
@@ -49,7 +48,7 @@
 
     <li class="treeview {{($prefix === '/product') ? 'active' : ''}}">
         <a href="#">
-            <i data-feather="mail"></i> <span>Product</span>
+            <i data-feather="shopping-bag"></i> <span>Product</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-right pull-right"></i>
             </span>
@@ -59,7 +58,6 @@
                         class="ti-more"></i>Add Products</a></li>
             <li class="{{($route==='product.manage') ? 'active':'' }}"><a href="{{route('product.manage')}}"><i
                         class="ti-more"></i>Manage Products</a></li>
-            <li><a href="mailbox_read_mail.html"><i class="ti-more"></i>Read</a></li>
         </ul>
     </li>
 
@@ -84,7 +82,7 @@
 
     <li class="treeview">
         <a href="#">
-            <i data-feather="grid"></i>
+            <i data-feather="package"></i>
             <span>Components</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-right pull-right"></i>
