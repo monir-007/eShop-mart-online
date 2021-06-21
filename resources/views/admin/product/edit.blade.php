@@ -459,8 +459,8 @@
                                                 </div>
                                                 <div class="card-body">
                                                     <div class="card-title">
-                                                        <a href="" class="btn btn-danger btn-sm id='delete"
-                                                           title="delete image"><i class="fa fa-trash"></i></a>
+                                                        <a href="{{route('product.image.delete',$image->id)}}" class="btn btn-danger btn-sm" id="delete"
+                                                           title="remove image"><i class="fa fa-trash"></i></a>
                                                     </div>
                                                     <div class="card-text">
                                                         <div class="form-group">
