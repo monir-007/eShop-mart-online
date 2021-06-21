@@ -103,6 +103,7 @@ Admin Product Resource Routes
 
 Route::prefix('product')->group(function (){
     Route::get('/new-product', [ProductController::class, 'insert'])->name('product.insert');
+    Route::post('/store', [ProductController::class, 'store'])->name('product.store');
 });
 
 
