@@ -206,7 +206,18 @@ class ProductController extends Controller
             'alert-type' => 'warning'
         );
         return redirect()->back()->with($notification);
+    }
 
+    public function productDetails($id)
+    {
+        $multipleImages = MultipleImage::where('product_id', $id)->get();
+        $brands = Brand::latest()->get();
+        $categories = Category::latest()->get();
+        $subcategories = SubCategory::latest()->get();
+        $subSubcategories = SubSubCategory::latest()->get();
+        $products = Product::findOrFail($id);
+
+        return view('admin.product.details', compact('products', 'categories', 'brands', 'subcategories', 'subSubcategories', 'multipleImages'));
     }
 
 }

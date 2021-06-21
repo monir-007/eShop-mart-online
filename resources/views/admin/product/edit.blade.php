@@ -199,42 +199,7 @@
                                         </div> <!-- end col md 4 -->
                                     </div> <!-- end 3rd row -->
 
-                                    <!-- start 4th row -->
-                                {{--                                    <div class="row">--}}
-                                {{--                                        <div class="col-md-6">--}}
-                                {{--                                            <div class="form-group">--}}
-                                {{--                                                <h5>Cover Thumbnail <span class="text-danger">*</span></h5>--}}
-                                {{--                                                <div class="controls">--}}
-                                {{--                                                    <input type="file" name="product_thumbnail"--}}
-                                {{--                                                           onchange="coverThamUrl(this)" class="form-control" required>--}}
-                                {{--                                                    @error('product_thumbnail')--}}
-                                {{--                                                    <span class="text-danger">{{ $message }}</span>--}}
-                                {{--                                                    @enderror--}}
-                                {{--                                                    <div>--}}
-                                {{--                                                        <img id="coverTham" src="">--}}
-                                {{--                                                    </div>--}}
-                                {{--                                                </div>--}}
-                                {{--                                            </div>--}}
-                                {{--                                        </div> <!-- end col md 6 -->--}}
-
-                                {{--                                        <div class="col-md-6">--}}
-                                {{--                                            <div class="form-group">--}}
-                                {{--                                                <h5>Product Images <span class="text-danger">*</span></h5>--}}
-                                {{--                                                <div class="controls">--}}
-                                {{--                                                    <input type="file" id="multipleImage" name="multipleImage[]"--}}
-                                {{--                                                           multiple class="form-control" required>--}}
-                                {{--                                                    @error('multipleImage')--}}
-                                {{--                                                    <span class="text-danger">{{ $message }}</span>--}}
-                                {{--                                                    @enderror--}}
-                                {{--                                                    <div class="row" id="previewImage">--}}
-
-                                {{--                                                    </div>--}}
-                                {{--                                                </div>--}}
-                                {{--                                            </div>--}}
-                                {{--                                        </div> <!-- end col md 6 -->--}}
-                                {{--                                    </div> <!-- end 4th row -->--}}
-
-                                <!-- start 5th row -->
+                                    <!-- start 5th row -->
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="form-group">
@@ -310,7 +275,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <h5>Color Bangla <span class="text-danger">*</span></h5>
-                                                <div class="controls bg-secondary">
+                                                <div class="controls">
                                                     <input type="text" name="color_bng" class="form-control"
                                                            value="{{$products->color_bng}}" data-role="tagsinput"
                                                            required>
@@ -459,7 +424,8 @@
                                                 </div>
                                                 <div class="card-body">
                                                     <div class="card-title">
-                                                        <a href="{{route('product.image.delete',$image->id)}}" class="btn btn-danger btn-sm" id="delete"
+                                                        <a href="{{route('product.image.delete',$image->id)}}"
+                                                           class="btn btn-danger btn-sm" id="delete"
                                                            title="remove image"><i class="fa fa-trash"></i></a>
                                                     </div>
                                                     <div class="card-text">
