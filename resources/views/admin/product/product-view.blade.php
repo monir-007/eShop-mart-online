@@ -50,11 +50,11 @@
                                             <td>{{$item->name_bng}}</td>
                                             <td>{{$item->quantity}}</td>
                                             <td>
-                                                <a href="{{route('category.edit',$item->id)}}"
+                                                <a href="{{route('product.edit',$item->id)}}"
                                                    class="btn btn-success btn-sm mr-1 "
                                                    data-toggle="tooltip"
                                                    data-placement="right" title="Edit"> <i class="fa fa-edit"></i> </a>
-                                                <a href="{{ route('category.delete',$item->id) }}" id="delete"
+                                                <a href="{{ route('product.delete',$item->id) }}" id="delete"
                                                    class="btn btn-danger btn-sm" data-toggle="tooltip"
                                                    data-placement="right" title="Remove"> <i class="fa fa-trash"></i>
                                                 </a>
