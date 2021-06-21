@@ -132,8 +132,8 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
 <script type="text/javascript">
-    $(function(){
-        $(document).on('click','#delete',function(e){
+    $(function () {
+        $(document).on('click', '#delete', function (e) {
             e.preventDefault();
             var link = $(this).attr("href");
 
@@ -151,6 +151,61 @@
                     Swal.fire(
                         'Deleted!',
                         'Your file has been deleted.',
+                        'success'
+                    )
+                }
+            })
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(function () {
+        $(document).on('click', '#inactive', function (e) {
+            e.preventDefault();
+            let link = $(this).attr("href");
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You want to deactivate this?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#12C684',
+                cancelButtonColor: '#B0103C',
+                confirmButtonText: 'Yes, inactive it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = link
+                    Swal.fire(
+                        'Deactivated!',
+                        'Your file has been deactivated.',
+                        'success'
+                    )
+                }
+            })
+        });
+    });
+</script>
+<script type="text/javascript">
+    $(function () {
+        $(document).on('click', '#active', function (e) {
+            e.preventDefault();
+            let link = $(this).attr("href");
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You want to activate this?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#12C684',
+                cancelButtonColor: '#B0103C',
+                confirmButtonText: 'Yes, active it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = link
+                    Swal.fire(
+                        'Activated!',
+                        'Your file has been activated.',
                         'success'
                     )
                 }

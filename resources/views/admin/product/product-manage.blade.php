@@ -63,7 +63,8 @@
                                                 <a href="{{route('product.details',$item->id)}}"
                                                    class="btn btn-dark btn-circle mr-2"
                                                    data-toggle="tooltip"
-                                                   data-placement="bottom" title="Details"> <i class="fa fa-eye"></i> </a>
+                                                   data-placement="bottom" title="Details"> <i class="fa fa-eye"></i>
+                                                </a>
 
                                                 <a href="{{route('product.edit',$item->id)}}"
                                                    class="btn btn-success mr-2"
@@ -71,9 +72,24 @@
                                                    data-placement="bottom" title="Edit"> <i class="fa fa-edit"></i> </a>
 
                                                 <a href="{{ route('product.delete',$item->id) }}" id="delete"
-                                                   class="btn btn-danger" data-toggle="tooltip"
+                                                   class="btn btn-danger mr-2" data-toggle="tooltip"
                                                    data-placement="bottom" title="Remove"> <i class="fa fa-trash"></i>
                                                 </a>
+
+                                                @if($item->status===1)
+                                                    <a href="{{route('product.inactive',$item->id)}}"
+                                                       class="btn btn-warning btn-circle  mr-2" id="inactive"
+                                                       data-toggle="tooltip"
+                                                       data-placement="bottom" title="Inactive product"> <i
+                                                            class="fa fa-arrow-down"></i></a>
+                                                @else
+                                                    <a href="{{route('product.active',$item->id)}}"
+                                                       class="btn btn-info btn-circle mr-2" id="active"
+                                                       data-toggle="tooltip"
+                                                       data-placement="bottom" title="Active product"> <i
+                                                            class="fa fa-arrow-up"></i></a>
+
+                                                @endif
                                             </td>
                                     </tr>
                                     @endforeach

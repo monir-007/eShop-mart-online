@@ -217,4 +217,30 @@ class ProductController extends Controller
         return view('admin.product.details', compact('products', 'multipleImages'));
     }
 
+    public function productStatusActive($id)
+    {
+        Product::findOrFail($id)->update([
+            'status'=>1
+        ]);
+
+        $notification = array(
+            'message' => 'Product activated',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
+    }
+
+    public function productStatusInactive($id)
+    {
+        Product::findOrFail($id)->update([
+            'status'=>0
+        ]);
+
+        $notification = array(
+            'message' => 'Product deactivated.',
+            'alert-type' => 'error'
+        );
+        return redirect()->back()->with($notification);
+    }
+
 }
