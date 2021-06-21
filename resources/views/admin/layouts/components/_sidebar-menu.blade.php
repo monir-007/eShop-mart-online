@@ -57,7 +57,8 @@
         <ul class="treeview-menu">
             <li class="{{($route==='product.insert') ? 'active':''}}"><a href="{{route('product.insert')}}"><i
                         class="ti-more"></i>Add Products</a></li>
-            <li><a href="mailbox_compose.html"><i class="ti-more"></i>Compose</a></li>
+            <li class="{{($route==='product.manage') ? 'active':'' }}"><a href="{{route('product.manage')}}"><i
+                        class="ti-more"></i>Manage Products</a></li>
             <li><a href="mailbox_read_mail.html"><i class="ti-more"></i>Read</a></li>
         </ul>
     </li>
