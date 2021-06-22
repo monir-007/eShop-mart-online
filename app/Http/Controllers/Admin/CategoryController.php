@@ -51,9 +51,9 @@ class CategoryController extends Controller
 
     public function update(Request $request)
     {
-        $cat_id = $request->id;
+        $categoryId = $request->id;
 
-        Category::findOrFail($cat_id)->update([
+        Category::findOrFail($categoryId)->update([
             'name_eng' => $request->name_eng,
             'name_bng' => $request->name_bng,
             'slug_eng' => strtolower(str_replace(' ', '-', $request->name_eng)),
