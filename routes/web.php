@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ChangePasswordController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\SubsubcategoryController;
 use App\Http\Controllers\AdminController;
@@ -101,7 +102,7 @@ Route::prefix('category')->group(function () {
 Admin Product Resource Routes
 */
 
-Route::prefix('product')->group(function (){
+Route::prefix('product')->group(function () {
     Route::get('/new-product', [ProductController::class, 'insert'])->name('product.insert');
     Route::post('/store', [ProductController::class, 'store'])->name('product.store');
     Route::get('/manage', [ProductController::class, 'productManage'])->name('product.manage');
@@ -114,6 +115,18 @@ Route::prefix('product')->group(function (){
     Route::get('/product/details/{id}', [ProductController::class, 'productDetails'])->name('product.details');
     Route::get('/product/active/{id}', [ProductController::class, 'productStatusActive'])->name('product.active');
     Route::get('/product/inactive/{id}', [ProductController::class, 'productStatusInactive'])->name('product.inactive');
+});
+
+/*
+Admin Product Resource Routes
+*/
+
+Route::prefix('slider')->group(function () {
+    Route::get('/new-slider', [SliderController::class, 'insert'])->name('slider.insert');
+    Route::post('/store', [SliderController::class, 'store'])->name('slider.store');
+    Route::get('/manage', [SliderController::class, 'sliderManage'])->name('slider.manage');
+    Route::get('/slider/active/{id}', [SliderController::class, 'sliderStatusActive'])->name('slider.active');
+    Route::get('/slider/inactive/{id}', [SliderController::class, 'sliderStatusInactive'])->name('slider.inactive');
 });
 
 

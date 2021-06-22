@@ -492,7 +492,7 @@
                                                                 class="text-danger">*</span></h5>
                                                         <div class="controls ">
                                                             <input type="file" name="product_thumbnail"
-                                                                   multiple class="form-control bg-lightest"
+                                                                    class="form-control bg-lightest"
                                                                    onchange="coverThamUrl(this)" required>
                                                             @error('product_thumbnail')
                                                             <span class="text-danger">{{ $message }}</span>
