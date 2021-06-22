@@ -102,6 +102,31 @@ class SliderController extends Controller
         );
         return redirect()->back()->with($notification);
 
+    }
 
+    public function sliderStatusActive($id)
+    {
+        Slider::findOrFail($id)->update([
+            'status' => 1
+        ]);
+
+        $notification = array(
+            'message' => 'Slider activated Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
+    }
+
+    public function sliderStatusInactive($id)
+    {
+        Slider::findOrFail($id)->update([
+            'status' => 0
+        ]);
+
+        $notification = array(
+            'message' => 'Slider activated Successfully',
+            'alert-type' => 'error'
+        );
+        return redirect()->back()->with($notification);
     }
 }
