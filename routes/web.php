@@ -30,29 +30,30 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin:admin']], function ()
     Route::post('/login', [AdminController::class, 'store'])->name('admin.login');
 });
 
-Route::middleware(['auth:sanctum,admin', 'verified'])->get('/admin/dashboard', function () {
-    return view('admin.index');
-})->name('dashboard');
+Route::middleware(['auth:admin'])->group(function () {
+    Route::middleware(['auth:sanctum,admin', 'verified'])->get('/admin/dashboard', function () {
+        return view('admin.index');
+    })->name('dashboard')->middleware('auth:admin');
 
-Route::get('/admin/logout', [AdminController::class, 'destroy'])->name('admin.logout');
+    Route::get('/admin/logout', [AdminController::class, 'destroy'])->name('admin.logout');
 
 //Admin Profile Route
-Route::get('/admin/profile', [ProfileController::class, 'profile'])->name('admin.profile');
-Route::get('/admin/profile/update', [ProfileController::class, 'update'])->name('admin.profile.update');
-Route::post('/admin/profile/store', [ProfileController::class, 'store'])->name('admin.profile.store');
+    Route::get('/admin/profile', [ProfileController::class, 'profile'])->name('admin.profile');
+    Route::get('/admin/profile/update', [ProfileController::class, 'update'])->name('admin.profile.update');
+    Route::post('/admin/profile/store', [ProfileController::class, 'store'])->name('admin.profile.store');
 
 //Admin Password Change
-Route::get('/admin/profile/change-password', [ChangePasswordController::class, 'passwordChange'])->name('admin.change.password');
-Route::post('/admin/profile/update-password', [ChangePasswordController::class, 'passwordUpdate'])->name('admin.update.password');
-
-/*
-User View Routes
-*/
-Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
-    $id = Auth::user()->id;
-    $user = User::find($id);
-    return view('dashboard', compact('user'));
-})->name('dashboard');
+    Route::get('/admin/profile/change-password', [ChangePasswordController::class, 'passwordChange'])->name('admin.change.password');
+    Route::post('/admin/profile/update-password', [ChangePasswordController::class, 'passwordUpdate'])->name('admin.update.password');
+});
+    /*
+    User View Routes
+    */
+    Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
+        $id = Auth::user()->id;
+        $user = User::find($id);
+        return view('dashboard', compact('user'));
+    })->name('dashboard');
 
 //User View Index Route
 Route::get('/', [IndexController::class, 'index'])->name('home');
