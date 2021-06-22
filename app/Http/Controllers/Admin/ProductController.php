@@ -12,6 +12,7 @@ use App\Models\SubSubcategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Intervention\Image\Facades\Image;
+use PhpParser\Node\Expr\AssignOp\Mul;
 
 class ProductController extends Controller
 {
@@ -220,7 +221,7 @@ class ProductController extends Controller
     public function productStatusActive($id)
     {
         Product::findOrFail($id)->update([
-            'status'=>1
+            'status' => 1
         ]);
 
         $notification = array(
@@ -233,11 +234,31 @@ class ProductController extends Controller
     public function productStatusInactive($id)
     {
         Product::findOrFail($id)->update([
-            'status'=>0
+            'status' => 0
         ]);
 
         $notification = array(
             'message' => 'Product deactivated.',
+            'alert-type' => 'error'
+        );
+        return redirect()->back()->with($notification);
+    }
+
+    public function delete($id)
+    {
+        $product = Product::findOrFail($id);
+        unlink($product->product_thumbnail);
+        Product::findOrFail($id)->delete();
+
+        $imageId = MultipleImage::where('product_id', $id);
+        $images = $imageId ->get();
+        foreach ($images as $image) {
+            unlink($image->photo_name);
+            $imageId->delete();
+        }
+
+        $notification = array(
+            'message' => 'Product deleted successfully.',
             'alert-type' => 'error'
         );
         return redirect()->back()->with($notification);
