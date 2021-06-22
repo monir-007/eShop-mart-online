@@ -124,6 +124,9 @@ Admin Product Resource Routes
 Route::prefix('slider')->group(function () {
     Route::get('/new-slider', [SliderController::class, 'insert'])->name('slider.insert');
     Route::post('/store', [SliderController::class, 'store'])->name('slider.store');
+    Route::get('/edit/{id}', [SliderController::class, 'edit'])->name('slider.edit');
+    Route::post('/update/{id}', [SliderController::class, 'update'])->name('slider.update');
+    Route::get('/delete/{id}', [SliderController::class, 'delete'])->name('slider.delete');
     Route::get('/manage', [SliderController::class, 'sliderManage'])->name('slider.manage');
     Route::get('/slider/active/{id}', [SliderController::class, 'sliderStatusActive'])->name('slider.active');
     Route::get('/slider/inactive/{id}', [SliderController::class, 'sliderStatusInactive'])->name('slider.inactive');

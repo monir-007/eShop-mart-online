@@ -63,7 +63,7 @@
                                             </td>
 
                                             <td class="d-flex">
-                                                <a href="{{route('brand.edit',$item->id)}}" class="btn btn-success mr-2 "
+                                                <a href="{{route('slider.edit',$item->id)}}" class="btn btn-success mr-2 "
                                                    data-toggle="tooltip"
                                                    data-placement="bottom" title="Edit"> <i class="fa fa-edit"></i> </a>
 
@@ -82,7 +82,7 @@
 
                                                 @endif
 
-                                                <a href="{{ route('brand.delete',$item->id) }}" id="delete"
+                                                <a href="{{ route('slider.delete',$item->id) }}" id="delete"
                                                    class="btn btn-danger mr-2" data-toggle="tooltip"
                                                    data-placement="bottom" title="Remove"> <i class="fa fa-trash"></i>
                                                 </a>
