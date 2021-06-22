@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\SubsubcategoryController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserView\IndexController;
+use App\Http\Controllers\UserView\LanguageController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
@@ -132,5 +133,12 @@ Route::prefix('slider')->group(function () {
     Route::get('/slider/active/{id}', [SliderController::class, 'sliderStatusActive'])->name('slider.active');
     Route::get('/slider/inactive/{id}', [SliderController::class, 'sliderStatusInactive'])->name('slider.inactive');
 });
+
+/*
+Multi Language Routes
+*/
+
+Route::get('/language/bangla',[LanguageController::class, 'Bangla'])->name('language.bangla');
+Route::get('/language/english',[LanguageController::class, 'English'])->name('language.english');
 
 
