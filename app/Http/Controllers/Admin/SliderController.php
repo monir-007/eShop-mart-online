@@ -18,7 +18,7 @@ class SliderController extends Controller
     public function insert()
     {
         $sliders = Slider::latest()->get();
-        return view('admin.slider.index', compact('sliders', 'products'));
+        return view('admin.slider.index', compact('sliders'));
     }
 
     public function store(Request $request)
@@ -87,5 +87,21 @@ class SliderController extends Controller
             'alert-type' => 'info'
         );
         return redirect()->route('slider.manage')->with($notification);
+    }
+
+    public function delete($id)
+    {
+        $slider = Slider::findOrFail($id);
+        $image = $slider->image;
+        unlink($image);
+        Slider::findOrFail($id)->delete();
+
+        $notification = array(
+            'message' => 'Slider deleted Successfully',
+            'alert-type' => 'error'
+        );
+        return redirect()->back()->with($notification);
+
+
     }
 }
