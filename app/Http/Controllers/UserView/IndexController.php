@@ -16,7 +16,7 @@ class IndexController extends Controller
         $categories = Category::orderBy('name_eng', 'ASC')->get();
         $products = Product::where('status', 1)->orderBy('id', 'DESC')->limit(6)->get();
         $featured = Product::where('featured', 1)->orderBy('id', 'DESC')->limit(6)->get();
-        $hotDeals = Product::where('hot_deals', 1)->orderBy('id', 'DESC')->limit(3)->get();
+        $hotDeals = Product::where('hot_deals', 1)->where('discount_price', '!=', NULL)->orderBy('id', 'DESC')->limit(4)->get();
         $specialOffers = Product::where('special_offer', 1)->orderBy('id', 'DESC')->limit(3)->get();
         $specialDeals = Product::where('special_deals', 1)->orderBy('id', 'DESC')->limit(3)->get();
 

@@ -87,17 +87,8 @@
                                         $amount = $product->selling_price - $product->discount_price;
                                         $discount = ($amount/$product->selling_price) * 100;
                                     @endphp
-                                    <div>
-                                        @if ($product->discount_price === NULL)
-                                            <div class="sale-offer-tag">
-                                                <span>0%<br>
+                                    <div class="sale-offer-tag"><span>{{round($discount)}}%<br>
                                                 off</span>
-                                            </div>
-                                        @else
-                                            <div class="sale-offer-tag"><span>{{round($discount)}}%<br>
-                                                off</span>
-                                            </div>
-                                        @endif
                                     </div>
 
                                     <div class="timing-wrapper">
@@ -154,9 +145,11 @@
                                 <div class="cart clearfix animate-effect">
                                     <div class="action">
                                         <div class="add-cart-button btn-group">
-                                            <button class="btn btn-primary icon" data-toggle="dropdown" type="button"><i
+                                            <button class="btn btn-primary icon" data-toggle="dropdown"
+                                                    type="button"><i
                                                     class="fa fa-shopping-cart"></i></button>
-                                            <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
+                                            <button class="btn btn-primary cart-btn" type="button">Add to cart
+                                            </button>
                                         </div>
                                     </div>
                                     <!-- /.action -->
@@ -176,7 +169,8 @@
             <div class="sidebar-widget outer-bottom-small wow fadeInUp">
                 <h3 class="section-title">Special Offer</h3>
                 <div class="sidebar-widget-body outer-top-xs">
-                    <div class="owl-carousel sidebar-carousel special-offer custom-carousel owl-theme outer-top-xs">
+                    <div
+                        class="owl-carousel sidebar-carousel special-offer custom-carousel owl-theme outer-top-xs">
                         <div class="item">
                             <div class="products special-product">
                                 @foreach($specialOffers as $product)
@@ -240,13 +234,15 @@
                             class="item active"
                             title="Vest"
                             href="category.html">Vest</a>
-                        <a class="item" title="Smartphone" href="category.html">Smartphone</a> <a class="item"
-                                                                                                  title="Furniture"
-                                                                                                  href="category.html">Furniture</a>
+                        <a class="item" title="Smartphone" href="category.html">Smartphone</a> <a
+                            class="item"
+                            title="Furniture"
+                            href="category.html">Furniture</a>
                         <a class="item" title="T-shirt" href="category.html">T-shirt</a> <a class="item"
                                                                                             title="Sweatpants"
                                                                                             href="category.html">Sweatpants</a>
-                        <a class="item" title="Sneaker" href="category.html">Sneaker</a> <a class="item" title="Toys"
+                        <a class="item" title="Sneaker" href="category.html">Sneaker</a> <a class="item"
+                                                                                            title="Toys"
                                                                                             href="category.html">Toys</a>
                         <a
                             class="item" title="Rose" href="category.html">Rose</a></div>
@@ -261,7 +257,8 @@
             <div class="sidebar-widget outer-bottom-small wow fadeInUp">
                 <h3 class="section-title">Special Deals</h3>
                 <div class="sidebar-widget-body outer-top-xs">
-                    <div class="owl-carousel sidebar-carousel special-offer custom-carousel owl-theme outer-top-xs">
+                    <div
+                        class="owl-carousel sidebar-carousel special-offer custom-carousel owl-theme outer-top-xs">
                         <div class="item">
                             <div class="products special-product">
                                 @foreach($specialDeals as $product)
@@ -296,11 +293,13 @@
 
                                                         @if($product->discount_price===null)
                                                             <div class="product-price">
-                                                                <span class="price">${{$product->selling_price}}</span>
+                                                                            <span
+                                                                                class="price">${{$product->selling_price}}</span>
                                                             </div>
                                                         @else
                                                             <div class="product-price">
-                                                                <span class="price">${{$product->discount_price}}</span>
+                                                                            <span
+                                                                                class="price">${{$product->discount_price}}</span>
                                                                 <span
                                                                     class="price-before-discount">${{$product->selling_price}}</span>
                                                             </div>
@@ -348,9 +347,11 @@
             <div class="sidebar-widget  wow fadeInUp outer-top-vs ">
                 <div id="advertisement" class="advertisement">
                     <div class="item">
-                        <div class="avatar"><img src="{{asset('user-view/assets/images/testimonials/member1.png')}}"
-                                                 alt="Image"></div>
-                        <div class="testimonials"><em>"</em> Vtae sodales aliq uam morbi non sem lacus port mollis. Nunc
+                        <div class="avatar"><img
+                                src="{{asset('user-view/assets/images/testimonials/member1.png')}}"
+                                alt="Image"></div>
+                        <div class="testimonials"><em>"</em> Vtae sodales aliq uam morbi non sem lacus port
+                            mollis. Nunc
                             condime
                             tum metus eud molest sed consectetuer.<em>"</em></div>
                         <div class="clients_author">John Doe <span>Abc Company</span></div>
@@ -359,9 +360,11 @@
                     <!-- /.item -->
 
                     <div class="item">
-                        <div class="avatar"><img src="{{asset('user-view/assets/images/testimonials/member3.png')}}"
-                                                 alt="Image"></div>
-                        <div class="testimonials"><em>"</em>Vtae sodales aliq uam morbi non sem lacus port mollis. Nunc
+                        <div class="avatar"><img
+                                src="{{asset('user-view/assets/images/testimonials/member3.png')}}"
+                                alt="Image"></div>
+                        <div class="testimonials"><em>"</em>Vtae sodales aliq uam morbi non sem lacus port
+                            mollis. Nunc
                             condime
                             tum metus eud molest sed consectetuer.<em>"</em></div>
                         <div class="clients_author">Stephen Doe <span>Xperia Designs</span></div>
@@ -369,9 +372,11 @@
                     <!-- /.item -->
 
                     <div class="item">
-                        <div class="avatar"><img src="{{asset('user-view/assets/images/testimonials/member2.png')}}"
-                                                 alt="Image"></div>
-                        <div class="testimonials"><em>"</em> Vtae sodales aliq uam morbi non sem lacus port mollis. Nunc
+                        <div class="avatar"><img
+                                src="{{asset('user-view/assets/images/testimonials/member2.png')}}"
+                                alt="Image"></div>
+                        <div class="testimonials"><em>"</em> Vtae sodales aliq uam morbi non sem lacus port
+                            mollis. Nunc
                             condime
                             tum metus eud molest sed consectetuer.<em>"</em></div>
                         <div class="clients_author">Saraha Smith <span>Datsun &amp; Co</span></div>
@@ -385,7 +390,8 @@
 
             <!-- ============================================== Testimonials: END ============================================== -->
 
-            <div class="home-banner"><img src="{{asset('user-view/assets/images/banners/LHS-banner.jpg')}}" alt="Image">
+            <div class="home-banner"><img src="{{asset('user-view/assets/images/banners/LHS-banner.jpg')}}"
+                                          alt="Image">
             </div>
         </div>
 
@@ -400,10 +406,12 @@
                 <div class="more-info-tab clearfix ">
                     <h3 class="new-product-title pull-left">New Products</h3>
                     <ul class="nav nav-tabs nav-tab-line pull-right" id="new-products-1">
-                        <li class="active"><a data-transition-type="backSlide" href="#all" data-toggle="tab">All</a>
+                        <li class="active"><a data-transition-type="backSlide" href="#all"
+                                              data-toggle="tab">All</a>
                         </li>
                         @foreach($categories as $category)
-                            <li><a data-transition-type="backSlide" href="#category{{$category->id}}" data-toggle="tab">
+                            <li><a data-transition-type="backSlide" href="#category{{$category->id}}"
+                                   data-toggle="tab">
                                     @if(session()->get('language') === 'bangla')
                                         {{$category->name_bng}}
                                     @else
@@ -444,7 +452,8 @@
                                                         @if ($product->discount_price === NULL)
                                                             <div class="tag new"><span>new</span></div>
                                                         @else
-                                                            <div class="tag hot"><span>{{ round($discount) }}%</span>
+                                                            <div class="tag hot">
+                                                                <span>{{ round($discount) }}%</span>
                                                             </div>
                                                         @endif
                                                     </div>
@@ -485,8 +494,10 @@
                                                                 <button data-toggle="tooltip"
                                                                         class="btn btn-primary icon"
                                                                         type="button" title="Add Cart"><i
-                                                                        class="fa fa-shopping-cart"></i></button>
-                                                                <button class="btn btn-primary cart-btn" type="button">
+                                                                        class="fa fa-shopping-cart"></i>
+                                                                </button>
+                                                                <button class="btn btn-primary cart-btn"
+                                                                        type="button">
                                                                     Add
                                                                     to cart
                                                                 </button>
@@ -497,9 +508,12 @@
                                                                                         title="Wishlist">
                                                                     <i
                                                                         class="icon fa fa-heart"></i> </a></li>
-                                                            <li class="lnk"><a data-toggle="tooltip" class="add-to-cart"
-                                                                               href="detail.html" title="Compare"> <i
-                                                                        class="fa fa-signal" aria-hidden="true"></i>
+                                                            <li class="lnk"><a data-toggle="tooltip"
+                                                                               class="add-to-cart"
+                                                                               href="detail.html"
+                                                                               title="Compare"> <i
+                                                                        class="fa fa-signal"
+                                                                        aria-hidden="true"></i>
                                                                 </a>
                                                             </li>
                                                         </ul>
@@ -525,7 +539,8 @@
                     @foreach($categories as $category)
                         <div class="tab-pane " id="category{{$category->id}}">
                             <div class="product-slider">
-                                <div class="owl-carousel home-owl-carousel custom-carousel owl-theme" data-item="4">
+                                <div class="owl-carousel home-owl-carousel custom-carousel owl-theme"
+                                     data-item="4">
                                     @php
                                         $categoryProducts = App\Models\Product::where('category_id',$category->id)->orderBy('id','DESC')->get();
                                     @endphp
@@ -591,24 +606,29 @@
                                                                     <button data-toggle="tooltip"
                                                                             class="btn btn-primary icon"
                                                                             type="button" title="Add Cart"><i
-                                                                            class="fa fa-shopping-cart"></i></button>
+                                                                            class="fa fa-shopping-cart"></i>
+                                                                    </button>
                                                                     <button class="btn btn-primary cart-btn"
                                                                             type="button">
                                                                         Add
                                                                         to cart
                                                                     </button>
                                                                 </li>
-                                                                <li class="lnk wishlist"><a data-toggle="tooltip"
-                                                                                            class="add-to-cart"
-                                                                                            href="detail.html"
-                                                                                            title="Wishlist">
+                                                                <li class="lnk wishlist"><a
+                                                                        data-toggle="tooltip"
+                                                                        class="add-to-cart"
+                                                                        href="detail.html"
+                                                                        title="Wishlist">
                                                                         <i
-                                                                            class="icon fa fa-heart"></i> </a></li>
+                                                                            class="icon fa fa-heart"></i> </a>
+                                                                </li>
                                                                 <li class="lnk"><a data-toggle="tooltip"
                                                                                    class="add-to-cart"
-                                                                                   href="detail.html" title="Compare">
+                                                                                   href="detail.html"
+                                                                                   title="Compare">
                                                                         <i
-                                                                            class="fa fa-signal" aria-hidden="true"></i>
+                                                                            class="fa fa-signal"
+                                                                            aria-hidden="true"></i>
                                                                     </a>
                                                                 </li>
                                                             </ul>
@@ -1170,7 +1190,8 @@
                                                 <div class="product-info">
                                                     <h3 class="name"><a href="#">Floral Print Buttoned</a></h3>
                                                     <div class="rating rateit-small"></div>
-                                                    <div class="product-price"><span class="price"> $450.99 </span>
+                                                    <div class="product-price"><span
+                                                            class="price"> $450.99 </span>
                                                     </div>
                                                     <!-- /.product-price -->
 
@@ -1201,7 +1222,8 @@
                                                 <div class="product-info">
                                                     <h3 class="name"><a href="#">Floral Print Buttoned</a></h3>
                                                     <div class="rating rateit-small"></div>
-                                                    <div class="product-price"><span class="price"> $450.99 </span>
+                                                    <div class="product-price"><span
+                                                            class="price"> $450.99 </span>
                                                     </div>
                                                     <!-- /.product-price -->
 
@@ -1236,7 +1258,8 @@
                                                 <div class="product-info">
                                                     <h3 class="name"><a href="#">Floral Print Buttoned</a></h3>
                                                     <div class="rating rateit-small"></div>
-                                                    <div class="product-price"><span class="price"> $450.99 </span>
+                                                    <div class="product-price"><span
+                                                            class="price"> $450.99 </span>
                                                     </div>
                                                     <!-- /.product-price -->
 
@@ -1267,7 +1290,8 @@
                                                 <div class="product-info">
                                                     <h3 class="name"><a href="#">Floral Print Buttoned</a></h3>
                                                     <div class="rating rateit-small"></div>
-                                                    <div class="product-price"><span class="price"> $450.99 </span>
+                                                    <div class="product-price"><span
+                                                            class="price"> $450.99 </span>
                                                     </div>
                                                     <!-- /.product-price -->
 
@@ -1302,7 +1326,8 @@
                                                 <div class="product-info">
                                                     <h3 class="name"><a href="#">Floral Print Buttoned</a></h3>
                                                     <div class="rating rateit-small"></div>
-                                                    <div class="product-price"><span class="price"> $450.99 </span>
+                                                    <div class="product-price"><span
+                                                            class="price"> $450.99 </span>
                                                     </div>
                                                     <!-- /.product-price -->
 
@@ -1333,7 +1358,8 @@
                                                 <div class="product-info">
                                                     <h3 class="name"><a href="#">Floral Print Buttoned</a></h3>
                                                     <div class="rating rateit-small"></div>
-                                                    <div class="product-price"><span class="price"> $450.99 </span>
+                                                    <div class="product-price"><span
+                                                            class="price"> $450.99 </span>
                                                     </div>
                                                     <!-- /.product-price -->
 
@@ -1368,7 +1394,8 @@
                                                 <div class="product-info">
                                                     <h3 class="name"><a href="#">Floral Print Buttoned</a></h3>
                                                     <div class="rating rateit-small"></div>
-                                                    <div class="product-price"><span class="price"> $450.99 </span>
+                                                    <div class="product-price"><span
+                                                            class="price"> $450.99 </span>
                                                     </div>
                                                     <!-- /.product-price -->
 
@@ -1399,7 +1426,8 @@
                                                 <div class="product-info">
                                                     <h3 class="name"><a href="#">Floral Print Buttoned</a></h3>
                                                     <div class="rating rateit-small"></div>
-                                                    <div class="product-price"><span class="price"> $450.99 </span>
+                                                    <div class="product-price"><span
+                                                            class="price"> $450.99 </span>
                                                     </div>
                                                     <!-- /.product-price -->
 
@@ -1437,9 +1465,11 @@
                                 <!-- /.blog-post-image -->
 
                                 <div class="blog-post-info text-left">
-                                    <h3 class="name"><a href="#">Voluptatem accusantium doloremque laudantium</a></h3>
+                                    <h3 class="name"><a href="#">Voluptatem accusantium doloremque
+                                            laudantium</a></h3>
                                     <span class="info">By Jone Doe &nbsp;|&nbsp; 21 March 2016 </span>
-                                    <p class="text">Sed quia non numquam eius modi tempora incidunt ut labore et dolore
+                                    <p class="text">Sed quia non numquam eius modi tempora incidunt ut labore et
+                                        dolore
                                         magnam
                                         aliquam quaerat voluptatem.</p>
                                     <a href="#" class="lnk btn btn-primary">Read more</a></div>
@@ -1461,9 +1491,11 @@
                                 <!-- /.blog-post-image -->
 
                                 <div class="blog-post-info text-left">
-                                    <h3 class="name"><a href="#">Dolorem eum fugiat quo voluptas nulla pariatur</a></h3>
+                                    <h3 class="name"><a href="#">Dolorem eum fugiat quo voluptas nulla
+                                            pariatur</a></h3>
                                     <span class="info">By Saraha Smith &nbsp;|&nbsp; 21 March 2016 </span>
-                                    <p class="text">Sed quia non numquam eius modi tempora incidunt ut labore et dolore
+                                    <p class="text">Sed quia non numquam eius modi tempora incidunt ut labore et
+                                        dolore
                                         magnam
                                         aliquam quaerat voluptatem.</p>
                                     <a href="#" class="lnk btn btn-primary">Read more</a></div>
@@ -1487,9 +1519,11 @@
                                 <!-- /.blog-post-image -->
 
                                 <div class="blog-post-info text-left">
-                                    <h3 class="name"><a href="#">Dolorem eum fugiat quo voluptas nulla pariatur</a></h3>
+                                    <h3 class="name"><a href="#">Dolorem eum fugiat quo voluptas nulla
+                                            pariatur</a></h3>
                                     <span class="info">By Saraha Smith &nbsp;|&nbsp; 21 March 2016 </span>
-                                    <p class="text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+                                    <p class="text">Sed ut perspiciatis unde omnis iste natus error sit
+                                        voluptatem
                                         accusantium</p>
                                     <a href="#" class="lnk btn btn-primary">Read more</a></div>
                                 <!-- /.blog-post-info -->
@@ -1510,9 +1544,11 @@
                                 <!-- /.blog-post-image -->
 
                                 <div class="blog-post-info text-left">
-                                    <h3 class="name"><a href="#">Dolorem eum fugiat quo voluptas nulla pariatur</a></h3>
+                                    <h3 class="name"><a href="#">Dolorem eum fugiat quo voluptas nulla
+                                            pariatur</a></h3>
                                     <span class="info">By Saraha Smith &nbsp;|&nbsp; 21 March 2016 </span>
-                                    <p class="text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+                                    <p class="text">Sed ut perspiciatis unde omnis iste natus error sit
+                                        voluptatem
                                         accusantium</p>
                                     <a href="#" class="lnk btn btn-primary">Read more</a></div>
                                 <!-- /.blog-post-info -->
@@ -1533,9 +1569,11 @@
                                 <!-- /.blog-post-image -->
 
                                 <div class="blog-post-info text-left">
-                                    <h3 class="name"><a href="#">Dolorem eum fugiat quo voluptas nulla pariatur</a></h3>
+                                    <h3 class="name"><a href="#">Dolorem eum fugiat quo voluptas nulla
+                                            pariatur</a></h3>
                                     <span class="info">By Saraha Smith &nbsp;|&nbsp; 21 March 2016 </span>
-                                    <p class="text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+                                    <p class="text">Sed ut perspiciatis unde omnis iste natus error sit
+                                        voluptatem
                                         accusantium</p>
                                     <a href="#" class="lnk btn btn-primary">Read more</a></div>
                                 <!-- /.blog-post-info -->
@@ -1587,13 +1625,15 @@
                                                 <button class="btn btn-primary icon" data-toggle="dropdown"
                                                         type="button"><i
                                                         class="fa fa-shopping-cart"></i></button>
-                                                <button class="btn btn-primary cart-btn" type="button">Add to cart
+                                                <button class="btn btn-primary cart-btn" type="button">Add to
+                                                    cart
                                                 </button>
                                             </li>
                                             <li class="lnk wishlist"><a class="add-to-cart" href="detail.html"
                                                                         title="Wishlist">
                                                     <i class="icon fa fa-heart"></i> </a></li>
-                                            <li class="lnk"><a class="add-to-cart" href="detail.html" title="Compare">
+                                            <li class="lnk"><a class="add-to-cart" href="detail.html"
+                                                               title="Compare">
                                                     <i
                                                         class="fa fa-signal" aria-hidden="true"></i> </a></li>
                                         </ul>
@@ -1639,13 +1679,15 @@
                                                 <button class="btn btn-primary icon" data-toggle="dropdown"
                                                         type="button"><i
                                                         class="fa fa-shopping-cart"></i></button>
-                                                <button class="btn btn-primary cart-btn" type="button">Add to cart
+                                                <button class="btn btn-primary cart-btn" type="button">Add to
+                                                    cart
                                                 </button>
                                             </li>
                                             <li class="lnk wishlist"><a class="add-to-cart" href="detail.html"
                                                                         title="Wishlist">
                                                     <i class="icon fa fa-heart"></i> </a></li>
-                                            <li class="lnk"><a class="add-to-cart" href="detail.html" title="Compare">
+                                            <li class="lnk"><a class="add-to-cart" href="detail.html"
+                                                               title="Compare">
                                                     <i
                                                         class="fa fa-signal" aria-hidden="true"></i> </a></li>
                                         </ul>
@@ -1691,13 +1733,15 @@
                                                 <button class="btn btn-primary icon" data-toggle="dropdown"
                                                         type="button"><i
                                                         class="fa fa-shopping-cart"></i></button>
-                                                <button class="btn btn-primary cart-btn" type="button">Add to cart
+                                                <button class="btn btn-primary cart-btn" type="button">Add to
+                                                    cart
                                                 </button>
                                             </li>
                                             <li class="lnk wishlist"><a class="add-to-cart" href="detail.html"
                                                                         title="Wishlist">
                                                     <i class="icon fa fa-heart"></i> </a></li>
-                                            <li class="lnk"><a class="add-to-cart" href="detail.html" title="Compare">
+                                            <li class="lnk"><a class="add-to-cart" href="detail.html"
+                                                               title="Compare">
                                                     <i
                                                         class="fa fa-signal" aria-hidden="true"></i> </a></li>
                                         </ul>
@@ -1743,13 +1787,15 @@
                                                 <button class="btn btn-primary icon" data-toggle="dropdown"
                                                         type="button"><i
                                                         class="fa fa-shopping-cart"></i></button>
-                                                <button class="btn btn-primary cart-btn" type="button">Add to cart
+                                                <button class="btn btn-primary cart-btn" type="button">Add to
+                                                    cart
                                                 </button>
                                             </li>
                                             <li class="lnk wishlist"><a class="add-to-cart" href="detail.html"
                                                                         title="Wishlist">
                                                     <i class="icon fa fa-heart"></i> </a></li>
-                                            <li class="lnk"><a class="add-to-cart" href="detail.html" title="Compare">
+                                            <li class="lnk"><a class="add-to-cart" href="detail.html"
+                                                               title="Compare">
                                                     <i
                                                         class="fa fa-signal" aria-hidden="true"></i> </a></li>
                                         </ul>
@@ -1795,13 +1841,15 @@
                                                 <button class="btn btn-primary icon" data-toggle="dropdown"
                                                         type="button"><i
                                                         class="fa fa-shopping-cart"></i></button>
-                                                <button class="btn btn-primary cart-btn" type="button">Add to cart
+                                                <button class="btn btn-primary cart-btn" type="button">Add to
+                                                    cart
                                                 </button>
                                             </li>
                                             <li class="lnk wishlist"><a class="add-to-cart" href="detail.html"
                                                                         title="Wishlist">
                                                     <i class="icon fa fa-heart"></i> </a></li>
-                                            <li class="lnk"><a class="add-to-cart" href="detail.html" title="Compare">
+                                            <li class="lnk"><a class="add-to-cart" href="detail.html"
+                                                               title="Compare">
                                                     <i
                                                         class="fa fa-signal" aria-hidden="true"></i> </a></li>
                                         </ul>
@@ -1847,13 +1895,15 @@
                                                 <button class="btn btn-primary icon" data-toggle="dropdown"
                                                         type="button"><i
                                                         class="fa fa-shopping-cart"></i></button>
-                                                <button class="btn btn-primary cart-btn" type="button">Add to cart
+                                                <button class="btn btn-primary cart-btn" type="button">Add to
+                                                    cart
                                                 </button>
                                             </li>
                                             <li class="lnk wishlist"><a class="add-to-cart" href="detail.html"
                                                                         title="Wishlist">
                                                     <i class="icon fa fa-heart"></i> </a></li>
-                                            <li class="lnk"><a class="add-to-cart" href="detail.html" title="Compare">
+                                            <li class="lnk"><a class="add-to-cart" href="detail.html"
+                                                               title="Compare">
                                                     <i
                                                         class="fa fa-signal" aria-hidden="true"></i> </a></li>
                                         </ul>
