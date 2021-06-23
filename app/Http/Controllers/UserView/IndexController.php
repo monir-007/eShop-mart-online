@@ -6,95 +6,22 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\MultipleImage;
 use App\Models\Product;
-use App\Models\User;
-use Auth;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
+
 
 class IndexController extends Controller
 {
     public function index()
     {
-        $categories = Category::orderBy('name_eng','ASC')->get();
-        $products = Product::where('status',1)->orderBy('id','DESC')->limit(8)->get();
-        return view('user-view.index', compact('categories','products'));
-    }
-
-    public function userLogout()
-    {
-        Auth::logout();
-        $notification = array(
-            'message' => 'User logged out.',
-            'alert-type' => 'warning'
-        );
-        return redirect()->route('login')->with($notification);
-    }
-
-    public function userProfile()
-    {
-        $id = Auth::user()->id;
-        $user = User::find($id);
-        return view('user-view.profile.update-profile', compact('user'));
-    }
-
-    public function UserStore(Request $request)
-    {
-        $storeData = User::find(Auth::user()->id);
-        $storeData->name = $request->name;
-        $storeData->email = $request->email;
-        $storeData->phone = $request->phone;
-
-        if ($request->file('profile_photo_path')) {
-            $file = $request->file('profile_photo_path');
-            @unlink(public_path('images/upload/users/' . $storeData->profile_photo_path));
-            $fileName = date('Y-m-d-') . $file->getClientOriginalName();
-            $file->move(public_path('images/upload/users'), $fileName);
-            $storeData['profile_photo_path'] = $fileName;
-        }
-        $storeData->save();
-
-        $notification = array(
-            'message' => 'Profile Updated Successfully.',
-            'alert-type' => 'success'
-        );
-        return redirect()->route('dashboard')->with($notification);
-    }
-
-    public function userChangePassword()
-    {
-        $id = Auth::user()->id;
-        $user = User::find($id);
-        return view('user-view.profile.change-password', compact('user'));
-    }
-
-    public function userUpdatePassword(Request $request)
-    {
-        $validateData = $request->validate([
-            'current_password' => 'required',
-            'password' => 'required|confirmed',
-        ]);
-
-        $hashedPassword = Auth::user()->password;
-        if (Hash::check($request->current_password,$hashedPassword)) {
-            $newPassword = User::find(Auth::id());
-            $newPassword->password = Hash::make($request->password);
-            $newPassword->save();
-            Auth::logout();
-
-            return redirect()->route('user.logout');
-        }
-
-        $notification = array(
-            'message' => 'Password invalid.',
-            'alert-type' => 'error'
-        );
-        return redirect()->back()->with($notification);
+        $categories = Category::orderBy('name_eng', 'ASC')->get();
+        $products = Product::where('status', 1)->orderBy('id', 'DESC')->limit(6)->get();
+        $featured = Product::where('featured', 1)->orderBy('id', 'DESC')->limit(6)->get();
+        return view('user-view.index', compact('categories', 'products', 'featured'));
     }
 
     public function productDetails($id, $slug)
     {
         $product = Product::findOrFail($id);
-        $images = MultipleImage::where('product_id',$id)->orderBy('id','DESC')->get();
-        return view('user-view.product.product-details', compact('product','images'));
+        $images = MultipleImage::where('product_id', $id)->orderBy('id', 'DESC')->get();
+        return view('user-view.product.product-details', compact('product', 'images'));
     }
 }
