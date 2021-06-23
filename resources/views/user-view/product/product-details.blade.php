@@ -1,4 +1,7 @@
 @extends('user-view.layouts.app')
+@section('title')
+    {{$product->name_eng}} Product Details
+@endsection
 @section('content')
 
     <!-- ===== ======== HEADER : END ============================================== -->
@@ -311,47 +314,33 @@
                                 <div class="product-item-holder size-big single-product-gallery small-gallery">
 
                                     <div id="owl-single-product">
-                                        <div class="single-product-gallery-item" id="slide1">
-                                            <a data-lightbox="image-1" data-title="Gallery"
-                                               href="{{asset('user-view/assets/images/products/p8.jpg')}}">
-                                                <img class="img-responsive" alt=""
-                                                     src="{{asset('user-view/assets/images/blank.gif')}}"
-                                                     data-echo="{{asset('user-view/assets/images/products/p8.jpg')}}"/>
-                                            </a>
-                                        </div><!-- /.single-product-gallery-item -->
-
-                                        <div class="single-product-gallery-item" id="slide2">
-                                            <a data-lightbox="image-1" data-title="Gallery"
-                                               href="{{asset('user-view/assets/images/products/p9.jpg')}}">
-                                                <img class="img-responsive" alt=""
-                                                     src="{{asset('user-view/assets/images/blank.gif')}}"
-                                                     data-echo="{{asset('user-view/assets/images/products/p9.jpg')}}"/>
-                                            </a>
-                                        </div><!-- /.single-product-gallery-item -->
-
+                                        @foreach($images as $image)
+                                            <div class="single-product-gallery-item" id="slide{{$image->id}}">
+                                                <a data-lightbox="image-1" data-title="Gallery"
+                                                   href="{{asset($image->photo_name)}}">
+                                                    <img class="img-responsive" alt=""
+                                                         src="{{asset($image->photo_name)}}"
+                                                         data-echo="{{asset($image->photo_name)}}"/>
+                                                </a>
+                                            </div><!-- /.single-product-gallery-item -->
+                                        @endforeach
                                     </div><!-- /.single-product-slider -->
 
 
                                     <div class="single-product-gallery-thumbs gallery-thumbs">
 
                                         <div id="owl-single-product-thumbnails">
-                                            <div class="item">
-                                                <a class="horizontal-thumb active" data-target="#owl-single-product"
-                                                   data-slide="1" href="#slide1">
-                                                    <img class="img-responsive" width="85" alt=""
-                                                         src="{{asset('user-view/assets/images/blank.gif')}}"
-                                                         data-echo="{{asset('user-view/assets/images/products/p8.jpg')}}"/>
-                                                </a>
-                                            </div>
+                                            @foreach($images as $image)
+                                                <div class="item">
+                                                    <a class="horizontal-thumb active" data-target="#owl-single-product"
+                                                       data-slide="1" href="#slide{{$image->id}}">
+                                                        <img class="img-responsive" width="85" alt=""
+                                                             src="{{asset($image->photo_name)}}"
+                                                             data-echo="{{asset($image->photo_name)}}"/>
+                                                    </a>
+                                                </div>
+                                            @endforeach
 
-                                            <div class="item">
-                                                <a class="horizontal-thumb" data-target="#owl-single-product"
-                                                   data-slide="2" href="#slide2">
-                                                    <img class="img-responsive" width="85" alt=""
-                                                         src="{{asset('user-view/assets/images/blank.gif')}}"
-                                                         data-echo="{{asset('user-view/assets/images/products/p9.jpg')}}"/>
-                                                </a>
-                                            </div>
                                         </div><!-- /#owl-single-product-thumbnails -->
 
 
@@ -361,7 +350,13 @@
                             </div><!-- /.gallery-holder -->
                             <div class='col-sm-6 col-md-7 product-info-block'>
                                 <div class="product-info">
-                                    <h1 class="name">Floral Print Buttoned</h1>
+                                    <h1 class="name">
+                                        @if(session()->get('language') === 'bangla')
+                                            {{$product->name_bng}}
+                                        @else
+                                            {{$product->name_eng}}
+                                        @endif
+                                    </h1>
 
                                     <div class="rating-reviews m-t-20">
                                         <div class="row">
@@ -392,9 +387,11 @@
                                     </div><!-- /.stock-container -->
 
                                     <div class="description-container m-t-20">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                                        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                        @if(session()->get('language') === 'bangla')
+                                            {{ strip_tags($product->short_description_bng) }}
+                                        @else
+                                            {{ strip_tags($product->short_description_eng) }}
+                                        @endif
                                     </div><!-- /.description-container -->
 
                                     <div class="price-container info-container m-t-20">
@@ -403,8 +400,14 @@
 
                                             <div class="col-sm-6">
                                                 <div class="price-box">
-                                                    <span class="price">$800.00</span>
-                                                    <span class="price-strike">$900.00</span>
+                                                    @if($product->discount_price===null)
+                                                        <span class="price">${{$product->selling_price}}</span>
+                                                    @else
+                                                        <span class="price">${{$product->discount_price}}</span>
+                                                        <span class="price-strike">${{$product->selling_price}}</span>
+                                                    @endif
+
+
                                                 </div>
                                             </div>
 
@@ -479,20 +482,13 @@
 
                                     <div id="description" class="tab-pane in active">
                                         <div class="product-tab">
-                                            <p class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                                                do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-                                                ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                                                aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
-                                                in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                                                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-                                                officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet,
-                                                consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                                                et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                                exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                                consequat.<br><br> Duis aute irure dolor in reprehenderit in voluptate
-                                                velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-                                                occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-                                                mollit anim id est laborum.</p>
+                                            <p class="text">
+                                                @if(session()->get('language') === 'bangla')
+                                                    {{ strip_tags($product->long_description_bng) }}
+                                                @else
+                                                    {{ strip_tags($product->long_description_eng) }}
+                                                @endif
+                                            </p>
                                         </div>
                                     </div><!-- /.tab-pane -->
 
@@ -671,7 +667,7 @@
                                             <div class="image">
                                                 <a href="detail.html">
                                                     <img src="{{asset('user-view/assets/images/products/p1.jpg')}}"
-                                                                           alt="">
+                                                         alt="">
                                                 </a>
                                             </div><!-- /.image -->
 

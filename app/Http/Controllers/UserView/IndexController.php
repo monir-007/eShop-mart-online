@@ -4,6 +4,7 @@ namespace App\Http\Controllers\UserView;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\MultipleImage;
 use App\Models\Product;
 use App\Models\User;
 use Auth;
@@ -93,6 +94,7 @@ class IndexController extends Controller
     public function productDetails($id, $slug)
     {
         $product = Product::findOrFail($id);
-        return view('user-view.product.product-details', compact('product'));
+        $images = MultipleImage::where('product_id',$id)->orderBy('id','DESC')->get();
+        return view('user-view.product.product-details', compact('product','images'));
     }
 }

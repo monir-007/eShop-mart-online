@@ -10,4 +10,9 @@ class MultipleImage extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    public function productImage()
+    {
+        return $this->belongsTo(Product::class,'product_id', 'id');
+    }
 }

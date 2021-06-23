@@ -1,4 +1,7 @@
 @extends('user-view.layouts.app')
+@section('title')
+    Online eSuper shop
+@endsection
 @section('content')
     <div class="row">
         <!-- ============================================== SIDEBAR ============================================== -->
@@ -975,7 +978,7 @@
                                         <div class="products">
                                             <div class="product">
                                                 <div class="product-image">
-                                                    <div class="image"><a href="detail.html"><img
+                                                    <div class="image"><a href="{{url('product/details/'.$product->id.'/'.$product->slug_eng)}}"><img
                                                                 src="{{asset($product->product_thumbnail)}}"
                                                                 alt=""></a>
                                                     </div>
@@ -1009,13 +1012,13 @@
                                                     <div class="description"></div>
                                                     @if($product->discount_price===null)
                                                         <div class="product-price"><span
-                                                                class="price">$ {{$product->selling_price}}</span>
+                                                                class="price">${{$product->selling_price}}</span>
                                                         </div>
                                                     @else
                                                         <div class="product-price"><span
-                                                                class="price">$ {{$product->discount_price}}</span>
+                                                                class="price">${{$product->discount_price}}</span>
                                                             <span
-                                                                class="price-before-discount">$ {{$product->selling_price}}</span>
+                                                                class="price-before-discount">${{$product->selling_price}}</span>
                                                         </div>
                                                     @endif
                                                 <!-- /.product-price -->
@@ -1078,7 +1081,7 @@
                                             <div class="products">
                                                 <div class="product">
                                                     <div class="product-image">
-                                                        <div class="image"><a href="detail.html"><img
+                                                        <div class="image"><a href="{{url('product/details/'.$product->id.'/'.$product->slug_eng)}} "><img
                                                                     src="{{asset($product->product_thumbnail)}}"
                                                                     alt=""></a></div>
                                                         <!-- /.image -->
@@ -1100,7 +1103,7 @@
                                                     <!-- /.product-image -->
 
                                                     <div class="product-info text-left">
-                                                        <h3 class="name"><a href="detail.html">
+                                                        <h3 class="name"><a href="{{url('product/details/'.$product->id.'/'.$product->slug_eng)}}">
                                                                 @if(session()->get('language') === 'bangla')
                                                                     {{$product->name_bng}}
                                                                 @else
