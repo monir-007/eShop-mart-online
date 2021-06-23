@@ -3,7 +3,7 @@
     <div id="owl-main" class="owl-carousel owl-inner-nav owl-ui-sm">
 
         @php
-            $sliders = App\Models\Slider::where('status',1)->orderBy('id','DESC')->limit(3)->get();
+            $sliders = App\Models\Slider::where('status',1)->orderBy('id','DESC')->limit(5)->get();
         @endphp
         @foreach($sliders as $slider)
 
