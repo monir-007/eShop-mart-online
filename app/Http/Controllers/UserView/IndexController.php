@@ -15,7 +15,8 @@ class IndexController extends Controller
         $categories = Category::orderBy('name_eng', 'ASC')->get();
         $products = Product::where('status', 1)->orderBy('id', 'DESC')->limit(6)->get();
         $featured = Product::where('featured', 1)->orderBy('id', 'DESC')->limit(6)->get();
-        return view('user-view.index', compact('categories', 'products', 'featured'));
+        $hotDeals = Product::where('hot_deals', 1)->orderBy('id', 'DESC')->limit(3)->get();
+        return view('user-view.index', compact('categories', 'products', 'featured', 'hotDeals'));
     }
 
     public function productDetails($id, $slug)
