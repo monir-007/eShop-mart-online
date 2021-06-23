@@ -16,7 +16,16 @@ class IndexController extends Controller
         $products = Product::where('status', 1)->orderBy('id', 'DESC')->limit(6)->get();
         $featured = Product::where('featured', 1)->orderBy('id', 'DESC')->limit(6)->get();
         $hotDeals = Product::where('hot_deals', 1)->orderBy('id', 'DESC')->limit(3)->get();
-        return view('user-view.index', compact('categories', 'products', 'featured', 'hotDeals'));
+        $specialOffers = Product::where('special_offer', 1)->orderBy('id', 'DESC')->limit(3)->get();
+        $specialDeals = Product::where('special_deals', 1)->orderBy('id', 'DESC')->limit(3)->get();
+        return view('user-view.index', compact(
+            'categories',
+            'products',
+            'featured',
+            'hotDeals',
+            'specialOffers',
+            'specialDeals'
+        ));
     }
 
     public function productDetails($id, $slug)
