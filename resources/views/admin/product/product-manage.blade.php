@@ -52,8 +52,8 @@
                                             <td>{{$item->selling_price}} $</td>
                                             <td>{{$item->quantity}}</td>
                                             <td>
-                                                @if($item->discount_price===null)}}
-                                                <span class="badge-default"> </span>
+                                                @if($item->discount_price===null)
+                                                <span class="badge-default"></span>
                                                 @else
                                                     @php
                                                         $amount = $item->selling_price - $item->discount_price;
