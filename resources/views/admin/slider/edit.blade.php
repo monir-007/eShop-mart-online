@@ -51,8 +51,8 @@
                                     <div class="form-group">
                                         <h5>Slider Description <span class="text-danger">*</span></h5>
                                         <div class="controls">
-                                            <textarea name="description" class="form-control bg-lightest text-white" cols="10"
-                                                      rows="4">{{$sliders->description}}</textarea>
+                                            <textarea name="description" class="form-control bg-lightest text-white" cols="8"
+                                                      rows="3">{{$sliders->description}}</textarea>
                                             @error('description')
                                             <span class="text-danger">{{ $message }}</span>
                                             @enderror
@@ -77,7 +77,7 @@
                                             <div class="controls ">
                                                 <input type="file" name="image"
                                                        class="form-control bg-lightest col-md-8"
-                                                       onchange="titleImage(this)" required>
+                                                       onchange="titleImage(this)">
                                                 @error('image')
                                                 <span class="text-danger">{{ $message }}</span>
                                                 @enderror

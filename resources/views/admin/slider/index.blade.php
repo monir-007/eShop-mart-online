@@ -47,8 +47,8 @@
                                     <div class="form-group">
                                         <h5>Slider Description <span class="text-danger">*</span></h5>
                                         <div class="controls">
-                                            <textarea name="description" class="form-control" cols="10"
-                                                      rows="4"></textarea>
+                                            <textarea name="description" class="form-control" cols="8"
+                                                      rows="3"></textarea>
                                             @error('description')
                                             <span class="text-danger">{{ $message }}</span>
                                             @enderror
