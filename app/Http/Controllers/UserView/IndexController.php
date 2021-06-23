@@ -89,4 +89,10 @@ class IndexController extends Controller
         );
         return redirect()->back()->with($notification);
     }
+
+    public function productDetails($id, $slug)
+    {
+        $product = Product::findOrFail($id);
+        return view('user-view.product.product-details', compact('product'));
+    }
 }

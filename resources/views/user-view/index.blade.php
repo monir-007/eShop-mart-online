@@ -997,7 +997,7 @@
                                                 <!-- /.product-image -->
 
                                                 <div class="product-info text-left">
-                                                    <h3 class="name"><a href="detail.html">
+                                                    <h3 class="name"><a href="{{url('product/details/'.$product->id.'/'.$product->slug_eng)}}">
                                                             @if(session()->get('language') === 'bangla')
                                                                 {{$product->name_bng}}
                                                             @else
