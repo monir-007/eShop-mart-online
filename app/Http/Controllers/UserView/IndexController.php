@@ -51,4 +51,15 @@ class IndexController extends Controller
         $images = MultipleImage::where('product_id', $id)->orderBy('id', 'DESC')->get();
         return view('user-view.product.product-details', compact('product', 'images'));
     }
+
+    public function productTags($tag)
+    {
+        $categories = Category::orderBy('name_eng', 'ASC')->get();
+        $products = Product::where('status', 1)
+            ->where('tags_eng', $tag)
+            ->orWhere('tags_bng', $tag)
+            ->orderBy('id', 'DESC')
+            ->get();
+        return view('user-view.product-tags.products-view', compact('products', 'categories'));
+    }
 }

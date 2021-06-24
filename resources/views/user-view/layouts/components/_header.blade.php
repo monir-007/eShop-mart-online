@@ -183,8 +183,7 @@
                         <div class="nav-outer">
                             <ul class="nav navbar-nav">
                                 <li class="active dropdown yamm-fw">
-                                    <a href="{{url('/')}}" data-hover="dropdown"
-                                       class="dropdown-toggle" data-toggle="dropdown">
+                                    <a href="{{route('home')}}">
                                         @if(session()->get('language') === 'bangla')
                                             বাড়ি
                                         @else

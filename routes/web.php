@@ -141,10 +141,14 @@ Multi Language Routes
 
 Route::get('/language/bangla',[LanguageController::class, 'Bangla'])->name('language.bangla');
 Route::get('/language/english',[LanguageController::class, 'English'])->name('language.english');
+
 /*
 Frontend Product Details Routes
 */
-
 Route::get('/product/details/{id}/{slug}',[IndexController::class, 'productDetails']);
+/*
+Frontend Product Tags Routes
+*/
+Route::get('/product/tag/{tag}',[IndexController::class, 'productTags']);
 
 
