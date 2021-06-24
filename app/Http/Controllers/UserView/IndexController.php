@@ -48,8 +48,21 @@ class IndexController extends Controller
     public function productDetails($id, $slug)
     {
         $product = Product::findOrFail($id);
+        $colorEng = $product->color_eng;
+        $productColorEng = explode(',',$colorEng);
+
+        $colorBng = $product->color_bng;
+        $productColorBng = explode(',',$colorBng);
+
+        $sizeEng = $product->size_eng;
+        $productSizeEng = explode(',',$sizeEng);
+
+        $sizeBng = $product->size_bng;
+        $productSizeBng = explode(',',$sizeBng);
+
         $images = MultipleImage::where('product_id', $id)->orderBy('id', 'DESC')->get();
-        return view('user-view.product.product-details', compact('product', 'images'));
+        return view('user-view.product.product-details', compact('product', 'images',
+        'productColorEng','productColorBng','productSizeEng','productSizeBng'));
     }
 
     public function productTags($tag)

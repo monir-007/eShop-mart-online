@@ -396,8 +396,6 @@
 
                                     <div class="price-container info-container m-t-20">
                                         <div class="row">
-
-
                                             <div class="col-sm-6">
                                                 <div class="price-box">
                                                     @if($product->discount_price===null)
@@ -406,8 +404,6 @@
                                                         <span class="price">${{$product->discount_price}}</span>
                                                         <span class="price-strike">${{$product->selling_price}}</span>
                                                     @endif
-
-
                                                 </div>
                                             </div>
 
@@ -427,9 +423,53 @@
                                                     </a>
                                                 </div>
                                             </div>
+                                        </div><!-- /.row -->
+                                        <!-- /.price-container -->
+
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="info-title control-label">Choose Size
+                                                        <span> </span></label>
+                                                    <select class="form-control unicase-form-control selectpicker ">
+                                                        <option selected="" disabled="">-Choose Size-</option>
+                                                        @if(session()->get('language') === 'bangla')
+                                                            @foreach($productSizeBng as $size)
+                                                                <option value="{{$size}}"
+                                                                        class="text-capitalize">{{$size}}</option>
+                                                            @endforeach
+                                                        @else
+                                                            @foreach($productSizeEng as $size)
+                                                                <option value="{{$size}}"
+                                                                        class="text-capitalize">{{$size}}</option>
+                                                            @endforeach
+                                                        @endif
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="info-title control-label">Choose Color <span> </span></label>
+                                                    <select class="form-control unicase-form-control selectpicker ">
+                                                        <option selected="" disabled="">-Choose Color-</option>
+                                                        @if(session()->get('language') === 'bangla')
+                                                            @foreach($productColorBng as $color)
+                                                                <option value="{{$color}}"
+                                                                        class="text-capitalize">{{$color}}</option>
+                                                            @endforeach
+                                                        @else
+                                                            @foreach($productColorEng as $color)
+                                                                <option value="{{$color}}"
+                                                                        class="text-capitalize">{{$color}}</option>
+                                                            @endforeach
+                                                        @endif
+                                                    </select>
+                                                </div>
+                                            </div>
 
                                         </div><!-- /.row -->
-                                    </div><!-- /.price-container -->
+                                    </div><!-- /.size and color -->
 
                                     <div class="quantity-container info-container">
                                         <div class="row">
