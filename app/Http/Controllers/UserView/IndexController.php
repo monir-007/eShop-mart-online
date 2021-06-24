@@ -63,4 +63,18 @@ class IndexController extends Controller
         return view('user-view.product-tags.products-view', compact('products', 'categories'));
     }
 
+    public function SubcategoriesProduct($id, $slug)
+    {
+        $categories = Category::orderBy('name_eng', 'ASC')->get();
+        $products = Product::where('status',1)->where('subcategory_id',$id)->orderBy('id','DESC')->paginate(3);
+        return view('user-view.subcategory.products-view', compact('categories','products'));
+    }
+
+    public function SubsubcategoriesProduct($id, $slug)
+    {
+        $categories = Category::orderBy('name_eng', 'ASC')->get();
+        $products = Product::where('status',1)->where('subsubcategory_id',$id)->orderBy('id','DESC')->paginate(3);
+        return view('user-view.sub-subcategory.products-view', compact('categories','products'));
+    }
+
 }

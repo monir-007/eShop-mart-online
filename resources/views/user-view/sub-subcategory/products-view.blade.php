@@ -1,6 +1,6 @@
 @extends('user-view.layouts.app')
 @section('title')
-    Product Tags
+    Sub-subcategory Products
 @endsection
 @section('content')
 

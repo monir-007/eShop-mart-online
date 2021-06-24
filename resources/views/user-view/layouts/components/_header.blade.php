@@ -215,18 +215,20 @@
                                                         @foreach($subcategories as $subcategory)
                                                             <div class="col-xs-12 col-sm-6 col-md-2 col-menu">
                                                                 <h2 class="title">
-                                                                    @if(session()->get('language') === 'bangla')
-                                                                        {{$subcategory->name_bng}}
-                                                                    @else
-                                                                        {{$subcategory->name_eng}}
-                                                                    @endif
+                                                                    <a href="{{url('subcategory/products/'.$subcategory->id.'/'.$subcategory->slug_eng)}}">
+                                                                        @if(session()->get('language') === 'bangla')
+                                                                            {{$subcategory->name_bng}}
+                                                                        @else
+                                                                            {{$subcategory->name_eng}}
+                                                                        @endif
+                                                                    </a>
                                                                 </h2>
                                                                 @php
                                                                     $subsubcategories = App\Models\SubSubCategory::where('subcategory_id', $subcategory->id)->orderBy('name_eng','ASC')->get();
                                                                 @endphp
                                                                 @foreach($subsubcategories as $subsubcategory)
                                                                     <ul class="links">
-                                                                        <li><a href="#">
+                                                                        <li><a href="{{url('sub-subcategory/products/'.$subsubcategory->id.'/'.$subsubcategory->slug_eng)}}">
                                                                                 @if(session()->get('language') === 'bangla')
                                                                                     {{$subsubcategory->name_bng}}
                                                                                 @else

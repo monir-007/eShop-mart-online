@@ -146,6 +146,18 @@ Route::get('/language/english',[LanguageController::class, 'English'])->name('la
 Frontend Product Details Routes
 */
 Route::get('/product/details/{id}/{slug}',[IndexController::class, 'productDetails']);
+
+/*
+Frontend Subcategories Product  Routes
+*/
+Route::get('subcategory/products/{id}/{slug}',[IndexController::class, 'SubcategoriesProduct']);
+
+/*
+Frontend Subcategories Product  Routes
+*/
+Route::get('sub-subcategory/products/{id}/{slug}',[IndexController::class, 'SubsubcategoriesProduct']);
+
+
 /*
 Frontend Product Tags Routes
 */
