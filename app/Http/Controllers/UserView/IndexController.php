@@ -16,7 +16,6 @@ class IndexController extends Controller
         $categories = Category::orderBy('name_eng', 'ASC')->get();
         $products = Product::where('status', 1)->orderBy('id', 'DESC')->limit(6)->get();
         $featured = Product::where('featured', 1)->orderBy('id', 'DESC')->limit(6)->get();
-        $hotDeals = Product::where('hot_deals', 1)->where('discount_price', '!=', NULL)->orderBy('id', 'DESC')->limit(4)->get();
         $specialOffers = Product::where('special_offer', 1)->orderBy('id', 'DESC')->limit(3)->get();
         $specialDeals = Product::where('special_deals', 1)->orderBy('id', 'DESC')->limit(3)->get();
 
@@ -33,7 +32,6 @@ class IndexController extends Controller
             'categories',
             'products',
             'featured',
-            'hotDeals',
             'specialOffers',
             'specialDeals',
             'categoryData_0',
@@ -61,8 +59,12 @@ class IndexController extends Controller
         $productSizeBng = explode(',',$sizeBng);
 
         $images = MultipleImage::where('product_id', $id)->orderBy('id', 'DESC')->get();
+
+        $categoryId = $product->category_id;
+        $relatedProduct = Product::where('category_id', $categoryId)->where('id','!=',$id)->orderBy('id','DESC')->get();
+
         return view('user-view.product.product-details', compact('product', 'images',
-        'productColorEng','productColorBng','productSizeEng','productSizeBng'));
+        'productColorEng','productColorBng','productSizeEng','productSizeBng','relatedProduct'));
     }
 
     public function productTags($tag)
