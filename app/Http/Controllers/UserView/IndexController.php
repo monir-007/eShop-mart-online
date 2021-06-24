@@ -59,7 +59,8 @@ class IndexController extends Controller
             ->where('tags_eng', $tag)
             ->orWhere('tags_bng', $tag)
             ->orderBy('id', 'DESC')
-            ->get();
+            ->paginate(3);
         return view('user-view.product-tags.products-view', compact('products', 'categories'));
     }
+
 }
