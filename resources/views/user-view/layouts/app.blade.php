@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="{{asset('user-view/assets/css/bootstrap-select.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/vendor_components/toastr/toastr.min.css')}}">
 
+
     <!-- Icons/Glyphs -->
     <link rel="stylesheet" href="{{asset('user-view/assets/css/font-awesome.css')}}">
 
@@ -156,6 +157,8 @@
 <script src="{{asset('user-view/assets/js/scripts.js')}}"></script>
 
 <script src="{{asset('assets/vendor_components/toastr/toastr.min.js')}}"></script>
+<script src="{{asset('assets/vendor_components/sweetalert/sweetalert.min.js')}}"></script>
+<script src="{{asset('user-view/assets/js/sweetalert2.all.min.js')}}"></script>
 
 {{--Notifications Alert--}}
 <script>
@@ -256,19 +259,45 @@
         let quantity = $('#productQuantity').val();
 
         $.ajax({
-            type:"POST",
-            dataType:'json',
-            data:{
-                productName:productName,
-                color:color,
-                size:size,
-                quantity:quantity
+            type: "POST",
+            dataType: 'json',
+            data: {
+                productName: productName,
+                color: color,
+                size: size,
+                quantity: quantity
             },
-            url:"/cart/data/store/"+id,
-            success:function (data){
+            url: "/cart/data/store/" + id,
+            success: function (data) {
                 $('#closeModal').click();
-                console.log(data)
+                // console.log(data)
+                const Toast = Swal.mixin({
+                    toast: true,
+                    icon: 'success',
+                    animation: true,
+                    position: 'top-right',
+                    showConfirmButton: false,
+                    timer: 2500,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                });
+                if ($.isEmptyObject(data.error)) {
+                    Toast.fire({
+                        type: 'success',
+                        title: data.success
+                    })
+                } else {
+                    Toast.fire({
+                        animation: true,
+                        type: 'error',
+                        title: data.error
+                    })
+                }
             }
+
         })
     }
 
