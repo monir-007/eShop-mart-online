@@ -168,5 +168,9 @@ Route::get('/product/view/modal/{id}',[IndexController::class, 'productShowModal
 Frontend Add To CART Routes
 */
 Route::post('/cart/data/store/{id}',[CartController::class, 'addToCart']);
+/*
+Frontend Add To Mini CART Routes
+*/
+Route::get('/product/mini/cart',[CartController::class, 'addToMiniCart']);
 
 
