@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\SubsubcategoryController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\UserView\CartController;
 use App\Http\Controllers\UserView\IndexController;
 use App\Http\Controllers\UserView\LanguageController;
 use App\Http\Controllers\UserView\UserProfileController;
@@ -163,5 +164,9 @@ Route::get('/product/tag/{tag}',[IndexController::class, 'productTags']);
 Frontend Product View Modal Routes
 */
 Route::get('/product/view/modal/{id}',[IndexController::class, 'productShowModal']);
+/*
+Frontend Add To CART Routes
+*/
+Route::post('/cart/data/store/{id}',[CartController::class, 'addToCart']);
 
 

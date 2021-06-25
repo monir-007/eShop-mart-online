@@ -73,7 +73,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="exampleModalLabel"><strong id="productName"></strong></h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" id="closeModal" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -91,38 +91,42 @@
                         <ul class="list-group">
                             <li class="list-group-item">Price:
                                 <strong class="text-danger">$<span id="productPrice"></span></strong>
-                                 <del class="text-danger" id="productDiscountPrice"><span>$</span></del>
+                                <del class="text-danger" id="productOldPrice"><span>$</span></del>
                             </li>
                             <li class="list-group-item">Code: <strong id="productCode"></strong></li>
                             <li class="list-group-item">Category: <strong id="productCategory"></strong></li>
                             <li class="list-group-item">Subcategory: <strong id="productSubcategory"></strong></li>
                             <li class="list-group-item">Stock:
-                                <span id="productStock" class="badge badge-pill badge-success" style="background: limegreen; color: white"></span>
-                                <span id="productStockOut" class="badge badge-pill badge-danger" style="background: red; color: white"></span>
+                                <span id="productStock" class="badge badge-pill badge-success"
+                                      style="background: limegreen; color: white"></span>
+                                <span id="productStockOut" class="badge badge-pill badge-danger"
+                                      style="background: red; color: white"></span>
                             </li>
                         </ul>
                     </div><!-- // end col md -->
 
                     <div class="col-md-4">
                         <div class="form-group col-md-10" id="productColorBox">
-                            <label for="exampleFormControlSelect1">Choose Color</label>
+                            <label for="productColor">Choose Color</label>
                             <select class="form-control"
-                                    id="exampleFormControlSelect1" name="productColor">
+                                    id="productColor" name="productColor">
                             </select>
                         </div>
                         <div class="form-group col-md-10" id="productSizeBox">
-                            <label for="exampleFormControlSelect1">Choose Size</label>
-                            <select class="form-control" id="exampleFormControlSelect1"
+                            <label for="productSize">Choose Size</label>
+                            <select class="form-control" id="productSize"
                                     name="productSize">
                             </select>
                         </div>
 
                         <div class="form-group col-md-8">
-                            <label for="exampleFormControlSelect1">Quantity:</label>
-                            <input type="number" class="form-control" id="exampleFormControlInput" value="1" min="1">
+                            <label for="productQuantity">Quantity:</label>
+                            <input type="number" class="form-control" id="productQuantity" name="productQuantity"
+                                   value="1" min="1">
                         </div>
+                        <input type="hidden" id="productId">
                         <div class="form-groupr text-right">
-                            <button type="submit" class="btn btn-primary"><i
+                            <button type="submit" class="btn btn-primary" onclick="addToCart()"><i
                                     class="fa fa-shopping-cart inner-right-vs"></i>ADD TO CART
                             </button>
                         </div>
@@ -193,25 +197,29 @@
                 $('#productCode').text(data.product.code);
                 $('#productCategory').text(data.product.category.name_eng);
                 $('#productSubcategory').text(data.product.subcategory.name_eng);
-
                 $('#productImage').attr('src', '/' + data.product.product_thumbnail);
 
+                $('#productId').val(id);
+                $('#productQuantity').val(1);
+
+
                 if (data.product.discount_price == null) {
-                    $('#productPrice').text('')
-                    $('#productDiscountPrice').text('')
-                    $('#productPrice').text(data.product.selling_price)
-                } else {
-                    $('#productDiscountPrice').text(data.product.discount_price);
+                    $('#productPrice').text('');
+                    $('#productOldPrice').text('');
                     $('#productPrice').text(data.product.selling_price);
+                } else {
+                    $('#productPrice').text(data.product.discount_price);
+                    $('#productOldPrice').text(data.product.selling_price);
+
                 }
 
-                if(data.product.quantity >0){
-                    $('#productStock').text('')
-                    $('#productStockOut').text('')
+                if (data.product.quantity > 0) {
+                    $('#productStock').text('');
+                    $('#productStockOut').text('');
                     $('#productStock').text('available');
-                }else {
-                    $('#productStock').text('')
-                    $('#productStockOut').text('')
+                } else {
+                    $('#productStock').text('');
+                    $('#productStockOut').text('');
                     $('#productStockOut').text('stockout');
                 }
 
@@ -235,6 +243,31 @@
                     }
                 })
 
+            }
+        })
+    }
+
+    // Add to Cart
+    function addToCart() {
+        let productName = $('#productName').text();
+        let id = $('#productId').val();
+        let color = $('#productColor option:selected').text();
+        let size = $('#productSize option:selected').text();
+        let quantity = $('#productQuantity').val();
+
+        $.ajax({
+            type:"POST",
+            dataType:'json',
+            data:{
+                productName:productName,
+                color:color,
+                size:size,
+                quantity:quantity
+            },
+            url:"/cart/data/store/"+id,
+            success:function (data){
+                $('#closeModal').click();
+                console.log(data)
             }
         })
     }
