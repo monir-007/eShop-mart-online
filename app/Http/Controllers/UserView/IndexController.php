@@ -92,4 +92,20 @@ class IndexController extends Controller
         return view('user-view.sub-subcategory.products-view', compact('categories','products'));
     }
 
+    public function productShowModal($id)
+    {
+        $product = Product::with('category','subcategory')->findOrFail($id);
+
+        $color = $product->color_eng;
+        $productColor = explode(',',$color);
+        $size = $product->size_eng;
+        $productSize = explode(',',$size);
+
+        return response()->json([
+            'product'=>$product,
+            'color'=>$productColor,
+            'size'=>$productSize,
+        ]);
+    }
+
 }

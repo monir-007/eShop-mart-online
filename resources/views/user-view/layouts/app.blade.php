@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="description" content="">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="author" content="">
     <meta name="keywords" content="MediaCenter, Template, eCommerce">
     <meta name="robots" content="all">
@@ -39,22 +40,22 @@
 <!-- ============================================== HEADER : END ============================================== -->
 <div class="body-content outer-top-xs" id="top-banner-and-menu">
     <div class="container">
-            <!-- ============================================== SIDEBAR ============================================== -->
+        <!-- ============================================== SIDEBAR ============================================== -->
 
         <!-- /.sidemenu-holder -->
-            <!-- ============================================== SIDEBAR : END ============================================== -->
-                <!-- ========================================== SECTION – HERO ========================================= -->
+        <!-- ============================================== SIDEBAR : END ============================================== -->
+        <!-- ========================================== SECTION – HERO ========================================= -->
 
-            <!-- ============================================== INFO BOXES : END ============================================== -->
-                <!-- ============================================== CONTENT ============================================== -->
-                @yield('content')
+        <!-- ============================================== INFO BOXES : END ============================================== -->
+        <!-- ============================================== CONTENT ============================================== -->
+    @yield('content')
 
 
-            <!-- /.homebanner-holder -->
-            <!-- ============================================== CONTENT : END ============================================== -->
+    <!-- /.homebanner-holder -->
+        <!-- ============================================== CONTENT : END ============================================== -->
         <!-- /.row -->
         <!-- ============================================== BRANDS CAROUSEL ============================================== -->
-    <!-- /.logo-slider -->
+        <!-- /.logo-slider -->
         <!-- ============================================== BRANDS CAROUSEL : END ============================================== -->
     </div>
     <!-- /.container -->
@@ -65,9 +66,76 @@
 @include('user-view.layouts.components._footer')
 <!-- ============================================================= FOOTER : END============================================================= -->
 
-<!-- For demo purposes – can be removed on production -->
+<!-- ============================================== ADD TO CART MODAL ============================================== -->
+<!-- Add to Cart Product Modal -->
+<div class="modal fade" id="addToCartModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalLabel"><strong id="productName"></strong></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
 
-<!-- For demo purposes – can be removed on production : End -->
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-4 d-flex justify-content-center">
+                        <div class="card" style="width: 18rem;">
+                            <img src="" id="productImage" class="card-img-top" alt=""
+                                 style="height: 260px; width: 270px">
+                        </div>
+                    </div><!-- // end col md -->
+
+                    <div class="col-md-4">
+                        <ul class="list-group">
+                            <li class="list-group-item">Price:
+                                <strong class="text-danger">$<span id="productPrice"></span></strong>
+                                 <del class="text-danger" id="productDiscountPrice"><span>$</span></del>
+                            </li>
+                            <li class="list-group-item">Code: <strong id="productCode"></strong></li>
+                            <li class="list-group-item">Category: <strong id="productCategory"></strong></li>
+                            <li class="list-group-item">Subcategory: <strong id="productSubcategory"></strong></li>
+                            <li class="list-group-item">Stock:
+                                <span id="productStock" class="badge badge-pill badge-success" style="background: limegreen; color: white"></span>
+                                <span id="productStockOut" class="badge badge-pill badge-danger" style="background: red; color: white"></span>
+                            </li>
+                        </ul>
+                    </div><!-- // end col md -->
+
+                    <div class="col-md-4">
+                        <div class="form-group col-md-10" id="productColorBox">
+                            <label for="exampleFormControlSelect1">Choose Color</label>
+                            <select class="form-control"
+                                    id="exampleFormControlSelect1" name="productColor">
+                            </select>
+                        </div>
+                        <div class="form-group col-md-10" id="productSizeBox">
+                            <label for="exampleFormControlSelect1">Choose Size</label>
+                            <select class="form-control" id="exampleFormControlSelect1"
+                                    name="productSize">
+                            </select>
+                        </div>
+
+                        <div class="form-group col-md-8">
+                            <label for="exampleFormControlSelect1">Quantity:</label>
+                            <input type="number" class="form-control" id="exampleFormControlInput" value="1" min="1">
+                        </div>
+                        <div class="form-groupr text-right">
+                            <button type="submit" class="btn btn-primary"><i
+                                    class="fa fa-shopping-cart inner-right-vs"></i>ADD TO CART
+                            </button>
+                        </div>
+                    </div><!-- // end col md -->
+                </div> <!-- // end row -->
+            </div> <!-- // end modal Body -->
+        </div>
+    </div>
+</div>
+<!-- End Add to Cart Product Modal -->
+
+<!-- ============================================== ADD TO CART MODAL : END ============================================== -->
+
 
 <!-- JavaScripts placed at the end of the document so the pages load faster -->
 <script src="{{asset('user-view/assets/js/jquery-1.11.1.min.js')}}"></script>
@@ -104,6 +172,74 @@
             break;
     }
     @endif
+</script>
+
+<script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    })
+
+    function productShow(id) {
+        // alert(id)
+        $.ajax({
+            type: 'GET',
+            url: '/product/view/modal/' + id,
+            dataType: 'json',
+            success: function (data) {
+                console.log(data)
+                $('#productName').text(data.product.name_eng);
+                $('#productCode').text(data.product.code);
+                $('#productCategory').text(data.product.category.name_eng);
+                $('#productSubcategory').text(data.product.subcategory.name_eng);
+
+                $('#productImage').attr('src', '/' + data.product.product_thumbnail);
+
+                if (data.product.discount_price == null) {
+                    $('#productPrice').text('')
+                    $('#productDiscountPrice').text('')
+                    $('#productPrice').text(data.product.selling_price)
+                } else {
+                    $('#productDiscountPrice').text(data.product.discount_price);
+                    $('#productPrice').text(data.product.selling_price);
+                }
+
+                if(data.product.quantity >0){
+                    $('#productStock').text('')
+                    $('#productStockOut').text('')
+                    $('#productStock').text('available');
+                }else {
+                    $('#productStock').text('')
+                    $('#productStockOut').text('')
+                    $('#productStockOut').text('stockout');
+                }
+
+                $('select[name="productColor"]').empty();
+                $.each(data.color, function (key, value) {
+                    $('select[name="productColor"]').append('<option class="text-capitalize" value=" ' + value + ' "> ' + value + ' </option>')
+                    if (data.color == "") {
+                        $('#productColorBox').hide();
+                    } else {
+                        $('#productColorBox').show();
+                    }
+                })
+
+                $('select[name="productSize"]').empty();
+                $.each(data.size, function (key, value) {
+                    $('select[name="productSize"]').append('<option class="text-capitalize" value=" ' + value + ' "> ' + value + ' </option>')
+                    if (data.size == "") {
+                        $('#productSizeBox').hide();
+                    } else {
+                        $('#productSizeBox').show();
+                    }
+                })
+
+            }
+        })
+    }
+
+
 </script>
 </body>
 </html>

@@ -151,16 +151,17 @@ Route::get('/product/details/{id}/{slug}',[IndexController::class, 'productDetai
 Frontend Subcategories Product  Routes
 */
 Route::get('subcategory/products/{id}/{slug}',[IndexController::class, 'SubcategoriesProduct']);
-
 /*
 Frontend Subcategories Product  Routes
 */
 Route::get('sub-subcategory/products/{id}/{slug}',[IndexController::class, 'SubsubcategoriesProduct']);
-
-
 /*
 Frontend Product Tags Routes
 */
 Route::get('/product/tag/{tag}',[IndexController::class, 'productTags']);
+/*
+Frontend Product View Modal Routes
+*/
+Route::get('/product/view/modal/{id}',[IndexController::class, 'productShowModal']);
 
 

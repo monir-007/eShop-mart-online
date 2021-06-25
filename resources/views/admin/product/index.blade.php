@@ -226,7 +226,7 @@
                                                 <h5>Tags English <span class="text-danger">*</span></h5>
                                                 <div class="controls">
                                                     <input type="text" name="tags_eng" class="form-control"
-                                                           value="Lorem,Ipsum,Amet" data-role="tagsinput" required>
+                                                           value="Lorem" data-role="tagsinput" required>
                                                     @error('tags_eng')
                                                     <span class="text-danger">{{ $message }}</span>
                                                     @enderror
@@ -239,7 +239,7 @@
                                                 <h5>Tags Bangla <span class="text-danger">*</span></h5>
                                                 <div class="controls">
                                                     <input type="text" name="tags_bng" class="form-control"
-                                                           value="Lorem,Ipsum,Amet" data-role="tagsinput" required>
+                                                           value="Lorem" data-role="tagsinput" required>
                                                     @error('tags_bng')
                                                     <span class="text-danger">{{ $message }}</span>
                                                     @enderror
@@ -252,7 +252,7 @@
                                                 <h5>Size English </h5>
                                                 <div class="controls">
                                                     <input type="text" name="size_eng" class="form-control"
-                                                           value="Small,Midium,Large" data-role="tagsinput">
+                                                           value="Large" data-role="tagsinput">
                                                     @error('size_eng')
                                                     <span class="text-danger">{{ $message }}</span>
                                                     @enderror
@@ -262,13 +262,13 @@
                                     </div><!-- end 5th row -->
 
                                     <!-- start 6th row -->
-                                    <div class="row">
+                                    <div class="row mb-2">
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <h5>Size Bangla</h5>
                                                 <div class="controls">
                                                     <input type="text" name="size_bng" class="form-control"
-                                                           value="Small,Midium,Large" data-role="tagsinput">
+                                                           value="Large" data-role="tagsinput">
                                                     @error('size_bng')
                                                     <span class="text-danger">{{ $message }}</span>
                                                     @enderror
@@ -281,7 +281,7 @@
                                                 <h5>Color English <span class="text-danger">*</span></h5>
                                                 <div class="controls">
                                                     <input type="text" name="color_eng" class="form-control"
-                                                           value="red,Black,Amet" data-role="tagsinput" required>
+                                                           value="Black" data-role="tagsinput" required>
                                                     @error('color_eng')
                                                     <span class="text-danger">{{ $message }}</span>
                                                     @enderror
@@ -292,9 +292,9 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <h5>Color Bangla <span class="text-danger">*</span></h5>
-                                                <div class="controls bg-secondary">
+                                                <div class="controls">
                                                     <input type="text" name="color_bng" class="form-control"
-                                                           value="red,Black,Large" data-role="tagsinput" required>
+                                                           value="Black" data-role="tagsinput" required>
                                                     @error('color_bng')
                                                     <span class="text-danger">{{ $message }}</span>
                                                     @enderror
