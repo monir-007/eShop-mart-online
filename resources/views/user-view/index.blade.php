@@ -555,12 +555,15 @@
                                                             type="button">Add to cart
                                                     </button>
                                                 </li>
-                                                <li class="lnk wishlist">
-                                                    <a data-toggle="tooltip"
-                                                       class="add-to-cart"
-                                                       href="detail.html"
-                                                       title="Wishlist">
-                                                        <i class="icon fa fa-heart"></i> </a></li>
+                                                <button data-toggle="tooltip"
+                                                        class="btn btn-primary icon"
+                                                        id="{{$product->id}}"
+                                                        onclick="addToWishlist(this.id)"
+                                                        title="Wishlist"
+                                                        type="button">
+                                                    <i class="icon fa fa-heart"></i>
+                                                </button>
+
                                                 <li class="lnk">
                                                     <a data-toggle="tooltip"
                                                        class="add-to-cart"

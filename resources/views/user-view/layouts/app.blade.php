@@ -377,6 +377,44 @@
         })
     }
 
+    //     add Wishlist
+    function addToWishlist(product_id){
+        $.ajax({
+            type:"POST",
+            dataType:'json',
+            url:'/wishlist/add-to-wishlist/'+product_id,
+            success:function (data){
+
+                const Toast = Swal.mixin({
+                    toast: true,
+                    animation: true,
+                    position: 'top-right',
+                    showConfirmButton: false,
+                    timer: 2500,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                });
+                if ($.isEmptyObject(data.error)) {
+                    Toast.fire({
+                        type: 'success',
+                        icon: 'success',
+                        title: data.success
+                    })
+                } else {
+                    Toast.fire({
+                        animation: true,
+                        type: 'error',
+                        icon: 'error',
+                        title: data.error
+                    })
+                }
+
+            }
+        });
+    }
 
 </script>
 </body>
