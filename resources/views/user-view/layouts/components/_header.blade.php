@@ -132,13 +132,13 @@
 
                                 </div>
                                 <div class="clearfix cart-total">
-                                    <div class="pull-right"><span class="text"
-                                                                  id="cartSubTotalId">Sub Total :</span><span
-                                            class='price'>$600.00</span>
+                                    <div class="pull-right">
+                                        <span class="text">Sub Total :</span>
+                                        <span class='price' id="cartSubTotalId"></span>
                                     </div>
                                     <div class="clearfix"></div>
-                                    <a href="checkout.html"
-                                       class="btn btn-upper btn-primary btn-block m-t-20">Checkout</a></div>
+                                    <button href="checkout.html"
+                                       class="btn btn-upper btn-primary btn-block m-t-20">Checkout</button></div>
                                 <!-- /.cart-total-->
 
                             </li>

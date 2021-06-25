@@ -172,5 +172,9 @@ Route::post('/cart/data/store/{id}',[CartController::class, 'addToCart']);
 Frontend Add To Mini CART Routes
 */
 Route::get('/product/mini/cart',[CartController::class, 'addToMiniCart']);
+/*
+Frontend Product Remove from Mini CART Routes
+*/
+Route::get('/minicart/product/remove/{rowId}',[CartController::class, 'RemoveProductMiniCart']);
 
 

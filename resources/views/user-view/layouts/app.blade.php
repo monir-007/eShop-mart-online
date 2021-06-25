@@ -322,9 +322,12 @@
                                         </div>
                                         <div class="col-xs-7">
                                             <h3 class="name"><a href="index.php?page-detail">${value.name}</a></h3>
-                                            <div class="price">${value.price}*{value.qty}</div>
+                                            <div class="price">${value.price}*${value.qty}</div>
                                         </div>
-                                        <div class="col-xs-1 action"><a href="#"><i class="fa fa-trash"></i></a></div>
+                                        <div class="col-xs-1 action">
+                                             <button type="submit" class="btn btn-danger btn-sm" id="${value.rowId}"
+                                            onclick="miniCartRemove(this.id)">
+                                                <i class="fa fa-trash"></i></button></div>
                                     </div>
                                 </div>
                                 <div class="clearfix"></div>
@@ -335,6 +338,44 @@
         });
     }
     miniCart();
+
+    //     add product to Mini Cart   Remove
+    function miniCartRemove(rowId){
+        $.ajax({
+            type:'GET',
+            url:'/minicart/product/remove/'+rowId,
+            dataType:'json',
+            success:function (data){
+                miniCart();
+
+                const Toast = Swal.mixin({
+                    toast: true,
+                    icon: 'warning',
+                    animation: true,
+                    position: 'top-right',
+                    showConfirmButton: false,
+                    timer: 2500,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                });
+                if ($.isEmptyObject(data.error)) {
+                    Toast.fire({
+                        type: 'success',
+                        title: data.success
+                    })
+                } else {
+                    Toast.fire({
+                        animation: true,
+                        type: 'error',
+                        title: data.error
+                    })
+                }
+            }
+        })
+    }
 
 
 </script>
