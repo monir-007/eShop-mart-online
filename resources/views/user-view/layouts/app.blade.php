@@ -81,9 +81,9 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-4 d-flex justify-content-center">
-                        <div class="card" style="width: 18rem;">
+                        <div class="card" style="width: 20rem;">
                             <img src="" id="productImage" class="card-img-top" alt=""
-                                 style="height: 260px; width: 270px">
+                                 style="height: 250px; width: 270px">
                         </div>
                     </div><!-- // end col md -->
 
