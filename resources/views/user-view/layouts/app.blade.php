@@ -513,7 +513,7 @@
     function myCart() {
         $.ajax({
             type: 'GET',
-            url: '/user/mycart/get-product/',
+            url: '/mycart/get-product/',
             dataType: 'json',
             success: function (response) {
                 // console.log(response);
@@ -568,7 +568,7 @@
     function myCartProductRemove(id) {
         $.ajax({
             type: 'GET',
-            url: '/user/mycart/product/remove/' + id,
+            url: '/mycart/product/remove/' + id,
             dataType: 'json',
             success: function (data) {
                 myCart();
