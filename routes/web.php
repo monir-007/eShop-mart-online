@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\SubsubcategoryController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserView\CartController;
+use App\Http\Controllers\UserView\CartPageController;
 use App\Http\Controllers\UserView\IndexController;
 use App\Http\Controllers\UserView\LanguageController;
 use App\Http\Controllers\UserView\UserProfileController;
@@ -187,6 +188,8 @@ Route::group(['prefix'=>'user', 'middleware' => ['user','auth'],'namespace' => '
     Route::get('/wishlist/get-product',[WishlistController::class, 'getWishlistProduct']);
     Route::get('/wishlist/product/remove/{id}',[WishlistController::class, 'removeWishlistProduct']);
 
+    Route::get('/mycart',[CartPageController::class,'myCart'])->name('mycart');
+    Route::get('/mycart/get-product/',[CartPageController::class,'getMyCartProduct']);
 });
 
 

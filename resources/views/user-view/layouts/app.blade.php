@@ -419,11 +419,10 @@
 
 </script>
 <script type="text/javascript">
-
     function wishlist() {
         $.ajax({
             type: 'GET',
-            url: '/user/wishlist/get-product',
+            url: '/user/wishlist/get-product/',
             dataType: 'json',
             success: function (response) {
                 // console.log(response);
@@ -469,6 +468,7 @@
             }
         });
     }
+
     wishlist();
 
     //     add product Remove from
@@ -508,6 +508,62 @@
             }
         })
     }
+
+    //     My Cart Product
+    function myCart() {
+        $.ajax({
+            type: 'GET',
+            url: '/user/mycart/get-product/',
+            dataType: 'json',
+            success: function (response) {
+                // console.log(response);
+
+                let rows = "";
+                $.each(response.carts, function (key, value) {
+                    rows += `<tr>
+                    <td class="col-md-2"><img src="/${value.options.image}" style="width: 60px;height: 70px;"></td>
+                    <td class="col-md-7">
+                        <div class="product-name"><a href="#">${value.name}</a></div>
+                        <div class="price">
+                        $${value.price}
+                        </div>
+                    </td>
+                    <td class="col-md-2">
+                        <strong>${value.options.color}</strong>
+                    </td>
+                    <td class="col-md-2">
+                        ${value.options.size === null
+                        ? `<span>...</span>`
+                        : `<strong>${value.options.size}</strong>`
+                    }
+                    </td>
+                    <td class="col-md-2">
+                        <button type="submit" class="btn btn-success btn-sm">+</button>
+                        <input type="text" value="${value.qty}" min="1" max="100" disabled style="width: 27px;">
+                        <button type="submit" class="btn btn-danger btn-sm">-</button>
+                    </td>
+                    <td class="col-md-2">
+                        <strong>$${value.subtotal}</strong>
+                    </td>
+
+                    <td class="col-md-1 close-btn">
+                        <button
+                                 class="btn btn-danger icon"
+                                 id="${value.id}"
+                                 onclick="wishlistProductRemove(this.id)"
+                                 title="Add Cart"
+                                 type="submit">
+                                 <i class="fa fa-times"></i>
+                        </button>
+                    </td>
+                </tr>`
+                });
+                $('#myCartPage').html(rows);
+            }
+        });
+    }
+
+    myCart();
 </script>
 </body>
 </html>
