@@ -442,20 +442,27 @@
                     }
                         </div>
                     </td>
-        <td class="col-md-2">
-            <button data-toggle="modal"
-                     data-target="#addToCartModal"
-                     class="btn btn-primary icon"
-                     id="${value.product_id}"
-                     onclick="productShow(this.id)"
-                     title="Add Cart"
-                     type="button">
-                     <i class="fa fa-shopping-cart"></i> Add to Cart
-            </button>
-        </td>
-        <td class="col-md-1 close-btn">
-            <a href="#" class=""><i class="fa fa-times"></i></a>
-        </td>
+                    <td class="col-md-2">
+                        <button data-toggle="modal"
+                                 data-target="#addToCartModal"
+                                 class="btn btn-primary icon"
+                                 id="${value.product_id}"
+                                 onclick="productShow(this.id)"
+                                 title="Add Cart"
+                                 type="button">
+                                 <i class="fa fa-shopping-cart"></i> Add to Cart
+                        </button>
+                    </td>
+                    <td class="col-md-1 close-btn">
+                        <button
+                                 class="btn btn-danger icon"
+                                 id="${value.id}"
+                                 onclick="wishlistProductRemove(this.id)"
+                                 title="Add Cart"
+                                 type="submit">
+                                 <i class="fa fa-times"></i>
+                        </button>
+                    </td>
                 </tr>`
                 });
                 $('#wishlist').html(rows);
@@ -463,6 +470,44 @@
         });
     }
     wishlist();
+
+    //     add product Remove from
+    function wishlistProductRemove(id) {
+        $.ajax({
+            type: 'GET',
+            url: '/wishlist/product/remove/' + id,
+            dataType: 'json',
+            success: function (data) {
+                wishlist();
+
+                const Toast = Swal.mixin({
+                    toast: true,
+                    animation: true,
+                    position: 'top-right',
+                    showConfirmButton: false,
+                    timer: 2500,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                });
+                if ($.isEmptyObject(data.error)) {
+                    Toast.fire({
+                        type: 'success',
+                        icon: 'success',
+                        title: data.success
+                    })
+                } else {
+                    Toast.fire({
+                        type: 'error',
+                        icon: 'error',
+                        title: data.error
+                    })
+                }
+            }
+        })
+    }
 </script>
 </body>
 </html>
