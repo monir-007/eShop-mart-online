@@ -351,7 +351,7 @@
 
                 const Toast = Swal.mixin({
                     toast: true,
-                    icon: 'warning',
+                    icon: 'success',
                     animation: true,
                     position: 'top-right',
                     showConfirmButton: false,
@@ -364,12 +364,13 @@
                 });
                 if ($.isEmptyObject(data.error)) {
                     Toast.fire({
+                        icon: 'success',
                         type: 'success',
                         title: data.success
                     })
                 } else {
                     Toast.fire({
-                        animation: true,
+                        icon: 'error',
                         type: 'error',
                         title: data.error
                     })
