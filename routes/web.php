@@ -194,6 +194,8 @@ Frontend My Cart Routes
 Route::get('/mycart',[CartPageController::class,'myCart'])->name('mycart');
 Route::get('/mycart/get-product/',[CartPageController::class,'getMyCartProduct']);
 Route::get('/mycart/product/remove/{rowId}',[CartPageController::class, 'removeMyCartProduct']);
+Route::get('/mycart/product/increment/{rowId}',[CartPageController::class, 'incrementMyCartProduct']);
+Route::get('/mycart/product/decrement/{rowId}',[CartPageController::class, 'decrementMyCartProduct']);
 
 
 

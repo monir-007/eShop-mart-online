@@ -469,6 +469,7 @@
             }
         });
     }
+
     wishlist();
 
     //     add product Remove from
@@ -538,9 +539,15 @@
                     }
                     </td>
                     <td class="col-md-2">
-                        <button type="submit" class="btn btn-success btn-sm">+</button>
-                        <input type="text" value="${value.qty}" min="1" max="100" disabled style="width: 27px;">
-                        <button type="submit" class="btn btn-danger btn-sm">-</button>
+                    ${value.qty>1
+                        ?`<button type="submit" class="btn btn-sm" id="${value.rowId}"
+                                 onclick="myCartProductDecrement(this.id)"><i class="fa fa-minus"></i></button>`
+                        : `<button type="submit" class="btn btn-sm" disabled><i class="fa fa-minus"></i></button>`
+                    }
+
+                        <input type="text" value="${value.qty}" min="1" max="100" disabled style="width: 30px;">
+                        <button type="submit" class="btn btn-sm" id="${value.rowId}"
+                                 onclick="myCartProductIncrement(this.id)"><i class="fa fa-plus"></i></button>
                     </td>
                     <td class="col-md-2">
                         <strong>$${value.subtotal}</strong>
@@ -562,6 +569,7 @@
             }
         });
     }
+
     myCart();
 
     //     My Cart product Remove from
@@ -599,6 +607,33 @@
                         title: data.error
                     })
                 }
+            }
+        })
+    }
+
+    //     My Cart product Increment
+    function myCartProductIncrement(rowId) {
+        $.ajax({
+            type: 'GET',
+            url: '/mycart/product/increment/' + rowId,
+            dataType: 'json',
+            success: function (data) {
+                myCart();
+                miniCart();
+
+            }
+        })
+    }
+    //     My Cart product Decrement
+    function myCartProductDecrement(rowId) {
+        $.ajax({
+            type: 'GET',
+            url: '/mycart/product/decrement/' + rowId,
+            dataType: 'json',
+            success: function (data) {
+                myCart();
+                miniCart();
+
             }
         })
     }
