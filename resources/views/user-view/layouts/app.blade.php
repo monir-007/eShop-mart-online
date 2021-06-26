@@ -337,15 +337,16 @@
             }
         });
     }
+
     miniCart();
 
     //     add product to Mini Cart   Remove
-    function miniCartRemove(rowId){
+    function miniCartRemove(rowId) {
         $.ajax({
-            type:'GET',
-            url:'/minicart/product/remove/'+rowId,
-            dataType:'json',
-            success:function (data){
+            type: 'GET',
+            url: '/minicart/product/remove/' + rowId,
+            dataType: 'json',
+            success: function (data) {
                 miniCart();
 
                 const Toast = Swal.mixin({
@@ -377,13 +378,13 @@
         })
     }
 
-    //     add Wishlist
-    function addToWishlist(product_id){
+    //     add product to Wishlist
+    function addToWishlist(product_id) {
         $.ajax({
-            type:"POST",
-            dataType:'json',
-            url:'/wishlist/add-to-wishlist/'+product_id,
-            success:function (data){
+            type: "POST",
+            dataType: 'json',
+            url: '/wishlist/add-to-wishlist/' + product_id,
+            success: function (data) {
 
                 const Toast = Swal.mixin({
                     toast: true,
@@ -416,6 +417,52 @@
         });
     }
 
+</script>
+<script type="text/javascript">
+
+    function wishlist() {
+        $.ajax({
+            type: 'GET',
+            url: '/wishlist/get-product',
+            dataType: 'json',
+            success: function (response) {
+                // console.log(response);
+
+                let rows = "";
+                $.each(response, function (key, value) {
+                    rows += `<tr>
+                    <td class="col-md-2"><img src="/${value.product.product_thumbnail} "></td>
+                    <td class="col-md-7">
+                        <div class="product-name"><a href="#">${value.product.name_eng}</a></div>
+                        <div class="price">
+                        ${value.product.discount_price == null
+                        ? `$${value.product.selling_price}`
+                        :
+                        `$${value.product.discount_price} <span>$${value.product.selling_price}</span>`
+                    }
+                        </div>
+                    </td>
+        <td class="col-md-2">
+            <button data-toggle="modal"
+                     data-target="#addToCartModal"
+                     class="btn btn-primary icon"
+                     id="${value.product_id}"
+                     onclick="productShow(this.id)"
+                     title="Add Cart"
+                     type="button">
+                     <i class="fa fa-shopping-cart"></i> Add to Cart
+            </button>
+        </td>
+        <td class="col-md-1 close-btn">
+            <a href="#" class=""><i class="fa fa-times"></i></a>
+        </td>
+                </tr>`
+                });
+                $('#wishlist').html(rows);
+            }
+        });
+    }
+    wishlist();
 </script>
 </body>
 </html>

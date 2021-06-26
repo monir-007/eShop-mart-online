@@ -10,6 +10,11 @@ use Illuminate\Support\Carbon;
 
 class WishlistController extends Controller
 {
+    public function viewWishlist()
+    {
+        return view('user-view.wishlist.view-wishlist');
+    }
+
     public function addToWishlist($product_id, Request $request)
     {
         if (Auth::check()) {
@@ -27,8 +32,11 @@ class WishlistController extends Controller
         return response()->json(['error' => "You haven't login yet. please Login First"]);
     }
 
-    public function viewWishlist()
+
+    public function getWishlistProduct()
     {
-        return view('user-view.wishlist.view-wishlist');
+        $wishlistProduct = Wishlist::with('product')->where('user_id', Auth::id())->latest()->get();
+
+        return response()->json($wishlistProduct);
     }
 }
