@@ -28,8 +28,6 @@
                                 </tr>
                                 <tr>
                                     <th class="cart-description item">Image</th>
-
-
                                     <th class="cart-product-name item">Product Name</th>
                                     <th class="cart-product-name item">Color</th>
                                     <th class="cart-product-name item">Size</th>

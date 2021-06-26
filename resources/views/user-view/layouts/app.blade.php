@@ -468,7 +468,6 @@
             }
         });
     }
-
     wishlist();
 
     //     add product Remove from
@@ -549,8 +548,8 @@
                     <td class="col-md-1 close-btn">
                         <button
                                  class="btn btn-danger icon"
-                                 id="${value.id}"
-                                 onclick="wishlistProductRemove(this.id)"
+                                 id="${value.rowId}"
+                                 onclick="myCartProductRemove(this.id)"
                                  title="Add Cart"
                                  type="submit">
                                  <i class="fa fa-times"></i>
@@ -562,8 +561,46 @@
             }
         });
     }
-
     myCart();
+
+    //     My Cart product Remove from
+    function myCartProductRemove(id) {
+        $.ajax({
+            type: 'GET',
+            url: '/user/mycart/product/remove/' + id,
+            dataType: 'json',
+            success: function (data) {
+                myCart();
+                miniCart();
+
+                const Toast = Swal.mixin({
+                    toast: true,
+                    animation: true,
+                    position: 'top-right',
+                    showConfirmButton: false,
+                    timer: 2500,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                });
+                if ($.isEmptyObject(data.error)) {
+                    Toast.fire({
+                        type: 'success',
+                        icon: 'success',
+                        title: data.success
+                    })
+                } else {
+                    Toast.fire({
+                        type: 'error',
+                        icon: 'error',
+                        title: data.error
+                    })
+                }
+            }
+        })
+    }
 </script>
 </body>
 </html>

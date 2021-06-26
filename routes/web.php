@@ -190,6 +190,7 @@ Route::group(['prefix'=>'user', 'middleware' => ['user','auth'],'namespace' => '
 
     Route::get('/mycart',[CartPageController::class,'myCart'])->name('mycart');
     Route::get('/mycart/get-product/',[CartPageController::class,'getMyCartProduct']);
+    Route::get('/mycart/product/remove/{rowId}',[CartPageController::class, 'removeMyCartProduct']);
 });
 
 
