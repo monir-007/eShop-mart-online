@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 @section('style')
-    <link href="{{asset('assets/vendor_components/bootstrap/bootstrap3/css/bootstrap.min.css')}}" rel="stylesheet"
-          type="text/css"/>
+    {{--    <link href="{{asset('assets/vendor_components/bootstrap/bootstrap3/css/bootstrap.min.css')}}" rel="stylesheet"--}}
+    {{--          type="text/css"/>--}}
     <link href="{{asset('assets/vendor_components/bootstrap-datepicker/1.3.0/css/datepicker.css')}}" rel="stylesheet"
           type="text/css"/>
 @endsection
@@ -18,7 +18,7 @@
                                 <li class="breadcrumb-item"><a href="{{route('admin.profile')}}"><i
                                             class="mdi mdi-home-outline"></i></a>
                                 </li>
-                                <li class="breadcrumb-item active" aria-current="page">Category list</li>
+                                <li class="breadcrumb-item active" aria-current="page">Coupon list</li>
                             </ol>
                         </nav>
                     </div>
@@ -31,7 +31,7 @@
                 <div class="col-8">
                     <div class="box bt-3 border-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Category List</h3>
+                            <h3 class="box-title">Coupon List</h3>
                         </div>
 
                         <!-- /.box-header -->
@@ -48,25 +48,27 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
+                                    <tr class="bg-transparent">
                                         @foreach($coupons as $item)
                                             <td>{{$item->name}}</td>
                                             <td>{{$item->discount}}%</td>
-                                            <td>{{$item->validity}}</td>
                                             <td>
-                                                @if($item->status === 1)
-                                                    <span class="badge badge-pill badge-success">Active</span>
+                                                {{ Carbon\Carbon::createFromFormat('Y-m-d', $item->validity)->format('D, d F Y') }}
+                                            </td>
+                                            <td>
+                                                @if($item->validity >= Carbon\Carbon::now()->format('Y-m-d'))
+                                                    <span class="badge badge-pill badge-success">Valid</span>
                                                 @else
-                                                    <span class="badge badge-pill badge-danger">Deactivated</span>
+                                                    <span class="badge badge-pill badge-danger">Invalid</span>
                                                 @endif
                                             </td>
                                             <td class="d-flex">
-                                                <a href="{{route('category.edit',$item->id)}}"
-                                                   class="btn btn-success mr-2"
+                                                <a href="{{route('coupon.edit',$item->id)}}"
+                                                   class="btn btn-success btn-sm mr-2"
                                                    data-toggle="tooltip"
                                                    data-placement="bottom" title="Edit"> <i class="fa fa-edit"></i> </a>
-                                                <a href="{{ route('category.delete',$item->id) }}" id="delete"
-                                                   class="btn btn-danger" data-toggle="tooltip"
+                                                <a href="{{ route('coupon.delete',$item->id) }}" id="delete"
+                                                   class="btn btn-danger btn-sm" data-toggle="tooltip"
                                                    data-placement="bottom" title="Remove"> <i class="fa fa-trash"></i>
                                                 </a>
                                             </td>
@@ -91,7 +93,7 @@
                         <!-- /.box-header -->
                         <div class="box-body">
                             <div class="table-responsive">
-                                <form method="post" action="{{ route('category.store') }}">
+                                <form method="post" action="{{ route('coupon.store') }}">
                                     @csrf
                                     <div class="form-group">
                                         <h5>Category Name <span class="text-danger">*</span></h5>
@@ -117,8 +119,10 @@
                                         <h5>Coupon Validity <span class="text-danger">*</span></h5>
                                         <div id="datepicker" class="input-group date controls"
                                              data-date-format="mm-dd-yyyy">
-                                            <input class="form-control bg-transparent" type="text" name="validity"/>
-                                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                            <input class="form-control bg-transparent" type="text" name="validity"
+                                                   readonly/>
+                                            <span class="input-group-addon" role="button"><i
+                                                    class="glyphicon glyphicon-calendar"></i></span>
                                             @error('validity')
                                             <span class="text-danger">{{ $message }}</span>
                                             @enderror
@@ -140,14 +144,21 @@
 
 @endsection
 @section('script')
-    <script src="{{asset('assets/vendor_components/bootstrap/bootstrap3/js/bootstrap.min.js')}}"></script>
+    {{--    <script src="{{asset('assets/vendor_components/bootstrap/bootstrap3/js/bootstrap.min.js')}}"></script>--}}
     <script src="{{asset('assets/vendor_components/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js')}}"></script>
 
     <Script type="text/javascript">
+        let date = new Date();
+        date.setDate(date.getDate())
+
         $(function () {
             $("#datepicker").datepicker({
                 autoclose: true,
-                todayHighlight: true
+                format: 'yyyy-mm-dd',
+                todayHighlight: true,
+                startDate: date,
+                orientation: "auto",
+                clearBtn: true,
             }).datepicker('update', new Date());
         });
     </Script>
