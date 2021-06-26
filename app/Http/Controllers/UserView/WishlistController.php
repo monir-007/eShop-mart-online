@@ -26,4 +26,9 @@ class WishlistController extends Controller
         }
         return response()->json(['error' => "You haven't login yet. please Login First"]);
     }
+
+    public function viewWishlist()
+    {
+        return view('user-view.wishlist.view-wishlist');
+    }
 }

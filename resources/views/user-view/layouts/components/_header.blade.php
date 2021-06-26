@@ -13,7 +13,7 @@
                                     My Account
                                 @endif
                             </a></li>
-                        <li><a href="#"><i class="icon fa fa-heart"></i>Wishlist</a></li>
+                        <li><a href="{{route('wishlist')}}"><i class="icon fa fa-heart"></i>Wishlist</a></li>
                         <li><a href="#"><i class="icon fa fa-shopping-cart"></i>My Cart</a></li>
                         <li><a href="#"><i class="icon fa fa-check"></i>Checkout</a></li>
 
@@ -50,11 +50,6 @@
                                 @else
                                     <li><a href="{{ route('language.bangla') }}">বাংলা</a></li>
                                 @endif
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">English</a></li>
-                                    <li><a href="#">French</a></li>
-                                    <li><a href="#">German</a></li>
-                                </ul>
                             </ul>
                         </li><!-- /.list-unstyled -->
                     </ul>
@@ -138,7 +133,9 @@
                                     </div>
                                     <div class="clearfix"></div>
                                     <button href="checkout.html"
-                                       class="btn btn-upper btn-primary btn-block m-t-20">Checkout</button></div>
+                                            class="btn btn-upper btn-primary btn-block m-t-20">Checkout
+                                    </button>
+                                </div>
                                 <!-- /.cart-total-->
 
                             </li>

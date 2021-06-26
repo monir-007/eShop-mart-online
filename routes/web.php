@@ -180,6 +180,7 @@ Route::get('/minicart/product/remove/{rowId}',[CartController::class, 'RemovePro
 /*
 Frontend Product Wishlist Routes
 */
+Route::get('/wishlist',[WishlistController::class, 'viewWishlist'])->name('wishlist');
 Route::post('/wishlist/add-to-wishlist/{product_id}',[WishlistController::class, 'addToWishlist']);
 
 
