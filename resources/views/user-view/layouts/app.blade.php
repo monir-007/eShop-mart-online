@@ -423,7 +423,7 @@
     function wishlist() {
         $.ajax({
             type: 'GET',
-            url: '/wishlist/get-product',
+            url: '/user/wishlist/get-product',
             dataType: 'json',
             success: function (response) {
                 // console.log(response);
@@ -475,7 +475,7 @@
     function wishlistProductRemove(id) {
         $.ajax({
             type: 'GET',
-            url: '/wishlist/product/remove/' + id,
+            url: '/user/wishlist/product/remove/' + id,
             dataType: 'json',
             success: function (data) {
                 wishlist();
