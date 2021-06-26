@@ -84,10 +84,20 @@
             </span>
         </a>
         <ul class="treeview-menu">
-{{--            <li class="{{($route==='slider.insert') ? 'active':''}}"><a href="{{route('slider.insert')}}"><i--}}
-{{--                        class="ti-more"></i>Add Slider</a></li>--}}
             <li class="{{($route==='coupon.manage') ? 'active':'' }}"><a href="{{route('coupon.manage')}}"><i
                         class="ti-more"></i>Manage Coupons</a></li>
+        </ul>
+    </li>
+    <li class="treeview {{($prefix === '/shipping') ? 'active' : ''}}">
+        <a href="#">
+            <i data-feather="archive"></i> <span>Shipping Area</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+        </a>
+        <ul class="treeview-menu">
+            <li class="{{($route==='shipping-division.manage') ? 'active':'' }}"><a href="{{route('shipping-division.manage')}}"><i
+                        class="ti-more"></i>Shipping Division</a></li>
         </ul>
     </li>
 
