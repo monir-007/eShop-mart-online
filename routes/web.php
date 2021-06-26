@@ -146,9 +146,9 @@ Admin Slider Resource Routes
 Route::prefix('coupons')->group(function () {
     Route::get('/manage-coupons', [CouponController::class, 'couponShow'])->name('coupon.manage');
     Route::post('/store', [CouponController::class, 'couponStore'])->name('coupon.store');
-    Route::get('/edit/{id}', [CouponController::class, 'edit'])->name('coupon.edit');
-    Route::post('/update/{id}', [CouponController::class, 'update'])->name('coupon.update');
-    Route::get('/delete/{id}', [CouponController::class, 'delete'])->name('coupon.delete');
+    Route::get('/edit/{id}', [CouponController::class, 'couponEdit'])->name('coupon.edit');
+    Route::post('/update/{id}', [CouponController::class, 'couponUpdate'])->name('coupon.update');
+    Route::get('/delete/{id}', [CouponController::class, 'couponDelete'])->name('coupon.delete');
 });
 
 /*
