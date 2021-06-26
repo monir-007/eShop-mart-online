@@ -76,22 +76,21 @@
         </ul>
     </li>
 
-    <li class="treeview">
+    <li class="treeview {{($prefix === '/coupons') ? 'active' : ''}}">
         <a href="#">
-            <i data-feather="file"></i>
-            <span>Pages</span>
+            <i data-feather="archive"></i> <span>Coupons</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-right pull-right"></i>
             </span>
         </a>
         <ul class="treeview-menu">
-            <li><a href="profile.html"><i class="ti-more"></i>Profile</a></li>
-            <li><a href="invoice.html"><i class="ti-more"></i>Invoice</a></li>
-            <li><a href="gallery.html"><i class="ti-more"></i>Gallery</a></li>
-            <li><a href="faq.html"><i class="ti-more"></i>FAQs</a></li>
-            <li><a href="timeline.html"><i class="ti-more"></i>Timeline</a></li>
+{{--            <li class="{{($route==='slider.insert') ? 'active':''}}"><a href="{{route('slider.insert')}}"><i--}}
+{{--                        class="ti-more"></i>Add Slider</a></li>--}}
+            <li class="{{($route==='coupon.manage') ? 'active':'' }}"><a href="{{route('coupon.manage')}}"><i
+                        class="ti-more"></i>Manage Coupons</a></li>
         </ul>
     </li>
+
 
     <li class="header nav-small-cap">User Interface</li>
 

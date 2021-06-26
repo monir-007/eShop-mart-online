@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ChangePasswordController;
+use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\SliderController;
@@ -51,14 +52,14 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::get('/admin/profile/change-password', [ChangePasswordController::class, 'passwordChange'])->name('admin.change.password');
     Route::post('/admin/profile/update-password', [ChangePasswordController::class, 'passwordUpdate'])->name('admin.update.password');
 });
-    /*
-    User View Routes
-    */
-    Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
-        $id = Auth::user()->id;
-        $user = User::find($id);
-        return view('dashboard', compact('user'));
-    })->name('dashboard');
+/*
+User View Routes
+*/
+Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
+    $id = Auth::user()->id;
+    $user = User::find($id);
+    return view('dashboard', compact('user'));
+})->name('dashboard');
 
 //User View Index Route
 Route::get('/', [IndexController::class, 'index'])->name('home');
@@ -124,7 +125,7 @@ Route::prefix('product')->group(function () {
 });
 
 /*
-Admin Product Resource Routes
+Admin Slider Resource Routes
 */
 
 Route::prefix('slider')->group(function () {
@@ -139,63 +140,71 @@ Route::prefix('slider')->group(function () {
 });
 
 /*
+Admin Slider Resource Routes
+*/
+
+Route::prefix('coupons')->group(function () {
+    Route::get('/manage-coupons', [CouponController::class, 'couponShow'])->name('coupon.manage');
+});
+
+/*
 Multi Language Routes
 */
 
-Route::get('/language/bangla',[LanguageController::class, 'Bangla'])->name('language.bangla');
-Route::get('/language/english',[LanguageController::class, 'English'])->name('language.english');
+Route::get('/language/bangla', [LanguageController::class, 'Bangla'])->name('language.bangla');
+Route::get('/language/english', [LanguageController::class, 'English'])->name('language.english');
 
 /*
 Frontend Product Details Routes
 */
-Route::get('/product/details/{id}/{slug}',[IndexController::class, 'productDetails']);
+Route::get('/product/details/{id}/{slug}', [IndexController::class, 'productDetails']);
 
 /*
 Frontend Subcategories Product  Routes
 */
-Route::get('subcategory/products/{id}/{slug}',[IndexController::class, 'SubcategoriesProduct']);
+Route::get('subcategory/products/{id}/{slug}', [IndexController::class, 'SubcategoriesProduct']);
 /*
 Frontend Subcategories Product  Routes
 */
-Route::get('sub-subcategory/products/{id}/{slug}',[IndexController::class, 'SubsubcategoriesProduct']);
+Route::get('sub-subcategory/products/{id}/{slug}', [IndexController::class, 'SubsubcategoriesProduct']);
 /*
 Frontend Product Tags Routes
 */
-Route::get('/product/tag/{tag}',[IndexController::class, 'productTags']);
+Route::get('/product/tag/{tag}', [IndexController::class, 'productTags']);
 /*
 Frontend Product View Modal Routes
 */
-Route::get('/product/view/modal/{id}',[IndexController::class, 'productShowModal']);
+Route::get('/product/view/modal/{id}', [IndexController::class, 'productShowModal']);
 /*
 Frontend Add To CART Routes
 */
-Route::post('/cart/data/store/{id}',[CartController::class, 'addToCart']);
+Route::post('/cart/data/store/{id}', [CartController::class, 'addToCart']);
 /*
 Frontend Add To Mini CART Routes
 */
-Route::get('/product/mini/cart',[CartController::class, 'addToMiniCart']);
+Route::get('/product/mini/cart', [CartController::class, 'addToMiniCart']);
 /*
 Frontend Product Remove from Mini CART Routes
 */
-Route::get('/minicart/product/remove/{rowId}',[CartController::class, 'RemoveProductMiniCart']);
+Route::get('/minicart/product/remove/{rowId}', [CartController::class, 'RemoveProductMiniCart']);
 /*
 Frontend Product Wishlist Routes
 */
-Route::post('/wishlist/add-to-wishlist/{product_id}',[WishlistController::class, 'addToWishlist']);
+Route::post('/wishlist/add-to-wishlist/{product_id}', [WishlistController::class, 'addToWishlist']);
 
-Route::group(['prefix'=>'user', 'middleware' => ['user','auth'],'namespace' => 'User'],function (){
-    Route::get('/wishlist',[WishlistController::class, 'viewWishlist'])->name('wishlist');
-    Route::get('/wishlist/get-product',[WishlistController::class, 'getWishlistProduct']);
-    Route::get('/wishlist/product/remove/{id}',[WishlistController::class, 'removeWishlistProduct']);
+Route::group(['prefix' => 'user', 'middleware' => ['user', 'auth'], 'namespace' => 'User'], function () {
+    Route::get('/wishlist', [WishlistController::class, 'viewWishlist'])->name('wishlist');
+    Route::get('/wishlist/get-product', [WishlistController::class, 'getWishlistProduct']);
+    Route::get('/wishlist/product/remove/{id}', [WishlistController::class, 'removeWishlistProduct']);
 });
 /*
 Frontend My Cart Routes
 */
-Route::get('/mycart',[CartPageController::class,'myCart'])->name('mycart');
-Route::get('/mycart/get-product/',[CartPageController::class,'getMyCartProduct']);
-Route::get('/mycart/product/remove/{rowId}',[CartPageController::class, 'removeMyCartProduct']);
-Route::get('/mycart/product/increment/{rowId}',[CartPageController::class, 'incrementMyCartProduct']);
-Route::get('/mycart/product/decrement/{rowId}',[CartPageController::class, 'decrementMyCartProduct']);
+Route::get('/mycart', [CartPageController::class, 'myCart'])->name('mycart');
+Route::get('/mycart/get-product/', [CartPageController::class, 'getMyCartProduct']);
+Route::get('/mycart/product/remove/{rowId}', [CartPageController::class, 'removeMyCartProduct']);
+Route::get('/mycart/product/increment/{rowId}', [CartPageController::class, 'incrementMyCartProduct']);
+Route::get('/mycart/product/decrement/{rowId}', [CartPageController::class, 'decrementMyCartProduct']);
 
 
 
