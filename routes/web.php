@@ -161,6 +161,12 @@ Route::prefix('shipping')->group(function () {
     Route::get('/division/edit/{id}', [ShippingAreaController::class, 'divisionEdit'])->name('division.edit');
     Route::post('/division/update/{id}', [ShippingAreaController::class, 'divisionUpdate'])->name('division.update');
     Route::get('/division/delete/{id}', [ShippingAreaController::class, 'divisionDelete'])->name('division.delete');
+
+    Route::get('/manage-district', [ShippingAreaController::class, 'viewShippingDistrict'])->name('shipping-district.manage');
+    Route::post('/district/store', [ShippingAreaController::class, 'districtStore'])->name('district.store');
+    Route::get('/district/edit/{id}', [ShippingAreaController::class, 'districtEdit'])->name('district.edit');
+    Route::post('/district/update/{id}', [ShippingAreaController::class, 'districtUpdate'])->name('district.update');
+    Route::get('/district/delete/{id}', [ShippingAreaController::class, 'districtDelete'])->name('district.delete');
 });
 
 /*

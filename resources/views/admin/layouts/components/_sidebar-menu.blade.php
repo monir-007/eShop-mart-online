@@ -90,7 +90,7 @@
     </li>
     <li class="treeview {{($prefix === '/shipping') ? 'active' : ''}}">
         <a href="#">
-            <i data-feather="archive"></i> <span>Shipping Area</span>
+            <i data-feather="navigation"></i> <span>Shipping Area</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-right pull-right"></i>
             </span>
@@ -98,6 +98,8 @@
         <ul class="treeview-menu">
             <li class="{{($route==='shipping-division.manage') ? 'active':'' }}"><a href="{{route('shipping-division.manage')}}"><i
                         class="ti-more"></i>Shipping Division</a></li>
+            <li class="{{($route==='shipping-district.manage') ? 'active':'' }}"><a href="{{route('shipping-district.manage')}}"><i
+                        class="ti-more"></i>Shipping District</a></li>
         </ul>
     </li>
 
