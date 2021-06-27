@@ -539,8 +539,8 @@
                     }
                     </td>
                     <td class="col-md-2">
-                    ${value.qty>1
-                        ?`<button type="submit" class="btn btn-sm" id="${value.rowId}"
+                    ${value.qty > 1
+                        ? `<button type="submit" class="btn btn-sm" id="${value.rowId}"
                                  onclick="myCartProductDecrement(this.id)"><i class="fa fa-minus"></i></button>`
                         : `<button type="submit" class="btn btn-sm" disabled><i class="fa fa-minus"></i></button>`
                     }
@@ -624,6 +624,7 @@
             }
         })
     }
+
     //     My Cart product Decrement
     function myCartProductDecrement(rowId) {
         $.ajax({
@@ -637,6 +638,139 @@
             }
         })
     }
+
+</script>
+<script type="text/javascript">
+    function applyCoupon() {
+        let couponCode = $('#couponCode').val()
+        $.ajax({
+            type: 'POST',
+            dataType: 'json',
+            url: "{{url('/coupon/apply-code')}}",
+            data: {couponCode: couponCode},
+            success: function (data) {
+                // console.log(data)
+                couponCalculation();
+                $('#couponBox').hide();
+
+                //showing message
+                const Toast = Swal.mixin({
+                    toast: true,
+                    animation: true,
+                    position: 'top-right',
+                    showConfirmButton: false,
+                    timer: 2500,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                });
+                if ($.isEmptyObject(data.error)) {
+                    Toast.fire({
+                        type: 'success',
+                        icon: 'success',
+                        title: data.success
+                    })
+                } else {
+                    Toast.fire({
+                        type: 'error',
+                        icon: 'error',
+                        title: data.error
+                    })
+                }
+            }
+
+        });
+    }
+
+    function couponCalculation() {
+        $.ajax({
+            type: 'GET',
+            url: "{{url('/coupon/calculation')}}",
+            dataType: 'json',
+            success: function (data) {
+                if (data.total) {
+                    $('#couponCalculate').html(
+                        `<tr>
+                                <th>
+                                    <div class="cart-sub-total">
+                                        Subtotal<span class="inner-left-md">$${data.total}</span>
+                                    </div>
+                                    <div class="cart-grand-total">
+                                        Grand Total<span class="inner-left-md">$${data.total}</span>
+                                    </div>
+                                </th>
+                            </tr>`
+                    )
+                } else {
+                    $('#couponCalculate').html(
+                        `<tr>
+                                <th>
+                                    <div class="cart-sub-total">
+                                        Subtotal<span class="inner-left-md">$ ${data.subtotal}</span>
+                                    </div>
+
+                                    <div class="cart-sub-total">
+                                        Coupon Code<span class="inner-left-md">${data.couponName}</span>
+                                        <button type="submit" onclick="couponRemove()" class="btn btn-sm" title="remove coupon"><i class="fa fa-times"></i></button>
+                                    </div>
+                                    <div class="cart-sub-total">
+                                        Discount Amount<span class="inner-left-md">$ ${data.couponDiscountAmount}</span>
+                                    </div>
+                                    <div class="cart-grand-total">
+                                        Grand Total<span class="inner-left-md">$ ${data.couponTotalAmount}</span>
+                                    </div>
+                                </th>
+                            </tr>`
+                    )
+
+                }
+            }
+        })
+    }
+
+    couponCalculation();
+
+    function couponRemove() {
+        $.ajax({
+            type: 'GET',
+            url: "{{url('/coupon/remove')}}",
+            dataType: 'json',
+            success: function (data) {
+                couponCalculation();
+                $('#couponBox').show();
+                $('#couponCode').val('');
+                const Toast = Swal.mixin({
+                    toast: true,
+                    animation: true,
+                    position: 'top-right',
+                    showConfirmButton: false,
+                    timer: 2500,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                });
+                if ($.isEmptyObject(data.error)) {
+                    Toast.fire({
+                        type: 'success',
+                        icon: 'success',
+                        title: data.success
+                    })
+                } else {
+                    Toast.fire({
+                        type: 'error',
+                        icon: 'error',
+                        title: data.error
+                    })
+                }
+
+            }
+        })
+    }
+
 </script>
 </body>
 </html>

@@ -128,7 +128,7 @@
                                 </div>
                                 <div class="clearfix cart-total">
                                     <div class="pull-right">
-                                        <span class="text">Sub Total :</span>
+                                        <span class="text">Sub Total : $</span>
                                         <span class='price' id="cartSubTotalId"></span>
                                     </div>
                                     <div class="clearfix"></div>
@@ -137,7 +137,6 @@
                                     </button>
                                 </div>
                                 <!-- /.cart-total-->
-
                             </li>
                         </ul>
                         <!-- /.dropdown-menu-->
