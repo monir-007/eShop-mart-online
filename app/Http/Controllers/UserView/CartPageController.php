@@ -40,6 +40,20 @@ class CartPageController extends Controller
     {
         $row = Cart::get($rowId);
         Cart::update($rowId, $row->qty + 1);
+
+        if(Session::has('coupon')){
+            $couponName = Session::get('coupon')['name'];
+            $coupon = Coupon::where('name',$couponName)->first();
+            $total = round((float)Cart::total(), 2);
+            $discountAmount = $total * $coupon->discount / 100;
+
+            Session::put('coupon', [
+                'name' => $coupon->name,
+                'discount' => $coupon->discount,
+                'discountAmount' => $discountAmount,
+                'totalAmount' => $total - $discountAmount,
+            ]);
+        }
         return response()->json(['increment']);
     }
 
@@ -47,6 +61,21 @@ class CartPageController extends Controller
     {
         $row = Cart::get($rowId);
         Cart::update($rowId, $row->qty - 1);
+
+        if(Session::has('coupon')){
+            $couponName = Session::get('coupon')['name'];
+            $coupon = Coupon::where('name',$couponName)->first();
+            $total = round((float)Cart::total(), 2);
+            $discountAmount = $total * $coupon->discount / 100;
+
+            Session::put('coupon', [
+                'name' => $coupon->name,
+                'discount' => $coupon->discount,
+                'discountAmount' => $discountAmount,
+                'totalAmount' => $total - $discountAmount,
+            ]);
+        }
+
         return response()->json(['decrement']);
     }
 

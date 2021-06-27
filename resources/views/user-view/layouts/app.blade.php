@@ -619,6 +619,7 @@
             dataType: 'json',
             success: function (data) {
                 myCart();
+                couponCalculation();
                 miniCart();
 
             }
@@ -633,6 +634,7 @@
             dataType: 'json',
             success: function (data) {
                 myCart();
+                couponCalculation();
                 miniCart();
 
             }
