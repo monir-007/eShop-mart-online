@@ -99,7 +99,9 @@
             <li class="{{($route==='shipping-division.manage') ? 'active':'' }}"><a href="{{route('shipping-division.manage')}}"><i
                         class="ti-more"></i>Shipping Division</a></li>
             <li class="{{($route==='shipping-district.manage') ? 'active':'' }}"><a href="{{route('shipping-district.manage')}}"><i
-                        class="ti-more"></i>Shipping District</a></li>
+                        class="ti-more"></i>Shipping District</a>
+            </li><li class="{{($route==='shipping-state.manage') ? 'active':'' }}"><a href="{{route('shipping-state.manage')}}"><i
+                        class="ti-more"></i>Shipping Sate</a></li>
         </ul>
     </li>
 

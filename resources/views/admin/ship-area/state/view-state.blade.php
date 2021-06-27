@@ -12,7 +12,7 @@
                                 <li class="breadcrumb-item"><a href="{{route('admin.profile')}}"><i
                                             class="mdi mdi-home-outline"></i></a>
                                 </li>
-                                <li class="breadcrumb-item active" aria-current="page">District list</li>
+                                <li class="breadcrumb-item active" aria-current="page">State list</li>
                             </ol>
                         </nav>
                     </div>
@@ -25,7 +25,7 @@
                 <div class="col-8">
                     <div class="box bt-3 border-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">District List</h3>
+                            <h3 class="box-title">State List</h3>
                         </div>
 
                         <!-- /.box-header -->
@@ -34,22 +34,25 @@
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                     <tr>
+
                                         <th>Division Name</th>
                                         <th>District Name</th>
+                                        <th>State Name</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr class="bg-transparent">
-                                        @foreach($shipDistricts as $item)
+                                        @foreach($shipStates as $item)
                                             <td>{{$item->division->name}}</td>
+                                            <td>{{$item->district->name}}</td>
                                             <td>{{$item->name}}</td>
                                             <td class="d-flex">
-                                                <a href="{{route('district.edit',$item->id)}}"
+                                                <a href="{{route('state.edit',$item->id)}}"
                                                    class="btn btn-success btn-sm mr-2"
                                                    data-toggle="tooltip"
                                                    data-placement="bottom" title="Edit"> <i class="fa fa-edit"></i> </a>
-                                                <a href="{{ route('district.delete',$item->id) }}" id="delete"
+                                                <a href="{{ route('state.delete',$item->id) }}" id="delete"
                                                    class="btn btn-danger btn-sm" data-toggle="tooltip"
                                                    data-placement="bottom" title="Remove"> <i class="fa fa-trash"></i>
                                                 </a>
@@ -70,12 +73,12 @@
                 <div class="col-4">
                     <div class="box bt-3">
                         <div class="box-header with-border">
-                            <h3 class="box-title text-white">Add New District</h3>
+                            <h3 class="box-title text-white">Add New State</h3>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
                             <div class="table-responsive">
-                                <form method="post" action="{{ route('district.store') }}">
+                                <form method="post" action="{{ route('state.store') }}">
                                     @csrf
 
                                     <div class="form-group">
@@ -83,7 +86,7 @@
                                         <div class="controls">
                                             <select name="division_id" class="form-control"  >
                                                 <option value="" selected="" disabled="">Select Division</option>
-                                                @foreach($shipDivision as $division)
+                                                @foreach($shipDivisions as $division)
                                                     <option value="{{ $division->id }}">{{ $division->name }}</option>
                                                 @endforeach
                                             </select>
@@ -93,7 +96,21 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <h5>District Name <span class="text-danger">*</span></h5>
+                                        <h5>District Select <span class="text-danger">*</span></h5>
+                                        <div class="controls">
+                                            <select name="district_id" class="form-control" required >
+                                                <option value="" selected="" disabled="">Select District</option>
+                                                @foreach($shipDistricts as $district)
+                                                    <option value="{{ $district->id }}">{{ $district->name }}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('district_id')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <h5>State Name <span class="text-danger">*</span></h5>
                                         <div class="controls">
                                             <input type="text" name="name" class="form-control">
                                             @error('name')
@@ -116,6 +133,30 @@
     </div>
     <!-- /.content-wrapper -->
 
+@endsection
+@section('script')
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('select[name="division_id"]').on('change', function () {
+                let division_id = $(this).val();
+                if (division_id) {
+                    $.ajax({
+                        url: "{{url('/shipping/manage-state')}}/" + division_id,
+                        type: "GET",
+                        dataType: "json",
+                        success: function (data) {
+                            $('select[name="district_id"]').empty();
+                            $.each(data, function (key, value) {
+                                $('select[name="district_id"]').append('<option value="' + value.id + '">' + value.name + '</option>');
+                            });
+                        },
+                    });
+                } else {
+                    alert('danger');
+                }
+            });
+        });
+    </script>
 @endsection
 
 
