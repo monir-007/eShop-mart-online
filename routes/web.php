@@ -236,7 +236,7 @@ Route::get('/mycart/product/increment/{rowId}', [CartPageController::class, 'inc
 Route::get('/mycart/product/decrement/{rowId}', [CartPageController::class, 'decrementMyCartProduct']);
 
 //Frontend Coupon Routes
-Route::post('/coupon/apply-code', [CartPageController::class, 'couponApply']);
-Route::get('/coupon/calculation', [CartPageController::class, 'couponCalculation']);
-Route::get('/coupon/remove', [CartPageController::class, 'couponRemove']);
+Route::post('/coupon/apply-code', [CartController::class, 'couponApply']);
+Route::get('/coupon/calculation', [CartController::class, 'couponCalculation']);
+Route::get('/coupon/remove', [CartController::class, 'couponRemove']);
 

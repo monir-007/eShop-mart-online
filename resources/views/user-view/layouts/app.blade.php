@@ -580,7 +580,10 @@
             dataType: 'json',
             success: function (data) {
                 myCart();
+                couponCalculation();
                 miniCart();
+                $('#couponBox').show();
+                $('#couponCode').val('');
 
                 const Toast = Swal.mixin({
                     toast: true,
