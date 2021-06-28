@@ -5,6 +5,7 @@ namespace App\Http\Controllers\UserView;
 use App\Http\Controllers\Controller;
 use App\Models\Coupon;
 use App\Models\Product;
+use Auth;
 use Carbon\Carbon;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
@@ -14,7 +15,7 @@ class CartController extends Controller
 {
     public function addToCart(Request $request, $id)
     {
-        if(Session::has('coupon')){
+        if (Session::has('coupon')) {
             Session::forget('coupon');
         }
 
@@ -59,7 +60,7 @@ class CartController extends Controller
         return response()->json([
             'carts' => $carts,
             'cartQty' => $cartQty,
-            'cartTotal' => round((float)$cartTotal,2),
+            'cartTotal' => $cartTotal,
         ]);
     }
 
@@ -73,13 +74,13 @@ class CartController extends Controller
     {
         $coupon = Coupon::where('name', $request->couponCode)->where('validity', '>=', Carbon::now()->format('Y-m-d'))->first();
         if ($coupon) {
-            $total = round((float)Cart::total(), 2);
-            $discountAmount = $total * $coupon->discount / 100;
+            $total = Cart::total();
+            $discountAmount =($total * $coupon->discount / 100) ;
             Session::put('coupon', [
                 'name' => $coupon->name,
                 'discount' => $coupon->discount,
-                'discountAmount' => $discountAmount,
-                'totalAmount' => $total - $discountAmount,
+                'discountAmount' => round((float)$discountAmount),
+                'totalAmount' => round((float)$total - $discountAmount),
             ]);
             return response()->json(['success' => 'coupon applied']);
         }
@@ -89,7 +90,7 @@ class CartController extends Controller
     public function couponCalculation()
     {
         if (Session::has('coupon')) {
-            $total = round((float)Cart::total(), 2);
+            $total = Cart::total();
             return response()->json([
                 'subtotal' => $total,
                 'couponName' => session()->get('coupon')['name'],
@@ -106,6 +107,31 @@ class CartController extends Controller
     public function couponRemove()
     {
         Session::forget('coupon');
-        return response()->json(['success'=>'coupon removed.']);
+        return response()->json(['success' => 'coupon removed.']);
     }
+
+    public function checkoutIndex()
+    {
+        if (Auth::check()) {
+            if (Cart::total() > 0) {
+                $carts = Cart::content();
+                $cartQty = Cart::count();
+                $cartTotal = Cart::total();
+
+                return view('user-view.checkout.view-checkout',compact('carts','cartTotal','cartQty'));
+            }
+            $notification = array(
+                'message' => "You haven't shopping yet.",
+                'alert-type' => 'warning'
+            );
+            return redirect()->to('/')->with($notification);
+        }
+        $notification = array(
+            'message' => 'You need to login.',
+            'alert-type' => 'warning'
+        );
+        return redirect()->route('login')->with($notification);
+    }
+
+
 }

@@ -25,7 +25,7 @@ class CartPageController extends Controller
         return response()->json([
             'carts' => $carts,
             'cartQty' => $cartQty,
-            'cartTotal' => round((float)$cartTotal),
+            'cartTotal' => $cartTotal,
         ]);
     }
 
