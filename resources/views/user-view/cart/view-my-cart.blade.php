@@ -104,5 +104,5 @@
     @include('user-view.layouts.components._brands')
     <!-- ============================================== BRANDS CAROUSEL : END ============================================== -->
 
-
 @endsection
+

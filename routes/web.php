@@ -241,6 +241,7 @@ Route::post('/coupon/apply-code', [CartController::class, 'couponApply']);
 Route::get('/coupon/calculation', [CartController::class, 'couponCalculation']);
 Route::get('/coupon/remove', [CartController::class, 'couponRemove']);
 //Frontend Checkout Routes
-Route::get('/checkout', [CartController::class, 'checkoutIndex'])->name('checkout');
+Route::get('/checkout', [ShippingController::class, 'checkoutIndex'])->name('checkout');
+Route::post('/checkout/store', [ShippingController::class, 'checkoutStore'])->name('checkout.store');
 Route::get('/district/get/{id}', [ShippingController::class, 'getDistrict']);
 Route::get('/state/get/{id}', [ShippingController::class, 'getState']);

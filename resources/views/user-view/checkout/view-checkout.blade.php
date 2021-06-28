@@ -16,25 +16,21 @@
 
     <div class="body-content">
         <div class="container">
-            <div class="checkout-box ">
-                <div class="row">
-                    <div class="col-md-8">
-                        <div class="panel-group checkout-steps" id="accordion">
-                            <!-- checkout-step-01  -->
-                            <div class="panel panel-default checkout-step-01">
-
-                                <!-- panel-heading -->
-
-                                <!-- panel-heading -->
-
-                                <div id="collapseOne" class="panel-collapse collapse in">
-
-                                    <!-- panel-body  -->
-                                    <div class="panel-body">
-                                        <div class="row">
-
-                                            <!-- guest-login -->
-                                            <form class="register-form" role="form">
+            <div class="checkout-box">
+                <form action="{{route('checkout.store')}}" method="POST" class="register-form">
+                    @csrf
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="panel-group checkout-steps" id="accordion">
+                                <!-- checkout-step-01  -->
+                                <div class="panel panel-default checkout-step-01">
+                                    <!-- panel-heading -->
+                                    <!-- panel-heading -->
+                                    <div id="collapseOne" class="panel-collapse collapse in">
+                                        <!-- panel-body  -->
+                                        <div class="panel-body">
+                                            <div class="row">
+                                                <!-- guest-login -->
                                                 <div class="col-md-6 col-sm-6 already-registered-login">
                                                     <h4 class="checkout-subtitle"><b>Shipping Information</b></h4>
 
@@ -76,7 +72,6 @@
 
                                                 </div>
                                                 <!-- guest-login -->
-
                                                 <!-- already-registered-login -->
                                                 <div class="col-md-6 col-sm-6 already-registered-login">
                                                     <div class="form-group">
@@ -133,76 +128,120 @@
                                                         <textarea class="form-control" cols="25" rows="3"
                                                                   placeholder="Notes" name="notes"></textarea>
                                                     </div>
-                                                    <button type="submit"
-                                                            class="btn-upper btn btn-primary checkout-page-button">Login
-                                                    </button>
                                                 </div>
                                                 <!-- already-registered-login -->
-                                            </form>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <!-- panel-body  -->
+                                        <!-- panel-body  -->
+                                    </div><!-- row -->
+                                </div>
+                                <!--End checkout-step-01  -->
+                            </div><!-- /.checkout-steps -->
+                        </div>
+                        <div class="col-md-4">
+                            <!-- checkout-progress-sidebar -->
+                            <div class="checkout-progress-sidebar ">
+                                <div class="panel-group">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h4 class="unicase-checkout-title">Your Checkout Progress</h4>
+                                        </div>
+                                        <div class="">
+                                            <ul class="nav nav-checkout-progress list-unstyled">
+                                                @foreach($carts as $item)
+                                                    <li><strong>Image: </strong>
+                                                        <img src="{{asset($item->options->image)}}"
+                                                             style="height: 50px;width: 50px;" alt="">
+                                                    </li>
 
-                                </div><!-- row -->
-                            </div>
-                            <!-- checkout-step-01  -->
-
-                        </div><!-- /.checkout-steps -->
-                    </div>
-                    <div class="col-md-4">
-                        <!-- checkout-progress-sidebar -->
-                        <div class="checkout-progress-sidebar ">
-                            <div class="panel-group">
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h4 class="unicase-checkout-title">Your Checkout Progress</h4>
-                                    </div>
-                                    <div class="">
-                                        <ul class="nav nav-checkout-progress list-unstyled">
-                                            @foreach($carts as $item)
-                                                <li><strong>Image: </strong>
-                                                    <img src="{{asset($item->options->image)}}"
-                                                         style="height: 50px;width: 50px;" alt="">
-                                                </li>
-
+                                                    <li>
+                                                        <strong>Quantity: </strong>({{$item->qty}})
+                                                        <strong>Color: </strong>{{$item->options->color}}
+                                                        <strong>Size: </strong>{{$item->options->size}}
+                                                    </li>
+                                                    <hr>
+                                                @endforeach
                                                 <li>
-                                                    <strong>Quantity: </strong>({{$item->qty}})
-                                                    <strong>Color: </strong>{{$item->options->color}}
-                                                    <strong>Size: </strong>{{$item->options->size}}
+                                                    @if(Session::has('coupon'))
+                                                        <strong>SubTotal: </strong>${{ $cartTotal }}
+                                                        <br>
+                                                        <strong>Coupon
+                                                            Code: </strong>{{ session()->get('coupon')['name'] }}
+                                                        ({{session()->get('coupon')['discount']}}%)
+                                                        <br>
+                                                        <strong>Coupon Code: </strong>
+                                                        ${{ session()->get('coupon')['discountAmount'] }}
+                                                        <hr>
+                                                        <strong>Grand Total: </strong>
+                                                        ${{ session()->get('coupon')['totalAmount'] }}
+                                                        <hr>
+                                                    @else
+                                                        <strong>SubTotal: </strong>${{ $cartTotal }}
+                                                        <hr>
+                                                        <strong>Grand Total: </strong>${{ $cartTotal }}
+                                                        <hr>
+                                                    @endif
+
                                                 </li>
-                                                <hr>
-                                            @endforeach
-                                            <li>
-                                                @if(Session::has('coupon'))
-                                                    <strong>SubTotal: </strong>${{ $cartTotal }}
-                                                    <br>
-                                                    <strong>Coupon Code: </strong>{{ session()->get('coupon')['name'] }}
-                                                    ({{session()->get('coupon')['discount']}}%)
-                                                    <br>
-                                                    <strong>Coupon Code: </strong>
-                                                    ${{ session()->get('coupon')['discountAmount'] }}
-                                                    <hr>
-                                                    <strong>Grand Total: </strong>
-                                                    ${{ session()->get('coupon')['totalAmount'] }}
-                                                    <hr>
-                                                @else
-                                                    <strong>SubTotal: </strong>${{ $cartTotal }}
-                                                    <hr>
-                                                    <strong>Grand Total: </strong>${{ $cartTotal }}
-                                                    <hr>
-                                                @endif
-
-                                            </li>
-
-                                            <li><a href="#">Payment Method</a></li>
-
-                                        </ul>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                            <!-- checkout-progress-sidebar -->
                         </div>
-                        <!-- checkout-progress-sidebar -->                </div>
-                </div><!-- /.row -->
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8">
+                        </div>
+
+                        <div class="col-md-4">
+                            <!-- checkout-progress-sidebar -->
+                            <div class="checkout-progress-sidebar ">
+                                <div class="panel-group">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h4 class="unicase-checkout-title">Select Payment Way</h4>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label class="info-title" for="exampleInputEmail1">Stripe</label>
+                                                    <input type="radio" name="payment_method" value="stripe"
+                                                           class="form-control unicase-form-control text-input"
+                                                           placeholder="Post Code" required>
+                                                    <img src="{{asset('user-view/assets/images/payments/4.png')}}"
+                                                         class="unicase-form-control">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label class="info-title" for="exampleInputEmail1">Card</label>
+                                                <input type="radio" name="payment_method" value="card"
+                                                       class="form-control unicase-form-control text-input"
+                                                       placeholder="Post Code" required>
+                                                <img src="{{asset('user-view/assets/images/payments/3.png')}}"
+                                                     class="unicase-form-control">
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label class="info-title" for="exampleInputEmail1">Cash</label>
+                                                <input type="radio" name="payment_method" value="cash"
+                                                       class="form-control unicase-form-control text-input"
+                                                       placeholder="Post Code" required>
+                                                <img src="{{asset('user-view/assets/images/payments/2.png')}}"
+                                                     class="unicase-form-control">
+                                            </div>
+                                        </div>
+                                        <button type="submit"
+                                                class="btn-upper btn btn-primary checkout-btn">Payment Step
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- checkout-progress-sidebar -->
+                        </div>
+
+                    </div><!-- /.row -->
+                </form>
             </div><!-- /.checkout-box -->
             <!-- ============================================== BRANDS CAROUSEL ============================================== -->
             <!-- ============================================== BRANDS CAROUSEL : END ============================================== -->
@@ -215,19 +254,19 @@
 @endsection
 @section('script')
     <script type="text/javascript">
-        $(document).ready(function() {
-            $('select[name="division_id"]').on('change', function(){
+        $(document).ready(function () {
+            $('select[name="division_id"]').on('change', function () {
                 let division_id = $(this).val();
-                if(division_id) {
+                if (division_id) {
                     $.ajax({
-                        url: "{{  url('/district/get') }}/"+division_id,
-                        type:"GET",
-                        dataType:"json",
-                        success:function(data) {
+                        url: "{{  url('/district/get') }}/" + division_id,
+                        type: "GET",
+                        dataType: "json",
+                        success: function (data) {
                             $('select[name="state_id"]').empty();
                             $('select[name="district_id"]').empty();
-                            $.each(data, function(key, value){
-                                $('select[name="district_id"]').append('<option value="'+ value.id +'">' + value.name + '</option>');
+                            $.each(data, function (key, value) {
+                                $('select[name="district_id"]').append('<option value="' + value.id + '">' + value.name + '</option>');
                             });
                         },
                     });
@@ -238,18 +277,18 @@
         });
     </script>
     <script type="text/javascript">
-        $(document).ready(function (){
-            $('select[name="district_id"]').on('change', function(){
+        $(document).ready(function () {
+            $('select[name="district_id"]').on('change', function () {
                 let district_id = $(this).val();
-                if(district_id) {
+                if (district_id) {
                     $.ajax({
-                        url: "{{  url('/state/get') }}/"+district_id,
-                        type:"GET",
-                        dataType:"json",
-                        success:function(data) {
+                        url: "{{  url('/state/get') }}/" + district_id,
+                        type: "GET",
+                        dataType: "json",
+                        success: function (data) {
                             $('select[name="state_id"]').empty();
-                            $.each(data, function(key, value){
-                                $('select[name="state_id"]').append('<option value="'+ value.id +'">' + value.name + '</option>');
+                            $.each(data, function (key, value) {
+                                $('select[name="state_id"]').append('<option value="' + value.id + '">' + value.name + '</option>');
                             });
                         },
                     });
