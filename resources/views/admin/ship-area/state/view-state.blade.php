@@ -84,7 +84,7 @@
                                     <div class="form-group">
                                         <h5>Division Select <span class="text-danger">*</span></h5>
                                         <div class="controls">
-                                            <select name="division_id" class="form-control"  >
+                                            <select name="division_id" class="form-control">
                                                 <option value="" selected="" disabled="">Select Division</option>
                                                 @foreach($shipDivisions as $division)
                                                     <option value="{{ $division->id }}">{{ $division->name }}</option>
@@ -98,11 +98,9 @@
                                     <div class="form-group">
                                         <h5>District Select <span class="text-danger">*</span></h5>
                                         <div class="controls">
-                                            <select name="district_id" class="form-control" required >
+                                            <select name="district_id" class="form-control" required>
                                                 <option value="" selected="" disabled="">Select District</option>
-                                                @foreach($shipDistricts as $district)
-                                                    <option value="{{ $district->id }}">{{ $district->name }}</option>
-                                                @endforeach
+
                                             </select>
                                             @error('district_id')
                                             <span class="text-danger">{{ $message }}</span>
@@ -135,29 +133,27 @@
 
 @endsection
 @section('script')
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('select[name="division_id"]').on('change', function () {
-                let division_id = $(this).val();
-                if (division_id) {
-                    $.ajax({
-                        url: "{{url('/shipping/manage-state')}}/" + division_id,
-                        type: "GET",
-                        dataType: "json",
-                        success: function (data) {
-                            $('select[name="district_id"]').empty();
-                            $.each(data, function (key, value) {
-                                $('select[name="district_id"]').append('<option value="' + value.id + '">' + value.name + '</option>');
-                            });
-                        },
-                    });
-                } else {
-                    alert('danger');
-                }
-            });
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('select[name="division_id"]').on('change', function () {
+            let division_id = $(this).val();
+            if (division_id) {
+                $.ajax({
+                    url: "{{  url('/district/get') }}/" + division_id,
+                    type: "GET",
+                    dataType: "json",
+                    success: function (data) {
+                        $('select[name="district_id"]').empty();
+                        $.each(data, function (key, value) {
+                            $('select[name="district_id"]').append('<option value="' + value.id + '">' + value.name + '</option>');
+                        });
+                    },
+                });
+            } else {
+                alert('danger');
+            }
         });
-    </script>
+    });
+</script>
 @endsection
-
-
 

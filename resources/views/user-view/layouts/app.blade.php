@@ -159,6 +159,7 @@
 <script src="{{asset('assets/vendor_components/toastr/toastr.min.js')}}"></script>
 <script src="{{asset('assets/vendor_components/sweetalert/sweetalert.min.js')}}"></script>
 <script src="{{asset('user-view/assets/js/sweetalert2.all.min.js')}}"></script>
+@yield('script')
 
 {{--Notifications Alert--}}
 <script>

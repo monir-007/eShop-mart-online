@@ -15,6 +15,7 @@ use App\Http\Controllers\UserView\CartController;
 use App\Http\Controllers\UserView\CartPageController;
 use App\Http\Controllers\UserView\IndexController;
 use App\Http\Controllers\UserView\LanguageController;
+use App\Http\Controllers\UserView\ShippingController;
 use App\Http\Controllers\UserView\UserProfileController;
 use App\Http\Controllers\UserView\WishlistController;
 use App\Models\User;
@@ -241,3 +242,5 @@ Route::get('/coupon/calculation', [CartController::class, 'couponCalculation']);
 Route::get('/coupon/remove', [CartController::class, 'couponRemove']);
 //Frontend Checkout Routes
 Route::get('/checkout', [CartController::class, 'checkoutIndex'])->name('checkout');
+Route::get('/district/get/{id}', [ShippingController::class, 'getDistrict']);
+Route::get('/state/get/{id}', [ShippingController::class, 'getState']);

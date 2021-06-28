@@ -34,68 +34,111 @@
                                         <div class="row">
 
                                             <!-- guest-login -->
-                                            <div class="col-md-6 col-sm-6 guest-login">
-                                                <h4 class="checkout-subtitle">Guest or Register Login</h4>
-                                                <p class="text title-tag-line">Register with us for future
-                                                    convenience:</p>
+                                            <form class="register-form" role="form">
+                                                <div class="col-md-6 col-sm-6 already-registered-login">
+                                                    <h4 class="checkout-subtitle"><b>Shipping Information</b></h4>
 
-                                                <!-- radio-form  -->
-                                                <form class="register-form" role="form">
-                                                    <div class="radio radio-checkout-unicase">
-                                                        <input id="guest" type="radio" name="text" value="guest"
-                                                               checked>
-                                                        <label class="radio-button guest-check" for="guest">Checkout as
-                                                            Guest</label>
-                                                        <br>
-                                                        <input id="register" type="radio" name="text" value="register">
-                                                        <label class="radio-button" for="register">Register</label>
+                                                    <div class="form-group">
+                                                        <label class="info-title" for="exampleInputEmail1">Shipping Name
+                                                            <span>*</span></label>
+                                                        <input type="text" name="shipping_name"
+                                                               value="{{Auth::user()->name}}"
+                                                               class="form-control unicase-form-control text-input"
+                                                               id="exampleInputEmail1" placeholder="Full Name" required>
                                                     </div>
-                                                </form>
-                                                <!-- radio-form  -->
-
-                                                <h4 class="checkout-subtitle outer-top-vs">Register and save time</h4>
-                                                <p class="text title-tag-line ">Register with us for future
-                                                    convenience:</p>
-
-                                                <ul class="text instruction inner-bottom-30">
-                                                    <li class="save-time-reg">- Fast and easy check out</li>
-                                                    <li>- Easy access to your order history and status</li>
-                                                </ul>
-
-                                                <button type="submit"
-                                                        class="btn-upper btn btn-primary checkout-page-button checkout-continue ">
-                                                    Continue
-                                                </button>
-                                            </div>
-                                            <!-- guest-login -->
-
-                                            <!-- already-registered-login -->
-                                            <div class="col-md-6 col-sm-6 already-registered-login">
-                                                <h4 class="checkout-subtitle">Already registered?</h4>
-                                                <p class="text title-tag-line">Please log in below:</p>
-                                                <form class="register-form" role="form">
                                                     <div class="form-group">
                                                         <label class="info-title" for="exampleInputEmail1">Email Address
                                                             <span>*</span></label>
-                                                        <input type="email"
+                                                        <input type="email" name="shipping_email"
+                                                               value="{{Auth::user()->email}}"
                                                                class="form-control unicase-form-control text-input"
-                                                               id="exampleInputEmail1" placeholder="">
+                                                               id="exampleInputEmail1" placeholder="User Email"
+                                                               required>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label class="info-title" for="exampleInputPassword1">Password
+                                                        <label class="info-title" for="exampleInputPassword1">Phone
+                                                            Number
                                                             <span>*</span></label>
-                                                        <input type="password"
+                                                        <input type="number" name="shipping_phone"
+                                                               value="{{Auth::user()->phone}}"
                                                                class="form-control unicase-form-control text-input"
-                                                               id="exampleInputPassword1" placeholder="">
-                                                        <a href="#" class="forgot-password">Forgot your Password?</a>
+                                                               id="exampleInputPassword1"
+                                                               placeholder="User Phone Number" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="info-title" for="exampleInputPassword1">Post Code
+                                                            <span>*</span></label>
+                                                        <input type="text" name="post_code"
+                                                               class="form-control unicase-form-control text-input"
+                                                               id="exampleInputPassword1" placeholder="Post Code"
+                                                               required>
+                                                    </div>
+
+                                                </div>
+                                                <!-- guest-login -->
+
+                                                <!-- already-registered-login -->
+                                                <div class="col-md-6 col-sm-6 already-registered-login">
+                                                    <div class="form-group">
+                                                        <label class="info-title" for="exampleInputPassword1">Select
+                                                            Division
+                                                            <span>*</span></label>
+                                                        <div class="controls">
+                                                            <select name="division_id" class="form-control" required="">
+                                                                <option value="" selected="" disabled="">Select
+                                                                    Division
+                                                                </option>
+                                                                @foreach($divisions as $item)
+                                                                    <option
+                                                                        value="{{ $item->id }}">{{ $item->name }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                            @error('division_id')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="info-title" for="exampleInputPassword1">Select
+                                                            District
+                                                            <span>*</span></label>
+                                                        <div class="controls">
+                                                            <select name="district_id" class="form-control" required="">
+                                                                <option value="" selected="" disabled="">Select
+                                                                    District
+                                                                </option>
+                                                            </select>
+                                                            @error('district_id')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="info-title" for="exampleInputPassword1">Select
+                                                            State
+                                                            <span>*</span></label>
+                                                        <div class="controls">
+                                                            <select name="state_id" class="form-control" required="">
+                                                                <option value="" selected="" disabled="">Select State
+                                                                </option>
+                                                            </select>
+                                                            @error('state_id')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="info-title" for="exampleInputEmail1">Notes
+                                                            <span>*</span></label>
+                                                        <textarea class="form-control" cols="25" rows="3"
+                                                                  placeholder="Notes" name="notes"></textarea>
                                                     </div>
                                                     <button type="submit"
                                                             class="btn-upper btn btn-primary checkout-page-button">Login
                                                     </button>
-                                                </form>
-                                            </div>
-                                            <!-- already-registered-login -->
-
+                                                </div>
+                                                <!-- already-registered-login -->
+                                            </form>
                                         </div>
                                     </div>
                                     <!-- panel-body  -->
@@ -136,9 +179,11 @@
                                                     <strong>Coupon Code: </strong>{{ session()->get('coupon')['name'] }}
                                                     ({{session()->get('coupon')['discount']}}%)
                                                     <br>
-                                                    <strong>Coupon Code: </strong>${{ session()->get('coupon')['discountAmount'] }}
+                                                    <strong>Coupon Code: </strong>
+                                                    ${{ session()->get('coupon')['discountAmount'] }}
                                                     <hr>
-                                                    <strong>Grand Total: </strong>${{ session()->get('coupon')['totalAmount'] }}
+                                                    <strong>Grand Total: </strong>
+                                                    ${{ session()->get('coupon')['totalAmount'] }}
                                                     <hr>
                                                 @else
                                                     <strong>SubTotal: </strong>${{ $cartTotal }}
@@ -167,7 +212,54 @@
     @include('user-view.layouts.components._brands')
     <!-- ============================================== BRANDS CAROUSEL : END ============================================== -->
 
+@endsection
+@section('script')
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('select[name="division_id"]').on('change', function(){
+                let division_id = $(this).val();
+                if(division_id) {
+                    $.ajax({
+                        url: "{{  url('/district/get') }}/"+division_id,
+                        type:"GET",
+                        dataType:"json",
+                        success:function(data) {
+                            $('select[name="state_id"]').empty();
+                            $('select[name="district_id"]').empty();
+                            $.each(data, function(key, value){
+                                $('select[name="district_id"]').append('<option value="'+ value.id +'">' + value.name + '</option>');
+                            });
+                        },
+                    });
+                } else {
+                    alert('danger');
+                }
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function (){
+            $('select[name="district_id"]').on('change', function(){
+                let district_id = $(this).val();
+                if(district_id) {
+                    $.ajax({
+                        url: "{{  url('/state/get') }}/"+district_id,
+                        type:"GET",
+                        dataType:"json",
+                        success:function(data) {
+                            $('select[name="state_id"]').empty();
+                            $.each(data, function(key, value){
+                                $('select[name="state_id"]').append('<option value="'+ value.id +'">' + value.name + '</option>');
+                            });
+                        },
+                    });
+                } else {
+                    alert('danger');
+                }
+            });
+        })
 
+    </script>
 @endsection
 
 

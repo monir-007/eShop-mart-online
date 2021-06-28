@@ -5,6 +5,7 @@ namespace App\Http\Controllers\UserView;
 use App\Http\Controllers\Controller;
 use App\Models\Coupon;
 use App\Models\Product;
+use App\Models\ShippingDivision;
 use Auth;
 use Carbon\Carbon;
 use Gloudemans\Shoppingcart\Facades\Cart;
@@ -118,7 +119,9 @@ class CartController extends Controller
                 $cartQty = Cart::count();
                 $cartTotal = Cart::total();
 
-                return view('user-view.checkout.view-checkout',compact('carts','cartTotal','cartQty'));
+                $divisions = ShippingDivision::orderBy('name','ASC')->get();
+
+                return view('user-view.checkout.view-checkout',compact('carts','cartTotal','cartQty','divisions'));
             }
             $notification = array(
                 'message' => "You haven't shopping yet.",
