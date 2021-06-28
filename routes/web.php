@@ -16,6 +16,7 @@ use App\Http\Controllers\UserView\CartPageController;
 use App\Http\Controllers\UserView\IndexController;
 use App\Http\Controllers\UserView\LanguageController;
 use App\Http\Controllers\UserView\ShippingController;
+use App\Http\Controllers\UserView\StripeController;
 use App\Http\Controllers\UserView\UserProfileController;
 use App\Http\Controllers\UserView\WishlistController;
 use App\Models\User;
@@ -245,3 +246,8 @@ Route::get('/checkout', [ShippingController::class, 'checkoutIndex'])->name('che
 Route::post('/checkout/store', [ShippingController::class, 'checkoutStore'])->name('checkout.store');
 Route::get('/district/get/{id}', [ShippingController::class, 'getDistrict']);
 Route::get('/state/get/{id}', [ShippingController::class, 'getState']);
+
+//Payment Routes
+Route::group(['prefix' => 'user', 'middleware' => ['user', 'auth'], 'namespace' => 'User'], function () {
+    Route::post('/payment/stripe', [StripeController::class, 'stripePayment'])->name('stripe.payment');
+    });
