@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\UserView;
 
 use App\Http\Controllers\Controller;
+use App\Mail\OrderMail;
 use App\Models\Order;
 use App\Models\OrderItem;
 use Carbon\Carbon;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Stripe\Charge;
 use Stripe\Stripe;
@@ -62,6 +64,15 @@ class StripeController extends Controller
 
         ]);
 //        dd($orderID);
+//Send Email
+        $invoice = Order::findOrFail($orderID);
+        $data = [
+            'invoice_no' => $invoice->invoice_no,
+            'amount' => $totalAmount,
+            'name' => $invoice->name,
+            'email' => $invoice->email,
+        ];
+        Mail::to($request->email)->send(new OrderMail($data));
 
         $carts = Cart::content();
         foreach ($carts as $cart) {
@@ -71,11 +82,11 @@ class StripeController extends Controller
                 'color' => $cart->options->color,
                 'size' => $cart->options->size,
                 'qty' => $cart->qty,
-                'price'=>$cart->price,
-                'created_at'=>Carbon::now()
+                'price' => $cart->price,
+                'created_at' => Carbon::now()
             ]);
         }
-        if (Session::has('coupon')){
+        if (Session::has('coupon')) {
             Session::forget('coupon');
         }
 
