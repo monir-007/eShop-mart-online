@@ -81,7 +81,10 @@ class CartController extends Controller
                 'discountAmount' => $discountAmount,
                 'totalAmount' => $total - $discountAmount,
             ]);
-            return response()->json(['success' => 'coupon applied']);
+            return response()->json([
+                'validity'=>true,
+                'success' => 'coupon applied',
+            ]);
         }
         return response()->json(['error' => 'Invalid coupon']);
     }

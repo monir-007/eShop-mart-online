@@ -657,7 +657,9 @@
             success: function (data) {
                 // console.log(data)
                 couponCalculation();
-                $('#couponBox').hide();
+                if(data.validity == true){
+                    $('#couponBox').hide();
+                }
 
                 //showing message
                 const Toast = Swal.mixin({
