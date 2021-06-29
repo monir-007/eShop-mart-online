@@ -51,7 +51,7 @@ class ShippingController extends Controller
 
     public function checkoutStore(Request $request)
     {
-        $data = [];
+        $data = array();
         $data['shipping_name'] = $request->shipping_name;
         $data['shipping_email'] = $request->shipping_email;
         $data['shipping_phone'] = $request->shipping_phone;
@@ -60,9 +60,10 @@ class ShippingController extends Controller
         $data['district_id'] = $request->district_id;
         $data['state_id'] = $request->state_id;
         $data['notes'] = $request->notes;
-$cartTotal = Cart::total();
+        $cartTotal = Cart::total();
         if ($request->payment_method === 'stripe') {
-            return view('user-view.payment.stripe', compact('data','cartTotal'));
+//            dd($data);
+            return view('user-view.payment.stripe', compact('data', 'cartTotal'));
         }
 
         if ($request->payment_method === 'card') {
@@ -71,4 +72,5 @@ $cartTotal = Cart::total();
 
         return 'cash';
     }
+
 }
