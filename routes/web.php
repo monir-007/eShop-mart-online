@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\SubsubcategoryController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\UserView\AllUserController;
 use App\Http\Controllers\UserView\CartController;
 use App\Http\Controllers\UserView\CartPageController;
 use App\Http\Controllers\UserView\IndexController;
@@ -227,6 +228,7 @@ Route::group(['prefix' => 'user', 'middleware' => ['user', 'auth'], 'namespace' 
     Route::get('/wishlist', [WishlistController::class, 'viewWishlist'])->name('wishlist');
     Route::get('/wishlist/get-product', [WishlistController::class, 'getWishlistProduct']);
     Route::get('/wishlist/product/remove/{id}', [WishlistController::class, 'removeWishlistProduct']);
+    Route::get('/my/orders', [AllUserController::class, 'myOrders'])->name('my.orders');
 });
 /*
 Frontend My Cart Routes

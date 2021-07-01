@@ -657,7 +657,7 @@
             success: function (data) {
                 // console.log(data)
                 couponCalculation();
-                if(data.validity == true){
+                if(data.validity === true){
                     $('#couponBox').hide();
                 }
 
