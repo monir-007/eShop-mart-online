@@ -229,6 +229,7 @@ Route::group(['prefix' => 'user', 'middleware' => ['user', 'auth'], 'namespace' 
     Route::get('/wishlist/get-product', [WishlistController::class, 'getWishlistProduct']);
     Route::get('/wishlist/product/remove/{id}', [WishlistController::class, 'removeWishlistProduct']);
     Route::get('/my/orders', [AllUserController::class, 'myOrders'])->name('my.orders');
+    Route::get('/order/details/{orderId}', [AllUserController::class, 'orderDetails']);
 });
 /*
 Frontend My Cart Routes
