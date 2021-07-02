@@ -227,7 +227,7 @@
                                                 <input type="radio" name="payment_method" value="cash"
                                                        class="form-control unicase-form-control text-input"
                                                        placeholder="Post Code" required>
-                                                <img src="{{asset('user-view/assets/images/payments/2.png')}}"
+                                                <img src="{{asset('user-view/assets/images/payments/6.png')}}"
                                                      class="unicase-form-control">
                                             </div>
                                         </div>

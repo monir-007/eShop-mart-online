@@ -70,7 +70,8 @@ class ShippingController extends Controller
             return 'card';
         }
 
-        return 'cash';
+        return view('user-view.payment.cash-on-delivery', compact('data', 'cartTotal'));
+
     }
 
 }

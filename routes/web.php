@@ -14,6 +14,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserView\AllUserController;
 use App\Http\Controllers\UserView\CartController;
 use App\Http\Controllers\UserView\CartPageController;
+use App\Http\Controllers\UserView\CashOnController;
 use App\Http\Controllers\UserView\IndexController;
 use App\Http\Controllers\UserView\LanguageController;
 use App\Http\Controllers\UserView\ShippingController;
@@ -253,4 +254,5 @@ Route::get('/state/get/{id}', [ShippingController::class, 'getState']);
 //Payment Routes
 Route::group(['prefix' => 'user', 'middleware' => ['user', 'auth'], 'namespace' => 'User'], function () {
     Route::post('/payment/stripe', [StripeController::class, 'stripePayment'])->name('stripe.payment');
+    Route::post('/payment/cash-on-delivery', [CashOnController::class, 'cashOnPayment'])->name('cash.on.delivery.payment');
     });
