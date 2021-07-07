@@ -49,9 +49,9 @@
                                     <td class="col-md-2">
                                         <label for=""><span class="badge badge-pill badge-warning" style="background: #418D89">{{$order->status}}</span></label>
                                     </td>
-                                    <td class="col-md-2 d-flex m-auto">
+                                    <td class="col-md-2">
                                         <a href="{{url('user/order/details/'.$order->id)}}" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i> View</a>
-                                        <a href="" class="btn btn-sm btn-danger"><i class="fa fa-download"></i> Invoice</a>
+                                        <a target="_blank" href="{{url('user/invoice/download/'.$order->id)}}" class="btn btn-sm btn-danger" style="margin-top: 5px;"><i class="fa fa-download"></i> Invoice</a>
                                     </td>
                                 </tr>
                             @endforeach

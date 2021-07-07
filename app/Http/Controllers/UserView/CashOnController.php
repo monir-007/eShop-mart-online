@@ -50,14 +50,15 @@ class CashOnController extends Controller
         ]);
 //        dd($orderID);
 //Send Email
-//        $invoice = Order::findOrFail($orderID);
-//        $data = [
-//            'invoice_no' => $invoice->invoice_no,
-//            'amount' => $totalAmount,
-//            'name' => $invoice->name,
-//            'email' => $invoice->email,
-//        ];
-//        Mail::to($request->email)->send(new OrderMail($data));
+        $invoice = Order::findOrFail($orderID);
+        $data = [
+            'invoice_no' => $invoice->invoice_no,
+            'amount' => $totalAmount,
+            'name' => $invoice->name,
+            'email' => $invoice->email,
+            'payment_type' =>'Cash On Delivery',
+        ];
+        Mail::to($request->email)->send(new OrderMail($data));
 
         $carts = Cart::content();
         foreach ($carts as $cart) {
