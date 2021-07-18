@@ -131,7 +131,8 @@
                                 @foreach($orderItem as $item)
                                     <tr class="bg-secondary">
                                         <td class="col-md-2">
-                                            <label for=""><img src="{{asset($item->product->product_thumbnail)}}" height="50px;" width="50px;"></label>
+                                            <label for=""><img src="{{asset($item->product->product_thumbnail)}}"
+                                                               height="50px;" width="50px;"></label>
                                         </td>
                                         <td class="col-md-4">
                                             <label for="">{{$item->product->name_eng}}</label>
@@ -162,8 +163,19 @@
 
                         </div>
 
-                    </div> <!-- end col-md-9 -->
+                    </div> <!-- end col-md-11 -->
+                    @if($order->status !== "Delivered")
+                    @else
+                        <div class="col-md-11">
+                            <div class="form-group">
+                                <label for="label">Order Return Reason</label>
+                                <textarea name="return_reason" id="" cols="30" rows="5" class="form-control"></textarea>
+                            </div>
+                        </div>
+                    @endif
                 </div>
+
+
             </div><!-- end row -->
 
         </div>
