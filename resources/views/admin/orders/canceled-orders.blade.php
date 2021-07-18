@@ -52,7 +52,7 @@
                                                 <td>${{$item->amount}}</td>
                                                 <td>{{$item->payment_method}}</td>
                                                 <td><span
-                                                        class="badge badge-pill badge-success">{{$item->status}}</span>
+                                                        class="badge badge-pill badge-danger">{{$item->status}}</span>
                                                 </td>
                                                 <td class="d-flex">
                                                     <a href="{{route('pending.orders.detail',$item->id)}}"

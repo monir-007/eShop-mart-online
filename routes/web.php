@@ -194,8 +194,14 @@ Route::prefix('orders')->group(function () {
     Route::get('/shipped-orders/', [OrderController::class, 'shippedOrders'])->name('shipped.orders');
     Route::get('/delivered-orders/', [OrderController::class, 'deliveredOrders'])->name('delivered.orders');
     Route::get('/cancel-orders/', [OrderController::class, 'cancelOrders'])->name('cancel.orders');
-//    Update Order Status
-    Route::get('/pending-orders/confirmed/{orderId}', [OrderController::class, 'pendingOrdersConfirmed'])->name('pending.order.confirmed');
+
+    //    Update Order Status
+    Route::get('/pending-orders/confirmed/{orderId}', [OrderController::class, 'pendingOrdersConfirm'])->name('pending.order.confirmed');
+    Route::get('/confirm-orders/processing/{orderId}', [OrderController::class, 'confirmOrdersProcessing'])->name('confirm.order.processing');
+    Route::get('/processing-order/picked/{orderId}', [OrderController::class, 'processingOrdersPicked'])->name('processing.order.picked');
+    Route::get('/picked-order/shipped/{orderId}', [OrderController::class, 'pickedOrdersShipped'])->name('picked.order.shipped');
+    Route::get('/shipped-order/delivered/{orderId}', [OrderController::class, 'shippedOrdersDelivered'])->name('shipped.order.delivered');
+    Route::get('/delivered-order/cancel/{orderId}', [OrderController::class, 'deliveredOrdersCancel'])->name('delivered.order.cancel');
 
 });
 
@@ -276,4 +282,4 @@ Route::get('/state/get/{id}', [ShippingController::class, 'getState']);
 Route::group(['prefix' => 'user', 'middleware' => ['user', 'auth'], 'namespace' => 'User'], function () {
     Route::post('/payment/stripe', [StripeController::class, 'stripePayment'])->name('stripe.payment');
     Route::post('/payment/cash-on-delivery', [CashOnController::class, 'cashOnPayment'])->name('cash.on.delivery.payment');
-    });
+});

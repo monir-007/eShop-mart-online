@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\OrderItem;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -63,7 +64,7 @@ class OrderController extends Controller
         return view('admin.orders.canceled-orders', compact('orders'));
     }
 
-    public function pendingOrdersConfirmed($orderId)
+    public function pendingOrdersConfirm($orderId): RedirectResponse
     {
         Order::findOrFail($orderId)->update([
             'status' => 'confirm'
@@ -73,5 +74,65 @@ class OrderController extends Controller
             'alert-type' => 'success'
         ];
         return redirect()->route('pending.orders')->with($notification);
+    }
+
+    public function confirmOrdersProcessing($orderId): RedirectResponse
+    {
+        Order::findOrFail($orderId)->update([
+            'status' => 'processing'
+        ]);
+        $notification = [
+            'message' => 'Order confirm successfully.',
+            'alert-type' => 'success'
+        ];
+        return redirect()->route('confirmed.orders')->with($notification);
+    }
+
+    public function processingOrdersPicked($orderId): RedirectResponse
+    {
+        Order::findOrFail($orderId)->update([
+            'status' => 'picked'
+        ]);
+        $notification = [
+            'message' => 'Order picked successfully.',
+            'alert-type' => 'success'
+        ];
+        return redirect()->route('processing.orders')->with($notification);
+    }
+
+    public function pickedOrdersShipped($orderId): RedirectResponse
+    {
+        Order::findOrFail($orderId)->update([
+            'status' => 'shipped'
+        ]);
+        $notification = [
+            'message' => 'Order shipped successfully.',
+            'alert-type' => 'success'
+        ];
+        return redirect()->route('picked.orders')->with($notification);
+    }
+
+    public function shippedOrdersDelivered($orderId): RedirectResponse
+    {
+        Order::findOrFail($orderId)->update([
+            'status' => 'delivered'
+        ]);
+        $notification = [
+            'message' => 'Order delivered successfully.',
+            'alert-type' => 'success'
+        ];
+        return redirect()->route('shipped.orders')->with($notification);
+    }
+
+    public function deliveredOrdersCancel($orderId): RedirectResponse
+    {
+        Order::findOrFail($orderId)->update([
+            'status' => 'canceled'
+        ]);
+        $notification = [
+            'message' => 'Order cancel successfully.',
+            'alert-type' => 'warning'
+        ];
+        return redirect()->route('delivered.orders')->with($notification);
     }
 }
