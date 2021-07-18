@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ChangePasswordController;
 use App\Http\Controllers\Admin\CouponController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\ShippingAreaController;
@@ -179,6 +180,17 @@ Route::prefix('shipping')->group(function () {
     Route::get('/state/delete/{id}', [ShippingAreaController::class, 'stateDelete'])->name('state.delete');
 
 });
+
+/*
+Admin Orders Routes
+*/
+
+Route::prefix('orders')->group(function () {
+    Route::get('/manage-pending-orders', [OrderController::class, 'pendingOrders'])->name('pending.orders');
+    Route::get('/pending-orders/details/{orderId}', [OrderController::class, 'pendingOrdersDetail'])->name('pending.orders.detail');
+
+});
+
 
 /*
 Multi Language Routes
