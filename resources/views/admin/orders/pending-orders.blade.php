@@ -30,59 +30,51 @@
                         <div class="box-header with-border">
                             <h3 class="box-title">Order List</h3>
 
-                        <!-- /.box-header -->
-                        <div class="box-body">
-                            <div class="table-responsive">
-                                <table id="example1" class="table table-bordered table-striped">
-                                    <thead>
-                                    <tr>
-                                        <th>Date</th>
-                                        <th>Invoice</th>
-                                        <th>Amount</th>
-                                        <th>Payment</th>
-                                        <th>Status</th>
-                                        <th>Action</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr class="bg-transparent">
-                                        @foreach($orders as $item)
-                                            <td>{{$item->order_date}}</td>
-                                            <td>{{$item->invoice_no}}</td>
-                                            <td>${{$item->amount}}</td>
-                                            <td>{{$item->payment_method}}</td>
-                                            <td><span class="badge badge-pill badge-success">{{$item->status}}</span></td>
-{{--                                            <td>--}}
-{{--                                                @if($item->status )--}}
-{{--                                                    <span class="badge badge-pill badge-success">Valid</span>--}}
-{{--                                                @else--}}
-{{--                                                    <span class="badge badge-pill badge-danger">Invalid</span>--}}
-{{--                                                @endif--}}
-{{--                                            </td>--}}
-                                            <td class="d-flex">
-                                                <a href="{{route('pending.orders.detail',$item->id)}}"
-                                                   class="btn btn-success btn-sm mr-2"
-                                                   data-toggle="tooltip"
-                                                   data-placement="bottom" title="Edit"> <i class="fa fa-pencil"></i> </a>
-                                                <a href="{{ route('coupon.delete',$item->id) }}" id="delete"
-                                                   class="btn btn-danger btn-sm" data-toggle="tooltip"
-                                                   data-placement="bottom" title="Remove"> <i class="fa fa-trash"></i>
-                                                </a>
-                                            </td>
-                                    </tr>
-                                    @endforeach
-                                    </tbody>
-                                </table>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <div class="table-responsive">
+                                    <table id="example1" class="table table-bordered table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th>Date</th>
+                                            <th>Invoice</th>
+                                            <th>Amount</th>
+                                            <th>Payment</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr class="bg-transparent">
+                                            @foreach($orders as $item)
+                                                <td>{{$item->order_date}}</td>
+                                                <td>{{$item->invoice_no}}</td>
+                                                <td>${{$item->amount}}</td>
+                                                <td>{{$item->payment_method}}</td>
+                                                <td><span
+                                                        class="badge badge-pill badge-success">{{$item->status}}</span>
+                                                </td>
+                                                <td class="d-flex">
+                                                    <a href="{{route('pending.orders.detail',$item->id)}}"
+                                                       class="btn btn-info btn-sm mr-2"
+                                                       data-toggle="tooltip"
+                                                       data-placement="bottom" title="Edit">
+                                                        <i class="fa fa-eye"></i> </a>
+                                                </td>
+                                        </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
+                            <!-- /.box-body -->
                         </div>
-                        <!-- /.box-body -->
+                        <!-- /.box -->
                     </div>
-                    <!-- /.box -->
-                </div>
-                <!-- /.col -->
+                    <!-- /.col -->
 
-            </div>
-            <!-- /.row -->
+                </div>
+                <!-- /.row -->
         </section>
         <!-- /.content -->
     </div>

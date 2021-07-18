@@ -51,15 +51,19 @@
                                                 <td>{{$item->invoice_no}}</td>
                                                 <td>${{$item->amount}}</td>
                                                 <td>{{$item->payment_method}}</td>
-                                                <td><span class="badge badge-pill badge-success">{{$item->status}}</span></td>
+                                                <td><span
+                                                        class="badge badge-pill badge-success">{{$item->status}}</span>
+                                                </td>
                                                 <td class="d-flex">
                                                     <a href="{{route('pending.orders.detail',$item->id)}}"
-                                                       class="btn btn-success btn-sm mr-2"
+                                                       class="btn btn-info btn-sm mr-2"
                                                        data-toggle="tooltip"
-                                                       data-placement="bottom" title="Edit"> <i class="fa fa-pencil"></i> </a>
-                                                    <a href="{{ route('coupon.delete',$item->id) }}" id="delete"
-                                                       class="btn btn-danger btn-sm" data-toggle="tooltip"
-                                                       data-placement="bottom" title="Remove"> <i class="fa fa-trash"></i>
+                                                       data-placement="bottom" title="order view"> <i
+                                                            class="fa fa-eye"></i> </a>
+                                                    <a target="_blank" href="{{ route('invoice.download',$item->id) }}"
+                                                       class="btn btn-danger btn-sm mr-2"
+                                                       data-placement="bottom" title="Download Invoice">
+                                                        <i class="fa fa-download"></i>
                                                     </a>
                                                 </td>
                                         </tr>
@@ -73,9 +77,9 @@
                         <!-- /.box -->
                     </div>
                     <!-- /.col -->
-
                 </div>
                 <!-- /.row -->
+            </div>
         </section>
         <!-- /.content -->
     </div>

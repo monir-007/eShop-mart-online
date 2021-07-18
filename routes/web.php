@@ -202,6 +202,7 @@ Route::prefix('orders')->group(function () {
     Route::get('/picked-order/shipped/{orderId}', [OrderController::class, 'pickedOrdersShipped'])->name('picked.order.shipped');
     Route::get('/shipped-order/delivered/{orderId}', [OrderController::class, 'shippedOrdersDelivered'])->name('shipped.order.delivered');
     Route::get('/delivered-order/cancel/{orderId}', [OrderController::class, 'deliveredOrdersCancel'])->name('delivered.order.cancel');
+    Route::get('/order/invoice/download/{orderId}', [OrderController::class, 'orderInvoiceDownload'])->name('invoice.download');
 
 });
 

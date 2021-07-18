@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\OrderItem;
+use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -134,5 +134,16 @@ class OrderController extends Controller
             'alert-type' => 'warning'
         ];
         return redirect()->route('delivered.orders')->with($notification);
+    }
+
+    public function orderInvoiceDownload($orderId)
+    {
+        $order = Order::with('division','district','state','user')->where('id',$orderId)->first();
+        $orderItem = OrderItem::with('product')->where('order_id', $orderId)->orderBy('id','DESC')->get();
+        $pdf = PDF::loadView('admin.orders.invoice-order', compact('order','orderItem'))->setPaper('a4')->setOptions([
+            'tempDir'=>public_path(),
+            'chroot'=>public_path(),
+        ]);
+        return $pdf->download('invoice.pdf');
     }
 }
