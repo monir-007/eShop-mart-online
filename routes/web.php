@@ -188,6 +188,12 @@ Admin Orders Routes
 Route::prefix('orders')->group(function () {
     Route::get('/manage-pending-orders', [OrderController::class, 'pendingOrders'])->name('pending.orders');
     Route::get('/pending-orders/details/{orderId}', [OrderController::class, 'pendingOrdersDetail'])->name('pending.orders.detail');
+    Route::get('/confirmed-orders/', [OrderController::class, 'confirmedOrders'])->name('confirmed.orders');
+    Route::get('/processing-orders/', [OrderController::class, 'processingOrders'])->name('processing.orders');
+    Route::get('/picked-orders/', [OrderController::class, 'pickedOrders'])->name('picked.orders');
+    Route::get('/shipped-orders/', [OrderController::class, 'shippedOrders'])->name('shipped.orders');
+    Route::get('/delivered-orders/', [OrderController::class, 'deliveredOrders'])->name('delivered.orders');
+    Route::get('/cancel-orders/', [OrderController::class, 'cancelOrders'])->name('cancel.orders');
 
 });
 

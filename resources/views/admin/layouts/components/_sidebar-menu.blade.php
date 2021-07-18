@@ -96,17 +96,21 @@
             </span>
         </a>
         <ul class="treeview-menu">
-            <li class="{{($route==='shipping-division.manage') ? 'active':'' }}"><a href="{{route('shipping-division.manage')}}"><i
+            <li class="{{($route==='shipping-division.manage') ? 'active':'' }}"><a
+                    href="{{route('shipping-division.manage')}}"><i
                         class="ti-more"></i>Shipping Division</a></li>
-            <li class="{{($route==='shipping-district.manage') ? 'active':'' }}"><a href="{{route('shipping-district.manage')}}"><i
+            <li class="{{($route==='shipping-district.manage') ? 'active':'' }}"><a
+                    href="{{route('shipping-district.manage')}}"><i
                         class="ti-more"></i>Shipping District</a>
-            </li><li class="{{($route==='shipping-state.manage') ? 'active':'' }}"><a href="{{route('shipping-state.manage')}}"><i
+            </li>
+            <li class="{{($route==='shipping-state.manage') ? 'active':'' }}"><a
+                    href="{{route('shipping-state.manage')}}"><i
                         class="ti-more"></i>Shipping Sate</a></li>
         </ul>
     </li>
     <li class="treeview {{($prefix === '/orders') ? 'active' : ''}}">
         <a href="#">
-            <i data-feather="navigation"></i> <span>Orders</span>
+            <i data-feather="truck"></i> <span>Orders</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-right pull-right"></i>
             </span>
@@ -114,6 +118,18 @@
         <ul class="treeview-menu">
             <li class="{{($route==='pending.orders') ? 'active':'' }}"><a href="{{route('pending.orders')}}"><i
                         class="ti-more"></i>Pending Orders</a></li>
+            <li class="{{($route==='confirmed.orders') ? 'active':'' }}"><a href="{{route('confirmed.orders')}}"><i
+                        class="ti-more"></i>Confirmed Orders</a></li>
+            <li class="{{($route==='processing.orders') ? 'active':'' }}"><a href="{{route('processing.orders')}}"><i
+                        class="ti-more"></i>Processing Orders</a></li>
+            <li class="{{($route==='picked.orders') ? 'active':'' }}"><a href="{{route('picked.orders')}}"><i
+                        class="ti-more"></i>Picked Orders</a></li>
+            <li class="{{($route==='shipped.orders') ? 'active':'' }}"><a href="{{route('shipped.orders')}}"><i
+                        class="ti-more"></i>Shipped Orders</a></li>
+            <li class="{{($route==='delivered.orders') ? 'active':'' }}"><a href="{{route('delivered.orders')}}"><i
+                        class="ti-more"></i>Delivered Orders</a></li>
+            <li class="{{($route==='cancel.orders') ? 'active':'' }}"><a href="{{route('cancel.orders')}}"><i
+                        class="ti-more"></i>Cancel Orders</a></li>
         </ul>
     </li>
 
