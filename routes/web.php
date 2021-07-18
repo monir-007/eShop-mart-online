@@ -194,6 +194,8 @@ Route::prefix('orders')->group(function () {
     Route::get('/shipped-orders/', [OrderController::class, 'shippedOrders'])->name('shipped.orders');
     Route::get('/delivered-orders/', [OrderController::class, 'deliveredOrders'])->name('delivered.orders');
     Route::get('/cancel-orders/', [OrderController::class, 'cancelOrders'])->name('cancel.orders');
+//    Update Order Status
+    Route::get('/pending-orders/confirmed/{orderId}', [OrderController::class, 'pendingOrdersConfirmed'])->name('pending.order.confirmed');
 
 });
 

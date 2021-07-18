@@ -124,6 +124,15 @@
                                     <span class="badge badge-pill badge-warning"
                                           style="background: #418DB9;">{{ $order->status }} </span></th>
                             </tr>
+                            <tr>
+                                <th></th>
+                                <th>
+                                    @if($order->status === 'Pending')
+                                        <a href="{{route('pending.order.confirmed', $order->id)}}"
+                                           class="btn btn-block btn-warning" id="confirm">Confirm Order</a>
+                                    @endif
+                                </th>
+                            </tr>
 
 
                         </table>
