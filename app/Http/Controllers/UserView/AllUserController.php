@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\OrderItem;
 use Barryvdh\DomPDF\Facade as PDF;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class AllUserController extends Controller
@@ -34,6 +36,28 @@ class AllUserController extends Controller
             'chroot'=>public_path(),
         ]);
         return $pdf->download('invoice.pdf');
+
+    }
+
+    public function returnOrder($orderId, Request $request ): RedirectResponse
+    {
+        Order::findOrFail($orderId)->update([
+            'return_date'=>Carbon::now()->format('d F Y'),
+            'return_reason'=>$request->return_reason,
+        ]);
+
+        $notification = [
+            'message' => 'Your return request send successfully.',
+            'alert-type' => 'success'
+        ];
+        return redirect()->route('my.orders')->with($notification);
+
+    }
+
+    public function returnOrderList()
+    {
+        $orders = Order::where('user_id',Auth::id())->where('return_reason', '!=', null)->orderBy('id','DESC')->get();
+        return view('user-view.order.return-orders-view', compact('orders'));
 
     }
 }
