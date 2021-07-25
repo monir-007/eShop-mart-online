@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\ShippingAreaController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\SubCategoryController;
@@ -286,4 +287,15 @@ Route::get('/state/get/{id}', [ShippingController::class, 'getState']);
 Route::group(['prefix' => 'user', 'middleware' => ['user', 'auth'], 'namespace' => 'User'], function () {
     Route::post('/payment/stripe', [StripeController::class, 'stripePayment'])->name('stripe.payment');
     Route::post('/payment/cash-on-delivery', [CashOnController::class, 'cashOnPayment'])->name('cash.on.delivery.payment');
+});
+
+/*
+Admin Reports Routes
+*/
+
+Route::prefix('reports')->group(function () {
+    Route::get('/view/all', [ReportController::class, 'manageReports'])->name('manage.reports');
+    Route::post('/search-by/date/all', [ReportController::class, 'searchByDateReport'])->name('search-by.date');
+    Route::post('/search-by/month/all', [ReportController::class, 'searchByMonthReport'])->name('search-by.month');
+    Route::post('/search-by/year/all', [ReportController::class, 'searchByYearReport'])->name('search-by.year');
 });

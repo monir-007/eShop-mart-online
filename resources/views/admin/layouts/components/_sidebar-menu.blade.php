@@ -132,5 +132,17 @@
                         class="ti-more"></i>Cancel Orders</a></li>
         </ul>
     </li>
-    
+    <li class="treeview {{($prefix === '/reports') ? 'active' : ''}}">
+        <a href="#">
+            <i data-feather="zoom-in"></i> <span>All Reports</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+        </a>
+        <ul class="treeview-menu">
+            <li class="{{($route==='manage.reports') ? 'active':'' }}"><a href="{{route('manage.reports')}}"><i
+                        class="ti-more"></i>Manage Reports</a></li>
+        </ul>
+    </li>
+
 </ul>
