@@ -145,9 +145,24 @@
         </ul>
     </li>
 
+    <li class="treeview {{($prefix === '/blog') ? 'active' : ''}}">
+        <a href="#">
+            <i data-feather="hash"></i> <span>Manage Blog</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+        </a>
+        <ul class="treeview-menu">
+            <li class="{{($route==='blog.category') ? 'active':'' }}"><a href="{{route('blog.category')}}"><i
+                        class="ti-more"></i>Blog Category</a></li>
+            <li class="{{($route==='blog.post.view') ? 'active':'' }}"><a href="{{route('blog.post.view')}}"><i
+                        class="ti-more"></i>Blog Post</a></li>
+        </ul>
+    </li>
+
     <li class="treeview {{($prefix === '/allUser') ? 'active' : ''}}">
         <a href="#">
-            <i data-feather="zoom-in"></i> <span>All Users</span>
+            <i data-feather="github"></i> <span>All Users</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-right pull-right"></i>
             </span>

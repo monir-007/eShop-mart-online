@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ChangePasswordController;
@@ -304,4 +305,17 @@ Admin All Users Routes
 */
 Route::prefix('allUser')->group(function () {
     Route::get('/view', [ProfileController::class, 'AllUsers'])->name('manage.users');
+});
+
+/*
+Admin Blog All Routes
+*/
+Route::prefix('blog')->group(function () {
+    Route::get('/category', [BlogController::class, 'blogCategory'])->name('blog.category');
+    Route::post('/category/store', [BlogController::class, 'blogCategoryStore'])->name('blog.category.store');
+    Route::get('/category/edit/{id}', [BlogController::class, 'blogCategoryEdit'])->name('blog.category.edit');
+    Route::post('/category/update/', [BlogController::class, 'blogCategoryUpdate'])->name('blog.category.update');
+    Route::get('/category/delete/{id}', [BlogController::class, 'blogCategoryDelete'])->name('blog.category.delete');
+//    blog post route
+    Route::get('/post/view', [BlogController::class, 'blogPostView'])->name('blog.post.view');
 });
