@@ -25,7 +25,8 @@
                 <div class="col-12">
                     <div class="box bt-3 border-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Product List</h3>
+                            <h3 class="box-title">Product List   <span
+                                    class="badge badge-pill badge-danger">{{count($products)}}</span></h3>
                         </div>
 
                         <!-- /.box-header -->
@@ -53,13 +54,14 @@
                                             <td>{{$item->quantity}}</td>
                                             <td>
                                                 @if($item->discount_price===null)
-                                                <span class="badge-default"></span>
+                                                    <span class="badge-default"></span>
                                                 @else
                                                     @php
                                                         $amount = $item->selling_price - $item->discount_price;
                                                         $discount = ($amount/$item->selling_price)*100;
                                                     @endphp
-                                                    <span class="badge badge-pill badge-light">{{round($discount)}} %</span>
+                                                    <span
+                                                        class="badge badge-pill badge-light">{{round($discount)}} %</span>
                                                 @endif
                                             </td>
 

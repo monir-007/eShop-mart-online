@@ -25,7 +25,8 @@
                 <div class="col-12">
                     <div class="box bt-3 border-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">All User List</h3>
+                            <h3 class="box-title">All User List <span
+                                    class="badge badge-pill badge-danger">{{count($users)}}</span></h3>
                         </div>
 
                         <!-- /.box-header -->
@@ -56,7 +57,8 @@
                                                 @if($user->UserOnline())
                                                     <span class="badge badge-pill badge-success">Active Now</span>
                                                 @else
-                                                    <span class="badge badge-pill badge-warning">{{\Carbon\Carbon::parse($user->last_seen)->diffForHumans()}}</span>
+                                                    <span
+                                                        class="badge badge-pill badge-warning">{{\Carbon\Carbon::parse($user->last_seen)->diffForHumans()}}</span>
                                                 @endif
                                             </td>
 
