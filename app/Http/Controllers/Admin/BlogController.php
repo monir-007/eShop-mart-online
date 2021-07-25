@@ -7,6 +7,7 @@ use App\Models\Blog\BlogPost;
 use App\Models\Blog\BlogPostCategory;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
 
 class BlogController extends Controller
 {
@@ -77,6 +78,47 @@ class BlogController extends Controller
     {
         $blogCategory = BlogPostCategory::latest()->get();
         $blogPost = BlogPost::latest()->get();
-        return view('admin.blog.post.post-view', compact('blogPost','blogCategory'));
+        return view('admin.blog.post.post-insert', compact('blogPost','blogCategory'));
+    }
+
+    public function blogPostList()
+    {
+        $blogPost = BlogPost::latest()->get();
+        return view('admin.blog.post.post-list',compact('blogPost'));
+    }
+
+    public function blogPostStore(Request $request)
+    {
+        $request->validate([
+            'title_eng' => 'required',
+            'title_bng' => 'required',
+            'post_image' => 'required',
+        ], [
+            'title_eng.required' => 'Input Post Title English Name',
+            'title_bng.required' => 'Input Post Title Bangla Name',
+        ]);
+
+        $image = $request->file('post_image');
+        $nameGenarate = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+        Image::make($image)->resize(780, 433)->save('images/upload/blog-post/' . $nameGenarate);
+        $saveUrl = 'images/upload/blog-post/' . $nameGenarate;
+
+        BlogPost::insert([
+            'category_id'=>$request->category_id,
+            'title_eng' => $request->title_eng,
+            'title_bng' => $request->title_bng,
+            'slug_eng' => strtolower(str_replace(' ', '-', $request->title_eng)),
+            'slug_bng' => strtolower(str_replace(' ', '-', $request->title_bng)),
+            'post_image' => $saveUrl,
+            'details_eng' => $request->details_eng,
+            'details_bng' => $request->details_bng,
+            'created_at' => Carbon::now()
+        ]);
+
+        $notification = array(
+            'message' => 'Blog post added Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('blog.post.list')->with($notification);
     }
 }

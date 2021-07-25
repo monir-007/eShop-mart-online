@@ -319,4 +319,5 @@ Route::prefix('blog')->group(function () {
 //    blog post route
     Route::get('/post/add/new', [BlogController::class, 'blogPostInsert'])->name('blog.post.insert');
     Route::post('/post/store', [BlogController::class, 'blogPostStore'])->name('blog.post.store');
+    Route::get('/post/list', [BlogController::class, 'blogPostList'])->name('blog.post.list');
 });
