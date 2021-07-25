@@ -45,7 +45,7 @@
                                     <tbody>
                                     <tr>
                                         @foreach($blogPost as $item)
-                                            <td>{{$item->category_id}}</td>
+                                            <td>{{$item->category->name_eng}}</td>
                                             <td><img src="{{asset($item->post_image)}}" alt=""
                                                      style="width: 60px; height: 60px;"></td>
                                             <td>{{$item->title_eng}}</td>
