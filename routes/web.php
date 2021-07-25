@@ -292,10 +292,16 @@ Route::group(['prefix' => 'user', 'middleware' => ['user', 'auth'], 'namespace' 
 /*
 Admin Reports Routes
 */
-
 Route::prefix('reports')->group(function () {
     Route::get('/view/all', [ReportController::class, 'manageReports'])->name('manage.reports');
     Route::post('/search-by/date/all', [ReportController::class, 'searchByDateReport'])->name('search-by.date');
     Route::post('/search-by/month/all', [ReportController::class, 'searchByMonthReport'])->name('search-by.month');
     Route::post('/search-by/year/all', [ReportController::class, 'searchByYearReport'])->name('search-by.year');
+});
+
+/*
+Admin All Users Routes
+*/
+Route::prefix('allUser')->group(function () {
+    Route::get('/view', [ProfileController::class, 'AllUsers'])->name('manage.users');
 });

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller
@@ -40,5 +41,11 @@ class ProfileController extends Controller
             'alert-type'=>'success'
         );
         return redirect()->route('admin.profile')->with($notification);
+    }
+
+    public function AllUsers()
+    {
+        $users = User::latest()->get();
+        return view('admin.user.all-user',compact('users'));
     }
 }

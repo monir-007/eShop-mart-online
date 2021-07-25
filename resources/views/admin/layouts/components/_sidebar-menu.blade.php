@@ -145,4 +145,17 @@
         </ul>
     </li>
 
+    <li class="treeview {{($prefix === '/allUser') ? 'active' : ''}}">
+        <a href="#">
+            <i data-feather="zoom-in"></i> <span>All Users</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+        </a>
+        <ul class="treeview-menu">
+            <li class="{{($route==='manage.users') ? 'active':'' }}"><a href="{{route('manage.users')}}"><i
+                        class="ti-more"></i>Manage Users</a></li>
+        </ul>
+    </li>
+
 </ul>
