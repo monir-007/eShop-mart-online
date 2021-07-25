@@ -317,5 +317,6 @@ Route::prefix('blog')->group(function () {
     Route::post('/category/update/', [BlogController::class, 'blogCategoryUpdate'])->name('blog.category.update');
     Route::get('/category/delete/{id}', [BlogController::class, 'blogCategoryDelete'])->name('blog.category.delete');
 //    blog post route
-    Route::get('/post/view', [BlogController::class, 'blogPostView'])->name('blog.post.view');
+    Route::get('/post/add/new', [BlogController::class, 'blogPostInsert'])->name('blog.post.insert');
+    Route::post('/post/store', [BlogController::class, 'blogPostStore'])->name('blog.post.store');
 });

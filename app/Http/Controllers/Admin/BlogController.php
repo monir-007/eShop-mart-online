@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Blog\BlogPost;
 use App\Models\Blog\BlogPostCategory;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -72,8 +73,10 @@ class BlogController extends Controller
         return redirect()->back()->with($notification);
     }
 
-    public function blogPostView()
+    public function blogPostInsert()
     {
-        return view()
+        $blogCategory = BlogPostCategory::latest()->get();
+        $blogPost = BlogPost::latest()->get();
+        return view('admin.blog.post.post-view', compact('blogPost','blogCategory'));
     }
 }
