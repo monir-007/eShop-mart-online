@@ -175,4 +175,19 @@
         </ul>
     </li>
 
+    <li class="header nav-small-cap">Site Interface</li>
+
+    <li class="treeview {{($prefix === '/settings') ? 'active' : ''}}">
+        <a href="#">
+            <i data-feather="sliders"></i> <span>Site info</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+        </a>
+        <ul class="treeview-menu">
+            <li class="{{($route==='site.setting') ? 'active':'' }}"><a href="{{route('site.setting')}}"><i
+                        class="ti-more"></i>Site Setting</a></li>
+        </ul>
+    </li>
+
 </ul>

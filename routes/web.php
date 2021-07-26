@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\ShippingAreaController;
+use App\Http\Controllers\Admin\SiteSettingController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\SubsubcategoryController;
@@ -306,6 +307,14 @@ Admin All Users Routes
 */
 Route::prefix('allUser')->group(function () {
     Route::get('/view', [ProfileController::class, 'AllUsers'])->name('manage.users');
+});
+
+/*
+Admin Site Settings Routes
+*/
+Route::prefix('settings')->group(function () {
+    Route::get('/site', [SiteSettingController::class, 'siteSetting'])->name('site.setting');
+    Route::post('/site/update/', [SiteSettingController::class, 'siteSettingUpdate'])->name('update.site.setting');
 });
 
 /*
