@@ -12,7 +12,7 @@ class SiteSettingController extends Controller
 {
     public function siteSetting()
     {
-        $setting = SiteSetting::find(2);
+        $setting = SiteSetting::find(1);
         return view('admin.settings.update-setting', compact('setting'));
     }
 

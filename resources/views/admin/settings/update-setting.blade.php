@@ -45,7 +45,7 @@
                                                             <h5>Site Logo <span class="text-danger">*</span></h5>
                                                             <div class="controls">
                                                                 <input type="file" name="logo"
-                                                                       class="form-control" required>
+                                                                       class="form-control">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -57,7 +57,7 @@
                                                             <div class="controls">
                                                                 <input type="text" name="phone_one"
                                                                        value="{{$setting->phone_one}}"
-                                                                       class="form-control" required>
+                                                                       class="form-control">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -65,9 +65,9 @@
                                                         <div class="form-group">
                                                             <h5>Phone Two <span class="text-danger">*</span></h5>
                                                             <div class="controls">
-                                                                <input type="text" name="phone_one"
+                                                                <input type="text" name="phone_two"
                                                                        value="{{$setting->phone_two}}"
-                                                                       class="form-control" required>
+                                                                       class="form-control">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -79,7 +79,7 @@
                                                             <div class="controls">
                                                                 <input type="email" name="email"
                                                                        value="{{$setting->email}}"
-                                                                       class="form-control" required>
+                                                                       class="form-control">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -91,7 +91,7 @@
                                                             <div class="controls">
                                                                 <input type="text" name="company_name"
                                                                        value="{{$setting->company_name}}"
-                                                                       class="form-control" required>
+                                                                       class="form-control">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -103,7 +103,7 @@
                                                             <div class="controls">
                                                                 <input type="text" name="company_address"
                                                                        value="{{$setting->company_address}}"
-                                                                       class="form-control" required>
+                                                                       class="form-control">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -117,7 +117,7 @@
                                                             <div class="controls">
                                                                 <input type="text" name="facebook"
                                                                        value="{{$setting->facebook}}"
-                                                                       class="form-control" required>
+                                                                       class="form-control">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -127,7 +127,7 @@
                                                             <div class="controls">
                                                                 <input type="text" name="twitter"
                                                                        value="{{$setting->twitter}}"
-                                                                       class="form-control" required>
+                                                                       class="form-control">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -139,7 +139,7 @@
                                                             <div class="controls">
                                                                 <input type="text" name="linkedin"
                                                                        value="{{$setting->linkedin}}"
-                                                                       class="form-control" required>
+                                                                       class="form-control">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -149,15 +149,15 @@
                                                             <div class="controls">
                                                                 <input type="text" name="youtube"
                                                                        value="{{$setting->youtube}}"
-                                                                       class="form-control" required>
+                                                                       class="form-control">
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
 
                                                 <div class="text-xs-right">
-                                                    <button type="submit" class="btn btn-rounded btn-info">Update
-                                                    </button>
+                                                    <input type="submit" class="btn btn-rounded btn-primary float-right"
+                                                           value="Update">
                                                 </div>
                                             </div>
                                         </div>
