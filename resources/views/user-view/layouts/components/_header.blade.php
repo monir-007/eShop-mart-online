@@ -6,11 +6,11 @@
             <div class="header-top-inner">
                 <div class="cnt-account">
                     <ul class="list-unstyled">
-                        <li><a href="#"><i class="icon fa fa-user"></i>
+                        <li><a href="{{route('blog.index')}}"><i class="icon fa fa-outdent"></i>
                                 @if(session()->get('language') === 'bangla')
-                                    আমার প্রোফাইল
+                                    ব্লগ
                                 @else
-                                    My Account
+                                    Blog
                                 @endif
                             </a></li>
                         <li><a href="{{route('wishlist')}}"><i class="icon fa fa-heart"></i>Wishlist</a></li>
@@ -18,7 +18,13 @@
                         <li><a href="{{route('checkout')}}"><i class="icon fa fa-check"></i>Checkout</a></li>
 
                         @auth
-                            <li><a href="{{url('/dashboard')}}"><i class="icon fa fa-user"></i>Profile</a></li>
+                            <li><a href="{{url('/dashboard')}}"><i class="icon fa fa-user"></i>
+                                    @if(session()->get('language') === 'bangla')
+                                        আমার প্রোফাইল
+                                    @else
+                                        profile
+                                    @endif
+                                </a></li>
                         @else
                             <li><a href="{{route('login')}}"><i class="icon fa fa-lock"></i>Login\Register</a></li>
                         @endauth

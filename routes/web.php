@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\SubsubcategoryController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserView\AllUserController;
+use App\Http\Controllers\UserView\BlogShowController;
 use App\Http\Controllers\UserView\CartController;
 use App\Http\Controllers\UserView\CartPageController;
 use App\Http\Controllers\UserView\CashOnController;
@@ -325,3 +326,10 @@ Route::prefix('blog')->group(function () {
     Route::post('/post/cover/update/', [BlogController::class, 'blogPostCoverUpdate'])->name('blog.post.cover.update');
     Route::get('/post/delete/{id}', [BlogController::class, 'blogPostDelete'])->name('blog.post.delete');
 });
+/*
+User View Blog All Routes
+*/
+Route::get('/blog',[BlogShowController::class, 'blogIndex'])->name('blog.index');
+Route::get('/blog/post/details/{id}',[BlogShowController::class, 'blogDetails'])->name('blog.details');
+Route::get('blog/category/post/{id}',[BlogShowController::class, 'blogCategoryPost']);
+
