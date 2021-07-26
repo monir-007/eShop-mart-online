@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\UserView;
 
 use App\Http\Controllers\Controller;
+use App\Models\Blog\BlogPost;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\MultipleImage;
@@ -28,6 +29,8 @@ class IndexController extends Controller
         $brandData_10 = Brand::skip(10)->first();
         $productData_10 = Product::where('status', 1)->where('brand_id', $brandData_10->id)->orderBy('id', 'DESC')->get();
 
+        $blogPost = BlogPost::latest()->get();
+
         return view('user-view.index', compact(
             'categories',
             'products',
@@ -40,6 +43,7 @@ class IndexController extends Controller
             'productData_1',
             'brandData_10',
             'productData_10',
+            'blogPost'
         ));
     }
 
@@ -47,24 +51,24 @@ class IndexController extends Controller
     {
         $product = Product::findOrFail($id);
         $colorEng = $product->color_eng;
-        $productColorEng = explode(',',$colorEng);
+        $productColorEng = explode(',', $colorEng);
 
         $colorBng = $product->color_bng;
-        $productColorBng = explode(',',$colorBng);
+        $productColorBng = explode(',', $colorBng);
 
         $sizeEng = $product->size_eng;
-        $productSizeEng = explode(',',$sizeEng);
+        $productSizeEng = explode(',', $sizeEng);
 
         $sizeBng = $product->size_bng;
-        $productSizeBng = explode(',',$sizeBng);
+        $productSizeBng = explode(',', $sizeBng);
 
         $images = MultipleImage::where('product_id', $id)->orderBy('id', 'DESC')->get();
 
         $categoryId = $product->category_id;
-        $relatedProduct = Product::where('category_id', $categoryId)->where('id','!=',$id)->orderBy('id','DESC')->get();
+        $relatedProduct = Product::where('category_id', $categoryId)->where('id', '!=', $id)->orderBy('id', 'DESC')->get();
 
         return view('user-view.product.product-details', compact('product', 'images',
-        'productColorEng','productColorBng','productSizeEng','productSizeBng','relatedProduct'));
+            'productColorEng', 'productColorBng', 'productSizeEng', 'productSizeBng', 'relatedProduct'));
     }
 
     public function productTags($tag)
@@ -81,30 +85,30 @@ class IndexController extends Controller
     public function SubcategoriesProduct($id, $slug)
     {
         $categories = Category::orderBy('name_eng', 'ASC')->get();
-        $products = Product::where('status',1)->where('subcategory_id',$id)->orderBy('id','DESC')->paginate(3);
-        return view('user-view.subcategory.products-view', compact('categories','products'));
+        $products = Product::where('status', 1)->where('subcategory_id', $id)->orderBy('id', 'DESC')->paginate(3);
+        return view('user-view.subcategory.products-view', compact('categories', 'products'));
     }
 
     public function SubsubcategoriesProduct($id, $slug)
     {
         $categories = Category::orderBy('name_eng', 'ASC')->get();
-        $products = Product::where('status',1)->where('subsubcategory_id',$id)->orderBy('id','DESC')->paginate(3);
-        return view('user-view.sub-subcategory.products-view', compact('categories','products'));
+        $products = Product::where('status', 1)->where('subsubcategory_id', $id)->orderBy('id', 'DESC')->paginate(3);
+        return view('user-view.sub-subcategory.products-view', compact('categories', 'products'));
     }
 
     public function productShowModal($id)
     {
-        $product = Product::with('category','subcategory')->findOrFail($id);
+        $product = Product::with('category', 'subcategory')->findOrFail($id);
 
         $color = $product->color_eng;
-        $productColor = explode(',',$color);
+        $productColor = explode(',', $color);
         $size = $product->size_eng;
-        $productSize = explode(',',$size);
+        $productSize = explode(',', $size);
 
         return response()->json([
-            'product'=>$product,
-            'color'=>$productColor,
-            'size'=>$productSize,
+            'product' => $product,
+            'color' => $productColor,
+            'size' => $productSize,
         ]);
     }
 

@@ -329,7 +329,7 @@ Route::prefix('blog')->group(function () {
 /*
 User View Blog All Routes
 */
-Route::get('/blog',[BlogShowController::class, 'blogIndex'])->name('blog.index');
-Route::get('/blog/post/details/{id}',[BlogShowController::class, 'blogDetails'])->name('blog.details');
-Route::get('blog/category/post/{id}',[BlogShowController::class, 'blogCategoryPost']);
+Route::get('/blog', [BlogShowController::class, 'blogIndex'])->name('blog.index');
+Route::get('/blog/post/details/{id}', [BlogShowController::class, 'blogDetails'])->name('blog.details');
+Route::get('blog/category/post/{id}', [BlogShowController::class, 'blogCategoryPost']);
 
