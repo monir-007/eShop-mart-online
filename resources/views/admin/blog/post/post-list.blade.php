@@ -51,11 +51,11 @@
                                             <td>{{$item->title_eng}}</td>
                                             <td>{{$item->title_bng}}</td>
                                             <td class="d-flex">
-                                                <a href="{{route('blog.category.edit',$item->id)}}"
+                                                <a href="{{route('blog.post.edit',$item->id)}}"
                                                    class="btn btn-success mr-2"
                                                    data-toggle="tooltip"
                                                    data-placement="bottom" title="Edit"> <i class="fa fa-edit"></i> </a>
-                                                <a href="{{ route('blog.category.delete',$item->id) }}" id="delete"
+                                                <a href="{{ route('blog.post.delete',$item->id) }}" id="delete"
                                                    class="btn btn-danger" data-toggle="tooltip"
                                                    data-placement="bottom" title="Remove"> <i class="fa fa-trash"></i>
                                                 </a>

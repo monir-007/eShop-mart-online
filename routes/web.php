@@ -320,4 +320,8 @@ Route::prefix('blog')->group(function () {
     Route::get('/post/add/new', [BlogController::class, 'blogPostInsert'])->name('blog.post.insert');
     Route::post('/post/store', [BlogController::class, 'blogPostStore'])->name('blog.post.store');
     Route::get('/post/list', [BlogController::class, 'blogPostList'])->name('blog.post.list');
+    Route::get('/post/edit/{id}', [BlogController::class, 'blogPostEdit'])->name('blog.post.edit');
+    Route::post('/post/update/{id}', [BlogController::class, 'blogPostUpdate'])->name('blog.post.update');
+    Route::post('/post/cover/update/', [BlogController::class, 'blogPostCoverUpdate'])->name('blog.post.cover.update');
+    Route::get('/post/delete/{id}', [BlogController::class, 'blogPostDelete'])->name('blog.post.delete');
 });

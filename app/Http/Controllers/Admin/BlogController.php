@@ -66,7 +66,6 @@ class BlogController extends Controller
     public function blogCategoryDelete($id)
     {
         BlogPostCategory::findOrFail($id)->delete();
-
         $notification = array(
             'message' => 'Category Deleted Successfully',
             'alert-type' => 'success'
@@ -78,13 +77,13 @@ class BlogController extends Controller
     {
         $blogCategory = BlogPostCategory::latest()->get();
         $blogPost = BlogPost::latest()->get();
-        return view('admin.blog.post.post-insert', compact('blogPost','blogCategory'));
+        return view('admin.blog.post.post-insert', compact('blogPost', 'blogCategory'));
     }
 
     public function blogPostList()
     {
         $blogPost = BlogPost::with('category')->latest()->get();
-        return view('admin.blog.post.post-list',compact('blogPost'));
+        return view('admin.blog.post.post-list', compact('blogPost'));
     }
 
     public function blogPostStore(Request $request)
@@ -104,7 +103,7 @@ class BlogController extends Controller
         $saveUrl = 'images/upload/blog-post/' . $nameGenarate;
 
         BlogPost::insert([
-            'category_id'=>$request->category_id,
+            'category_id' => $request->category_id,
             'title_eng' => $request->title_eng,
             'title_bng' => $request->title_bng,
             'slug_eng' => strtolower(str_replace(' ', '-', $request->title_eng)),
@@ -120,5 +119,72 @@ class BlogController extends Controller
             'alert-type' => 'success'
         );
         return redirect()->route('blog.post.list')->with($notification);
+    }
+
+    public function blogPostEdit($id)
+    {
+        $blogCategory = BlogPostCategory::latest()->get();
+        $blogPost = BlogPost::findOrFail($id);
+        return view('admin.blog.post.post-edit', compact('blogPost', 'blogCategory'));
+    }
+
+    public function blogPostUpdate(Request $request, $id)
+    {
+        BlogPost::findOrFail($id)->update([
+            'category_id' => $request->category_id,
+            'title_eng' => $request->title_eng,
+            'title_bng' => $request->title_bng,
+            'slug_eng' => strtolower(str_replace(' ', '-', $request->title_eng)),
+            'slug_bng' => str_replace(' ', '-', $request->title_bng),
+            'details_eng' => $request->details_eng,
+            'details_bng' => $request->details_bng,
+            'updated_at' => Carbon::now()
+
+        ]);
+
+        $notification = array(
+            'message' => 'Post updated without image Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('blog.post.list')->with($notification);
+    }
+
+    public function blogPostCoverUpdate(Request $request)
+    {
+        $blogPostId = $request->id;
+        $oldImage = $request->oldImage;
+        unlink($oldImage);
+
+        $image = $request->file('post_image');
+        $nameGenarate = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+        Image::make($image)->resize(780, 433)->save('images/upload/blog-post/' . $nameGenarate);
+        $saveUrl = 'images/upload/blog-post/' . $nameGenarate;
+
+        BlogPost::findOrFail($blogPostId)->update([
+            'post_image' => $saveUrl,
+            'updated_at' => Carbon::now()
+        ]);
+
+        $notification = array(
+            'message' => 'Post Cover Image updated Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
+    }
+
+    public function blogPostDelete($id)
+    {
+        $post = BlogPost::findOrFail($id);
+        $image = $post->post_image;
+        unlink($image);
+
+        BlogPost::findOrFail($id)->delete();
+
+        $notification = array(
+            'message' => 'Blog Post Deleted Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
     }
 }
