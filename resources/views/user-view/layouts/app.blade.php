@@ -1,15 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+@php
+$SEO = \App\Models\SEO::find(1);
+@endphp
 <head>
     <!-- Meta -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <meta name="description" content="">
+    <meta name="description" content="{{$SEO->meta_description}}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta name="author" content="">
-    <meta name="keywords" content="MediaCenter, Template, eCommerce">
+    <meta name="author" content="{{$SEO->meta_author}}">
+    <meta name="keywords" content="{{$SEO->meta_keyword}}">
     <meta name="robots" content="all">
-    <title>shopMart || @yield('title')</title>
+    <script>
+        {{$SEO->google_analytics}}
+    </script>
+
+    <title>shopMart||@yield('title')</title>
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="{{asset('user-view/assets/css/bootstrap.min.css')}}">
