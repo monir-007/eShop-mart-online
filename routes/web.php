@@ -314,7 +314,9 @@ Admin Site Settings Routes
 */
 Route::prefix('settings')->group(function () {
     Route::get('/site', [SiteSettingController::class, 'siteSetting'])->name('site.setting');
-    Route::post('/site/update/', [SiteSettingController::class, 'siteSettingUpdate'])->name('update.site.setting');
+    Route::post('/site/update', [SiteSettingController::class, 'siteSettingUpdate'])->name('update.site.setting');
+    Route::get('/seo', [SiteSettingController::class, 'seoSetting'])->name('seo.setting');
+    Route::post('/seo/update', [SiteSettingController::class, 'seoSettingUpdate'])->name('update.seo.setting');
 });
 
 /*

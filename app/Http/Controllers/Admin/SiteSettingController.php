@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\SEO;
 use App\Models\SiteSetting;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -60,6 +61,31 @@ class SiteSettingController extends Controller
 
         $notification = array(
             'message' => 'Setting Updated Successfully',
+            'alert-type' => 'info'
+        );
+        return redirect()->back()->with($notification);
+    }
+
+    public function seoSetting()
+    {
+        $SEO = SEO::find(1);
+        return view('admin.settings.SEO-update',compact('SEO'));
+    }
+
+    public function seoSettingUpdate(Request $request)
+    {
+        $SEOId = $request->id;
+
+        SEO::findOrFail($SEOId)->update([
+            'meta_title' => $request->meta_title,
+            'meta_author' => $request->meta_author,
+            'meta_keyword' => $request->meta_keyword,
+            'meta_description' => $request->meta_description,
+            'google_analytics' => $request->google_analytics,
+        ]);
+
+        $notification = array(
+            'message' => 'SEO info Updated Successfully',
             'alert-type' => 'info'
         );
         return redirect()->back()->with($notification);
