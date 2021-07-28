@@ -11,7 +11,12 @@
                 <ul class="list-inline list-unstyled">
                     <li><a href="#">Home</a></li>
                     <li><a href="#">Clothing</a></li>
-                    <li class='active'>Floral Print Buttoned</li>
+                    <li class='active'>
+                        @if(session()->get('language') === 'bangla')
+                            {{$product->name_bng}}
+                        @else
+                            {{$product->name_eng}}
+                        @endif</li>
                 </ul>
             </div><!-- /.breadcrumb-inner -->
         </div><!-- /.container -->
@@ -28,8 +33,8 @@
 
 
                         <!-- ============================================== HOT DEALS ============================================== -->
-                        @include('user-view.layouts.components._hot-deals')
-                        <!-- ============================================== HOT DEALS: END ============================================== -->
+                    @include('user-view.layouts.components._hot-deals')
+                    <!-- ============================================== HOT DEALS: END ============================================== -->
 
                         <!-- ============================================== NEWSLETTER ============================================== -->
                         <div class="sidebar-widget newsletter wow fadeInUp outer-bottom-small outer-top-vs">
@@ -190,10 +195,15 @@
 
                                             <div class="col-sm-6">
                                                 <div class="favorite-button m-t-10">
-                                                    <a class="btn btn-primary" data-toggle="tooltip"
-                                                       data-placement="right" title="Wishlist" href="#">
-                                                        <i class="fa fa-heart"></i>
-                                                    </a>
+                                                    <button data-toggle="tooltip"
+                                                            class="btn btn-primary icon"
+                                                            id="{{$product->id}}"
+                                                            onclick="addToWishlist(this.id)"
+                                                            title="Wishlist"
+                                                            type="button">
+                                                        <i class="icon fa fa-heart"></i>
+                                                    </button>
+
                                                     <a class="btn btn-primary" data-toggle="tooltip"
                                                        data-placement="right" title="Add to Compare" href="#">
                                                         <i class="fa fa-signal"></i>
@@ -539,27 +549,35 @@
                                                 <div class="action">
                                                     <ul class="list-unstyled">
                                                         <li class="add-cart-button btn-group">
-                                                            <button data-toggle="tooltip"
+                                                            <button data-toggle="modal"
+                                                                    data-target="#addToCartModal"
                                                                     class="btn btn-primary icon"
-                                                                    type="button" title="Add Cart"><i
-                                                                    class="fa fa-shopping-cart"></i></button>
+                                                                    id="{{$product->id}}"
+                                                                    onclick="productShow(this.id)"
+                                                                    title="Add Cart"
+                                                                    type="button">
+                                                                <i class="fa fa-shopping-cart"></i>
+                                                            </button>
                                                             <button class="btn btn-primary cart-btn"
                                                                     type="button">
                                                                 Add
                                                                 to cart
                                                             </button>
                                                         </li>
-                                                        <li class="lnk wishlist"><a data-toggle="tooltip"
-                                                                                    class="add-to-cart"
-                                                                                    href="detail.html"
-                                                                                    title="Wishlist">
-                                                                <i
-                                                                    class="icon fa fa-heart"></i> </a></li>
+                                                        <li class="wishlist">
+                                                            <button data-toggle="tooltip"
+                                                                    class="btn btn-primary icon"
+                                                                    id="{{$product->id}}"
+                                                                    onclick="addToWishlist(this.id)"
+                                                                    title="Wishlist"
+                                                                    type="button">
+                                                                <i class="icon fa fa-heart"></i>
+                                                            </button>
+                                                        </li>
                                                         <li class="lnk"><a data-toggle="tooltip"
                                                                            class="add-to-cart"
                                                                            href="detail.html" title="Compare">
-                                                                <i
-                                                                    class="fa fa-signal" aria-hidden="true"></i>
+                                                                <i class="fa fa-signal" aria-hidden="true"></i>
                                                             </a>
                                                         </li>
                                                     </ul>

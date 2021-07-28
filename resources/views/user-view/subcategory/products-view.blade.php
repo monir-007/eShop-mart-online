@@ -56,7 +56,8 @@
                                                         @endphp
                                                         @foreach($subcategories as $subcategory)
                                                             <ul>
-                                                                <li><a href="{{url('subcategory/products/'.$subcategory->id.'/'.$subcategory->slug_eng)}}">
+                                                                <li>
+                                                                    <a href="{{url('subcategory/products/'.$subcategory->id.'/'.$subcategory->slug_eng)}}">
                                                                         @if(session()->get('language') === 'bangla')
                                                                             {{$subcategory->name_bng}}
                                                                         @else
@@ -334,18 +335,29 @@
                                                             <div class="action">
                                                                 <ul class="list-unstyled">
                                                                     <li class="add-cart-button btn-group">
-                                                                        <button class="btn btn-primary icon"
-                                                                                data-toggle="dropdown" type="button"><i
-                                                                                class="fa fa-shopping-cart"></i>
+                                                                        <button data-toggle="modal"
+                                                                                data-target="#addToCartModal"
+                                                                                class="btn btn-primary icon"
+                                                                                id="{{$product->id}}"
+                                                                                onclick="productShow(this.id)"
+                                                                                title="Add Cart"
+                                                                                type="button">
+                                                                            <i class="fa fa-shopping-cart"></i>
                                                                         </button>
                                                                         <button class="btn btn-primary cart-btn"
                                                                                 type="button">Add to cart
                                                                         </button>
                                                                     </li>
-                                                                    <li class="lnk wishlist"><a class="add-to-cart"
-                                                                                                href="detail.html"
-                                                                                                title="Wishlist"> <i
-                                                                                class="icon fa fa-heart"></i> </a></li>
+                                                                    <li class="wishlist">
+                                                                        <button data-toggle="tooltip"
+                                                                                class="btn btn-primary icon"
+                                                                                id="{{$product->id}}"
+                                                                                onclick="addToWishlist(this.id)"
+                                                                                title="Wishlist"
+                                                                                type="button">
+                                                                            <i class="icon fa fa-heart"></i>
+                                                                        </button>
+                                                                    </li>
                                                                     <li class="lnk"><a class="add-to-cart"
                                                                                        href="detail.html"
                                                                                        title="Compare">
