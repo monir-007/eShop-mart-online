@@ -132,6 +132,20 @@
                         class="ti-more"></i>Cancel Orders</a></li>
         </ul>
     </li>
+    <li class="treeview {{($prefix === '/return-order') ? 'active' : ''}}">
+        <a href="#">
+            <i data-feather="zoom-in"></i> <span>Return Orders</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+        </a>
+        <ul class="treeview-menu">
+            <li class="{{($route==='admin.return.order.request') ? 'active':'' }}"><a href="{{route('admin.return.order.request')}}"><i
+                        class="ti-more"></i>Return Request</a></li>
+            <li class="{{($route==='all.return.order.request') ? 'active':'' }}"><a href="{{route('all.return.order.request')}}"><i
+                        class="ti-more"></i>All Return Request</a></li>
+        </ul>
+    </li>
     <li class="treeview {{($prefix === '/reports') ? 'active' : ''}}">
         <a href="#">
             <i data-feather="zoom-in"></i> <span>All Reports</span>

@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\ReportController;
+use App\Http\Controllers\Admin\ReturnOrderController;
 use App\Http\Controllers\Admin\ShippingAreaController;
 use App\Http\Controllers\Admin\SiteSettingController;
 use App\Http\Controllers\Admin\SliderController;
@@ -209,7 +210,11 @@ Route::prefix('orders')->group(function () {
     Route::get('/order/invoice/download/{orderId}', [OrderController::class, 'orderInvoiceDownload'])->name('invoice.download');
 
 });
-
+Route::prefix('return-order')->group(function () {
+    Route::get('/admin/request', [ReturnOrderController::class, 'returnOrderRequest'])->name('admin.return.order.request');
+    Route::get('/admin/request/approve/{orderId}', [ReturnOrderController::class, 'returnOrderApprove'])->name('return.order.approve');
+    Route::get('/admin/all-request/', [ReturnOrderController::class, 'returnOrderAllRequest'])->name('all.return.order.request');
+});
 
 /*
 Multi Language Routes

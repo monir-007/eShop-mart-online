@@ -27,7 +27,7 @@
                                     <label for="">Invoice</label>
                                 </td>
                                 <td class="col-md-2">
-                                    <label for="">Order Number</label>
+                                    <label for="">Return Issue Date</label>
                                 </td>
                                 <td class="col-md-2">
                                     <label for="">Order Status</label>
@@ -50,7 +50,7 @@
                                         <label for="">{{$order->invoice_no}}</label>
                                     </td>
                                     <td class="col-md-2">
-                                        <label for="">{{$order->order_number}}</label>
+                                        <label for="">{{$order->return_date}}</label>
                                     </td>
                                     <td class="col-md-2">
                                         <label for="">
@@ -65,7 +65,7 @@
                                                       style="background: red">Return requested</span>
                                             @elseif($order->return_order == 2)
                                                 <span class="badge badge-pill badge-warning"
-                                                      style="background: #418D89">Success</span>
+                                                      style="background: #48bd0b">Success</span>
                                             @endif
                                         </label>
                                     </td>
