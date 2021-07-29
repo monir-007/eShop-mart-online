@@ -127,7 +127,7 @@
                             <tr>
                                 <th></th>
                                 <th>
-                                    @if($order->status === 'Pending')
+                                    @if($order->status === 'pending')
                                         <a href="{{route('pending.order.confirmed', $order->id)}}"
                                            class="btn btn-block btn-warning" id="confirm">Confirm Order</a>
                                     @elseif($order->status === 'confirm')

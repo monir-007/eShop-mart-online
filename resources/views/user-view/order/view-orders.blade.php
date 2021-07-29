@@ -1,4 +1,7 @@
 @extends('user-view.layouts.app')
+@section('title')
+    My Order List
+@endsection
 @section('content')
 
     <div class="body-content">
@@ -47,11 +50,51 @@
                                         <label for="">{{$order->invoice_no}}</label>
                                     </td>
                                     <td class="col-md-2">
-                                        <label for=""><span class="badge badge-pill badge-warning" style="background: #418D89">{{$order->status}}</span></label>
+                                        @if($order->status === 'pending')
+                                            <label for="">
+                                                <span class="badge badge-pill badge-warning"
+                                                      style="background: #bfad28">
+                                                    Pending
+                                                </span>
+                                                @elseif($order->status === 'confirm')
+                                                    <span class="badge badge-pill badge-warning"
+                                                          style="background: #f5a50b">
+                                                   Confirm
+                                                </span>
+                                                @elseif($order->status === 'processing')
+                                                    <span class="badge badge-pill badge-warning"
+                                                          style="background: #15d40b">
+                                                    Processing
+                                                </span>
+                                                @elseif($order->status === 'picked')
+                                                    <span class="badge badge-pill badge-warning"
+                                                          style="background: #2aa0e2">
+                                                    Picked
+                                                </span>
+                                                @elseif($order->status === 'shipped')
+                                                    <span class="badge badge-pill badge-warning"
+                                                          style="background: #18d774">
+                                                    Shipped
+                                                </span>
+                                                @elseif($order->status === 'delivered')
+                                                    <span class="badge badge-pill badge-warning"
+                                                          style="background: #848480">
+                                                    Delivered
+                                                </span>
+                                                @else
+                                                    <span class="badge badge-pill badge-warning"
+                                                          style="background: #c7213b">
+                                                    Cancel
+                                                </span>
+                                                @endif
+                                            </label>
                                     </td>
                                     <td class="col-md-2">
-                                        <a href="{{url('user/order/details/'.$order->id)}}" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i> View</a>
-                                        <a target="_blank" href="{{url('user/invoice/download/'.$order->id)}}" class="btn btn-sm btn-danger" style="margin-top: 5px;"><i class="fa fa-download"></i> Invoice</a>
+                                        <a href="{{url('user/order/details/'.$order->id)}}"
+                                           class="btn btn-sm btn-primary"><i class="fa fa-eye"></i> View</a>
+                                        <a target="_blank" href="{{url('user/invoice/download/'.$order->id)}}"
+                                           class="btn btn-sm btn-danger" style="margin-top: 5px;"><i
+                                                class="fa fa-download"></i> Invoice</a>
                                     </td>
                                 </tr>
                             @endforeach

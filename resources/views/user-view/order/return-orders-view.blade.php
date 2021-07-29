@@ -1,4 +1,7 @@
 @extends('user-view.layouts.app')
+@section('title')
+    My Return Orders
+@endsection
 @section('content')
 
     <div class="body-content">

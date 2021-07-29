@@ -128,7 +128,7 @@
                         class="ti-more"></i>Shipped Orders</a></li>
             <li class="{{($route==='delivered.orders') ? 'active':'' }}"><a href="{{route('delivered.orders')}}"><i
                         class="ti-more"></i>Delivered Orders</a></li>
-            <li class="{{($route==='cancel.orders') ? 'active':'' }}"><a href="{{route('cancel.orders')}}"><i
+            <li class="{{($route==='admin.cancel.orders') ? 'active':'' }}"><a href="{{route('admin.cancel.orders')}}"><i
                         class="ti-more"></i>Cancel Orders</a></li>
         </ul>
     </li>

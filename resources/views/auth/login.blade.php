@@ -1,4 +1,7 @@
 @extends('user-view.layouts.app')
+@section('title')
+    Sign in / Registration
+@endsection
 @section('content')
 
 

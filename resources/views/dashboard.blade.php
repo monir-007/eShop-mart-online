@@ -1,4 +1,7 @@
 @extends('user-view.layouts.app')
+@section('title')
+    Dashboard Profile
+@endsection
 @section('content')
 
     <div class="body-content">

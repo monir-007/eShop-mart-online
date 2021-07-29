@@ -16,7 +16,7 @@ $SEO = \App\Models\SEO::find(1);
         {{$SEO->google_analytics}}
     </script>
 
-    <title>shopMart||@yield('title')</title>
+    <title>shopMart ||@yield('title')</title>
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="{{asset('user-view/assets/css/bootstrap.min.css')}}">
