@@ -21,12 +21,14 @@ class UserRedirectIfAuthenticated
      */
     public function handle(Request $request, Closure $next, ...$guards)
     {
+//        user ative or not check
         if(Auth::check()){
             $expireTime = Carbon::now()->addSeconds(30);
             Cache::put('user-is-online'.Auth::user()->id, true, $expireTime);
             User::where('id', Auth::user()->id)->update(['last_seen'=>Carbon::now()]);
         }
 
+//        auth verification
         if (Auth::check() && Auth::user()) {
             return $next($request);
         }
