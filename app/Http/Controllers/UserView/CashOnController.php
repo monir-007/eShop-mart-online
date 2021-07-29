@@ -41,6 +41,7 @@ class CashOnController extends Controller
             'amount' => $totalAmount,
 
             'invoice_no' => 'SMT' . random_int(10000000, 99999999),
+            'order_number' => 'CSH' . random_int(100000000000, 999999999999),
             'order_date' => Carbon::now()->format('d F Y'),
             'order_month' => Carbon::now()->format('F'),
             'order_year' => Carbon::now()->format('Y'),

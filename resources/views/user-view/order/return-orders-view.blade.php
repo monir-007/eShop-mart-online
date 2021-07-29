@@ -27,10 +27,10 @@
                                     <label for="">Invoice</label>
                                 </td>
                                 <td class="col-md-2">
-                                    <label for="">Order</label>
+                                    <label for="">Order Number</label>
                                 </td>
                                 <td class="col-md-2">
-                                    <label for="">Action</label>
+                                    <label for="">Order Status</label>
                                 </td>
                             </tr>
                             </thead>
@@ -50,20 +50,24 @@
                                         <label for="">{{$order->invoice_no}}</label>
                                     </td>
                                     <td class="col-md-2">
-                                        <label for="">
-                                            <span class="badge badge-pill badge-warning"
-                                                  style="background: #418D89">{{$order->status}}</span>
-
-                                            <span class="badge badge-pill badge-warning"
-                                                  style="background: red">Return requested</span>
-                                        </label>
+                                        <label for="">{{$order->order_number}}</label>
                                     </td>
                                     <td class="col-md-2">
-                                        <a href="{{url('user/order/details/'.$order->id)}}"
-                                           class="btn btn-sm btn-primary"><i class="fa fa-eye"></i> View</a>
-                                        <a target="_blank" href="{{url('user/invoice/download/'.$order->id)}}"
-                                           class="btn btn-sm btn-danger" style="margin-top: 5px;"><i
-                                                class="fa fa-download"></i> Invoice</a>
+                                        <label for="">
+                                            {{-- in DB feild it is varchar--}}
+                                            @if($order->return_order == 0)
+                                                <span class="badge badge-pill badge-warning"
+                                                      style="background: #418D89">No Return Request</span>
+                                            @elseif($order->return_order == 1)
+                                                <span class="badge badge-pill badge-warning"
+                                                      style="background: #bfad28">Pending</span>
+                                                <span class="badge badge-pill badge-warning"
+                                                      style="background: red">Return requested</span>
+                                            @elseif($order->return_order == 2)
+                                                <span class="badge badge-pill badge-warning"
+                                                      style="background: #418D89">Success</span>
+                                            @endif
+                                        </label>
                                     </td>
                                 </tr>
                             @endforeach

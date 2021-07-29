@@ -34,7 +34,7 @@ class StripeController extends Controller
             'currency' => 'usd',
             'description' => 'shopMart e-shop',
             'source' => $token,
-            'metadata' => ['order_id' => uniqid('', true)],
+            'metadata' => ['order_id' => 'SRP'.uniqid()],
         ]);
 //        dd($charge);
         $orderID = Order::insertGetId([
