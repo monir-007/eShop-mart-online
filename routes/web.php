@@ -23,6 +23,7 @@ use App\Http\Controllers\UserView\CartPageController;
 use App\Http\Controllers\UserView\CashOnController;
 use App\Http\Controllers\UserView\IndexController;
 use App\Http\Controllers\UserView\LanguageController;
+use App\Http\Controllers\UserView\ProductReviewController;
 use App\Http\Controllers\UserView\ShippingController;
 use App\Http\Controllers\UserView\StripeController;
 use App\Http\Controllers\UserView\UserProfileController;
@@ -349,3 +350,7 @@ Route::get('/blog', [BlogShowController::class, 'blogIndex'])->name('blog.index'
 Route::get('/blog/post/details/{id}', [BlogShowController::class, 'blogDetails'])->name('blog.details');
 Route::get('blog/category/post/{id}', [BlogShowController::class, 'blogCategoryPost']);
 
+/*
+User View Product Review All Routes
+*/
+Route::post('/product-review/store', [ProductReviewController::class, 'productReviewStore'])->name('product.review.store');
