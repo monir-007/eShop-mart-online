@@ -315,9 +315,9 @@
                                         <div class="product-tab">
                                             <p class="text">
                                                 @if(session()->get('language') === 'bangla')
-                                                    {{ strip_tags($product->long_description_bng) }}
+                                                    {!! strip_tags($product->long_description_bng) !!}
                                                 @else
-                                                    {{ strip_tags($product->long_description_eng) }}
+                                                    {!! strip_tags($product->long_description_eng) !!}
                                                 @endif
                                             </p>
                                         </div>
@@ -328,17 +328,36 @@
 
                                             <div class="product-reviews">
                                                 <h4 class="title">Customer Reviews</h4>
-
+                                                @php
+                                                    $reviews = \App\Models\ProductReview::where('product_id',$product->id)->latest()->limit(5)->get();
+                                                @endphp
                                                 <div class="reviews">
-                                                    <div class="review">
-                                                        <div class="review-title"><span class="summary">We love this product</span><span
-                                                                class="date"><i class="fa fa-calendar"></i><span>1 days ago</span></span>
-                                                        </div>
-                                                        <div class="text">"Lorem ipsum dolor sit amet, consectetur
-                                                            adipiscing elit.Aliquam suscipit."
-                                                        </div>
-                                                    </div>
 
+                                                    @foreach($reviews as $item)
+                                                        @if($item->status === 0)
+                                                        @else
+                                                            <div class="review">
+                                                                <div class="row">
+                                                                    <div class="col-md-6">
+                                                                        <img style="border-radius:50%"
+                                                                             src="{{ (!empty($item->user->profile_photo_path))?url('images/upload/users/'.$item->user->profile_photo_path):url('images/upload/no_image.jpg') }}"
+                                                                             alt="profile image" height="40px"
+                                                                             width="40px">
+                                                                        <b> {{ $item->user->name }}</b>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                    </div>
+                                                                </div> <!-- // end row -->
+                                                                <div class="review-title"><span
+                                                                        class="summary">{{$item->summary}}</span><span
+                                                                        class="date"><i
+                                                                            class="fa fa-calendar"></i><span>{{\Carbon\Carbon::parse($item->created_at)->diffForHumans()}}</span></span>
+                                                                </div>
+                                                                <div
+                                                                    class="text">{!! strip_tags($item->comment) !!}</div>
+                                                            </div>
+                                                        @endif
+                                                    @endforeach
                                                 </div><!-- /.reviews -->
                                             </div><!-- /.product-reviews -->
 
@@ -360,7 +379,8 @@
                                                                   action="{{route('product.review.store')}}"
                                                                   class="cnt-form">
                                                                 @csrf
-                                                                <input type="hidden" name="product_id" value="{{$product->id}}">
+                                                                <input type="hidden" name="product_id"
+                                                                       value="{{$product->id}}">
                                                                 <div class="row">
                                                                     <div class="col-sm-6">
                                                                         <div class="form-group">
