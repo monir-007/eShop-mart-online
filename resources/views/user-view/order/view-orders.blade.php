@@ -81,7 +81,7 @@
                                                           style="background: #848480">
                                                     Delivered
                                                 </span>
-                                                    @if($order->return_order == 1)
+                                                    @if($order->return_order === 1)
                                                         <span class="badge badge-pill badge-warning"
                                                               style="background: red">Return requested</span>
                                                     @endif

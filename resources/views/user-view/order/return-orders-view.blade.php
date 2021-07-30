@@ -54,16 +54,15 @@
                                     </td>
                                     <td class="col-md-2">
                                         <label for="">
-                                            {{-- in DB feild it is varchar--}}
-                                            @if($order->return_order == 0)
+                                            @if($order->return_order === 0)
                                                 <span class="badge badge-pill badge-warning"
                                                       style="background: #418D89">No Return Request</span>
-                                            @elseif($order->return_order == 1)
+                                            @elseif($order->return_order === 1)
                                                 <span class="badge badge-pill badge-warning"
                                                       style="background: #bfad28">Pending</span>
                                                 <span class="badge badge-pill badge-warning"
                                                       style="background: red">Return requested</span>
-                                            @elseif($order->return_order == 2)
+                                            @elseif($order->return_order === 2)
                                                 <span class="badge badge-pill badge-warning"
                                                       style="background: #48bd0b">Success</span>
                                             @endif

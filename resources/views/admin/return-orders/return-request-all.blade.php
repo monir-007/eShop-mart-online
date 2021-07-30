@@ -52,10 +52,10 @@
                                                 <td>${{$item->amount}}</td>
                                                 <td>{{$item->payment_method}}</td>
                                                 <td>
-                                                    @if($item->return_order == 1)
+                                                    @if($item->return_order === 1)
                                                         <span
                                                             class="badge badge-pill badge-warning">Pending</span>
-                                                    @elseif($item->return_order==2)
+                                                    @elseif($item->return_order=== 2)
                                                         <span
                                                             class="badge badge-pill badge-success">Success</span>
                                                     @endif
