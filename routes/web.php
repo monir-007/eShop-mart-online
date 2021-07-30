@@ -354,3 +354,12 @@ Route::get('blog/category/post/{id}', [BlogShowController::class, 'blogCategoryP
 User View Product Review All Routes
 */
 Route::post('/product-review/store', [ProductReviewController::class, 'productReviewStore'])->name('product.review.store');
+/*
+Admin Product Review All Routes
+*/
+Route::prefix('product-review')->group(function () {
+Route::get('/pending', [ProductReviewController::class, 'productReviewPending'])->name('product.review.pending');
+Route::get('/admin-approve/{id}', [ProductReviewController::class, 'productReviewApprove'])->name('product.review.approve');
+Route::get('/approve-to-publish/list', [ProductReviewController::class, 'productReviewPublish'])->name('product.review.publish');
+Route::get('/delete/{id}', [ProductReviewController::class, 'productReviewDelete'])->name('product.review.delete');
+});

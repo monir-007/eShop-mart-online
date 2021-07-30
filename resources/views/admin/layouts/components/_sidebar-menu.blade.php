@@ -128,7 +128,8 @@
                         class="ti-more"></i>Shipped Orders</a></li>
             <li class="{{($route==='delivered.orders') ? 'active':'' }}"><a href="{{route('delivered.orders')}}"><i
                         class="ti-more"></i>Delivered Orders</a></li>
-            <li class="{{($route==='admin.cancel.orders') ? 'active':'' }}"><a href="{{route('admin.cancel.orders')}}"><i
+            <li class="{{($route==='admin.cancel.orders') ? 'active':'' }}"><a
+                    href="{{route('admin.cancel.orders')}}"><i
                         class="ti-more"></i>Cancel Orders</a></li>
         </ul>
     </li>
@@ -140,10 +141,28 @@
             </span>
         </a>
         <ul class="treeview-menu">
-            <li class="{{($route==='admin.return.order.request') ? 'active':'' }}"><a href="{{route('admin.return.order.request')}}"><i
+            <li class="{{($route==='admin.return.order.request') ? 'active':'' }}"><a
+                    href="{{route('admin.return.order.request')}}"><i
                         class="ti-more"></i>Return Request</a></li>
-            <li class="{{($route==='all.return.order.request') ? 'active':'' }}"><a href="{{route('all.return.order.request')}}"><i
+            <li class="{{($route==='all.return.order.request') ? 'active':'' }}"><a
+                    href="{{route('all.return.order.request')}}"><i
                         class="ti-more"></i>All Return Request</a></li>
+        </ul>
+    </li>
+    <li class="treeview {{($prefix === '/product-review') ? 'active' : ''}}">
+        <a href="#">
+            <i data-feather="zoom-in"></i> <span> Review Manage</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+        </a>
+        <ul class="treeview-menu">
+            <li class="{{($route==='product.review.pending') ? 'active':'' }}"><a
+                    href="{{route('product.review.pending')}}"><i
+                        class="ti-more"></i>Pending Review</a></li>
+            <li class="{{($route==='product.review.publish') ? 'active':'' }}"><a
+                    href="{{route('product.review.publish')}}"><i
+                        class="ti-more"></i>Published Review</a></li>
         </ul>
     </li>
     <li class="treeview {{($prefix === '/reports') ? 'active' : ''}}">

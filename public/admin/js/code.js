@@ -213,3 +213,29 @@ $(function () {
         })
     });
 });
+// approve Review
+$(function () {
+    $(document).on('click', '#approveReview', function (e) {
+        e.preventDefault();
+        let link = $(this).attr("href");
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You want to approve this review?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#48a00f',
+            cancelButtonColor: '#e83838',
+            confirmButtonText: 'Yes, approve it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = link
+                Swal.fire(
+                    'Approved!',
+                    'Review Published.',
+                    'success'
+                )
+            }
+        })
+    });
+});
