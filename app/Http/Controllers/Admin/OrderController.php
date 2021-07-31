@@ -76,6 +76,18 @@ class OrderController extends Controller
         return redirect()->route('pending.orders')->with($notification);
     }
 
+    public function pendingOrdersConfirmIndex($orderId): RedirectResponse
+    {
+        Order::findOrFail($orderId)->update([
+            'status' => 'confirm'
+        ]);
+        $notification = [
+            'message' => 'Order confirm successfully.',
+            'alert-type' => 'success'
+        ];
+        return redirect()->back()->with($notification);
+    }
+
     public function confirmOrdersProcessing($orderId): RedirectResponse
     {
         Order::findOrFail($orderId)->update([
@@ -138,11 +150,11 @@ class OrderController extends Controller
 
     public function orderInvoiceDownload($orderId)
     {
-        $order = Order::with('division','district','state','user')->where('id',$orderId)->first();
-        $orderItem = OrderItem::with('product')->where('order_id', $orderId)->orderBy('id','DESC')->get();
-        $pdf = PDF::loadView('admin.orders.invoice-order', compact('order','orderItem'))->setPaper('a4')->setOptions([
-            'tempDir'=>public_path(),
-            'chroot'=>public_path(),
+        $order = Order::with('division', 'district', 'state', 'user')->where('id', $orderId)->first();
+        $orderItem = OrderItem::with('product')->where('order_id', $orderId)->orderBy('id', 'DESC')->get();
+        $pdf = PDF::loadView('admin.orders.invoice-order', compact('order', 'orderItem'))->setPaper('a4')->setOptions([
+            'tempDir' => public_path(),
+            'chroot' => public_path(),
         ]);
         return $pdf->download('invoice.pdf');
     }

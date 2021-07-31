@@ -37,7 +37,7 @@
 
             <div class="user-profile">
                 <div class="ulogo">
-                    <a href="index.html">
+                    <a href="{{url('admin/dashboard')}}">
                         <!-- logo for regular state and mobile devices -->
                         <div class="d-flex align-items-center justify-content-center">
                             <img src="{{asset('admin/images/logo-dark.png')}}" alt="">
@@ -56,7 +56,7 @@
             <a href="javascript:void(0)" class="link" data-toggle="tooltip" title="" data-original-title="Settings"
                aria-describedby="tooltip92529"><i class="ti-settings"></i></a>
             <!-- item-->
-            <a href="mailbox_inbox.html" class="link" data-toggle="tooltip" title="" data-original-title="Email"><i
+            <a href="#" class="link" data-toggle="tooltip" title="" data-original-title="Email"><i
                     class="ti-email"></i></a>
             <!-- item-->
             <a href="javascript:void(0)" class="link" data-toggle="tooltip" title="" data-original-title="Logout"><i

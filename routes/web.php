@@ -203,6 +203,7 @@ Route::prefix('orders')->group(function () {
 
     //    Update Order Status
     Route::get('/pending-orders/confirmed/{orderId}', [OrderController::class, 'pendingOrdersConfirm'])->name('pending.order.confirmed');
+    Route::get('/pending-orders/confirmed/index/{orderId}', [OrderController::class, 'pendingOrdersConfirmIndex'])->name('pending.order.confirmed.index');
     Route::get('/confirm-orders/processing/{orderId}', [OrderController::class, 'confirmOrdersProcessing'])->name('confirm.order.processing');
     Route::get('/processing-order/picked/{orderId}', [OrderController::class, 'processingOrdersPicked'])->name('processing.order.picked');
     Route::get('/picked-order/shipped/{orderId}', [OrderController::class, 'pickedOrdersShipped'])->name('picked.order.shipped');
