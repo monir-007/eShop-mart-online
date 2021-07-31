@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\ReturnOrderController;
 use App\Http\Controllers\Admin\ShippingAreaController;
 use App\Http\Controllers\Admin\SiteSettingController;
 use App\Http\Controllers\Admin\SliderController;
+use App\Http\Controllers\Admin\StockController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\SubsubcategoryController;
 use App\Http\Controllers\AdminController;
@@ -218,6 +219,15 @@ Route::prefix('return-order')->group(function () {
     Route::get('/admin/all-request/', [ReturnOrderController::class, 'returnOrderAllRequest'])->name('all.return.order.request');
 });
 
+
+/*
+Admin Product Stock All Routes
+*/
+Route::prefix('stock')->group(function () {
+    Route::get('/product-manage', [StockController::class, 'stockProduct'])->name('product.stock');
+
+});
+
 /*
 Multi Language Routes
 */
@@ -359,8 +369,9 @@ Route::post('/product-review/store', [ProductReviewController::class, 'productRe
 Admin Product Review All Routes
 */
 Route::prefix('product-review')->group(function () {
-Route::get('/pending', [ProductReviewController::class, 'productReviewPending'])->name('product.review.pending');
-Route::get('/admin-approve/{id}', [ProductReviewController::class, 'productReviewApprove'])->name('product.review.approve');
-Route::get('/approve-to-publish/list', [ProductReviewController::class, 'productReviewPublish'])->name('product.review.publish');
-Route::get('/delete/{id}', [ProductReviewController::class, 'productReviewDelete'])->name('product.review.delete');
+    Route::get('/pending', [ProductReviewController::class, 'productReviewPending'])->name('product.review.pending');
+    Route::get('/admin-approve/{id}', [ProductReviewController::class, 'productReviewApprove'])->name('product.review.approve');
+    Route::get('/approve-to-publish/list', [ProductReviewController::class, 'productReviewPublish'])->name('product.review.publish');
+    Route::get('/delete/{id}', [ProductReviewController::class, 'productReviewDelete'])->name('product.review.delete');
 });
+

@@ -61,16 +61,16 @@
         </ul>
     </li>
 
-    <li class="treeview {{($prefix === '/slider') ? 'active' : ''}}">
+    <li class="treeview {{($prefix === '/stock') ? 'active' : ''}}">
         <a href="#">
-            <i data-feather="anchor"></i> <span>Slider</span>
+            <i data-feather="database"></i> <span>Stock Manage</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-right pull-right"></i>
             </span>
         </a>
         <ul class="treeview-menu">
-            <li class="{{($route==='slider.insert') ? 'active':''}}"><a href="{{route('slider.insert')}}"><i
-                        class="ti-more"></i>Add Slider</a></li>
+            <li class="{{($route==='product.stock') ? 'active':''}}"><a href="{{route('product.stock')}}"><i
+                        class="ti-more"></i>Product Stock</a></li>
             <li class="{{($route==='slider.manage') ? 'active':'' }}"><a href="{{route('slider.manage')}}"><i
                         class="ti-more"></i>Manage Slider</a></li>
         </ul>
@@ -209,6 +209,21 @@
     </li>
 
     <li class="header nav-small-cap">Site Interface</li>
+
+    <li class="treeview {{($prefix === '/slider') ? 'active' : ''}}">
+        <a href="#">
+            <i data-feather="anchor"></i> <span>Slider</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+        </a>
+        <ul class="treeview-menu">
+            <li class="{{($route==='slider.insert') ? 'active':''}}"><a href="{{route('slider.insert')}}"><i
+                        class="ti-more"></i>Add Slider</a></li>
+            <li class="{{($route==='slider.manage') ? 'active':'' }}"><a href="{{route('slider.manage')}}"><i
+                        class="ti-more"></i>Manage Slider</a></li>
+        </ul>
+    </li>
 
     <li class="treeview {{($prefix === '/settings') ? 'active' : ''}}">
         <a href="#">

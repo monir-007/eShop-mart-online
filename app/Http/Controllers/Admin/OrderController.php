@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\OrderItem;
+use App\Models\Product;
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
@@ -126,6 +128,12 @@ class OrderController extends Controller
 
     public function shippedOrdersDelivered($orderId): RedirectResponse
     {
+        $product = OrderItem::where('order_id', $orderId)->get();
+        foreach ($product as $item) {
+            Product::where('id', $item->product_id)->update([
+                'quantity' => DB::raw('quantity-' . $item->qty)
+            ]);
+        }
         Order::findOrFail($orderId)->update([
             'status' => 'delivered'
         ]);
