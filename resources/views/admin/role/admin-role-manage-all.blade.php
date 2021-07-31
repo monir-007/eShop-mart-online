@@ -54,14 +54,71 @@
                                             <td>{{$user->email}}</td>
                                             <td>{{$user->phone}}</td>
                                             <td>
-
+                                                @if($user->brand === 1)
+                                                    <span class="badge badge-primary m-1">Brand</span>
+                                                @else
+                                                @endif
+                                                @if($user->category === 1)
+                                                    <span class="badge badge-info m-1">Category</span>
+                                                @else
+                                                @endif
+                                                @if($user->product === 1)
+                                                    <span class="badge badge-danger m-1">Product Manage</span>
+                                                @else
+                                                @endif
+                                                @if($user->stock === 1)
+                                                    <span class="badge badge-dark m-1">Stock</span>
+                                                @else
+                                                @endif
+                                                @if($user->coupons === 1)
+                                                    <span class="badge badge-warning m-1">Coupons</span>
+                                                @else
+                                                @endif
+                                                @if($user->shipping === 1)
+                                                    <span
+                                                        class="badge badge-secondary text-dark m-1">Shipping Details</span>
+                                                @else
+                                                @endif
+                                                @if($user->return_order === 1)
+                                                    <span class="badge badge-light m-1">Orders Manage</span>
+                                                @else
+                                                @endif
+                                                @if($user->product_review === 1)
+                                                    <span class="badge badge-primary m-1">Product Review</span>
+                                                @else
+                                                @endif
+                                                @if($user->reports === 1)
+                                                    <span class="badge badge-success m-1">Reports Manage</span>
+                                                @else
+                                                @endif
+                                                @if($user->blog === 1)
+                                                    <span class="badge badge-warning m-1">Blog Post</span>
+                                                @else
+                                                @endif
+                                                @if($user->allUser === 1)
+                                                    <span class="badge badge-success m-1">All User List</span>
+                                                @else
+                                                @endif
+                                                @if($user->slider === 1)
+                                                    <span class="badge badge-info m-1">Home Slider</span>
+                                                @else
+                                                @endif
+                                                @if($user->settings === 1)
+                                                    <span class="badge badge-primary m-1">Site Settings</span>
+                                                @else
+                                                @endif
+                                                @if($user->admin_user_role === 1)
+                                                    <span class="badge badge-danger m-1">Admin User Role</span>
+                                                @else
+                                                @endif
                                             </td>
 
                                             <td class="d-flex">
-                                                <a class="btn btn-success mr-2 "
+                                                <a href="{{route('edit.admin.user',$user->id)}}"
+                                                   class="btn btn-success mr-2 "
                                                    data-toggle="tooltip"
                                                    data-placement="bottom" title="Edit"> <i class="fa fa-edit"></i> </a>
-                                                <a id="delete"
+                                                <a href="{{route('delete.admin.user',$user->id)}}" id="delete"
                                                    class="btn btn-danger" data-toggle="tooltip"
                                                    data-placement="bottom" title="Remove"> <i class="fa fa-trash"></i>
                                                 </a>
