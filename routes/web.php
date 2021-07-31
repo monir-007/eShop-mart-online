@@ -236,6 +236,9 @@ Route::prefix('admin-user-role')->group(function () {
     Route::get('/manage-all', [AdminUserController::class, 'adminRoleManage'])->name('admin.user.all');
     Route::get('/add-new-admin', [AdminUserController::class, 'addNewAdmin'])->name('add.new.admin');
     Route::post('/add-new-admin/store', [AdminUserController::class, 'addNewAdminStore'])->name('admin.new.user.store');
+    Route::get('/user/edit/{id}', [AdminUserController::class, 'adminUserEdit'])->name('edit.admin.user');
+    Route::post('/user/update/', [AdminUserController::class, 'adminUserUpdate'])->name('update.admin.user');
+    Route::get('/user/delete/{id}', [AdminUserController::class, 'adminUserDelete'])->name('delete.admin.user');
 
 });
 
