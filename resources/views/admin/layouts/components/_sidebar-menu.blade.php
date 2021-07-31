@@ -208,6 +208,21 @@
         </ul>
     </li>
 
+    <li class="header nav-small-cap">User Role</li>
+
+    <li class="treeview {{($prefix === '/admin-user-role') ? 'active' : ''}}">
+        <a href="#">
+            <i data-feather="key"></i> <span>Admin User Role</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+        </a>
+        <ul class="treeview-menu">
+            <li class="{{($route==='admin.user.all') ? 'active':'' }}"><a href="{{route('admin.user.all')}}"><i
+                        class="ti-more"></i>All Admin Users</a></li>
+        </ul>
+    </li>
+
     <li class="header nav-small-cap">Site Interface</li>
 
     <li class="treeview {{($prefix === '/slider') ? 'active' : ''}}">

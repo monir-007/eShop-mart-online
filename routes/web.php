@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
@@ -225,6 +226,14 @@ Admin Product Stock All Routes
 */
 Route::prefix('stock')->group(function () {
     Route::get('/product-manage', [StockController::class, 'stockProduct'])->name('product.stock');
+
+});
+
+/*
+Admin User Role All Routes
+*/
+Route::prefix('admin-user-role')->group(function () {
+    Route::get('/manage-all', [AdminUserController::class, 'adminRoleManage'])->name('admin.user.all');
 
 });
 
