@@ -135,7 +135,7 @@
     </li>
     <li class="treeview {{($prefix === '/return-order') ? 'active' : ''}}">
         <a href="#">
-            <i data-feather="zoom-in"></i> <span>Return Orders</span>
+            <i data-feather="repeat"></i> <span>Return Orders</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-right pull-right"></i>
             </span>
@@ -151,7 +151,7 @@
     </li>
     <li class="treeview {{($prefix === '/product-review') ? 'active' : ''}}">
         <a href="#">
-            <i data-feather="zoom-in"></i> <span> Review Manage</span>
+            <i data-feather="thumbs-up"></i> <span> Review Manage</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-right pull-right"></i>
             </span>

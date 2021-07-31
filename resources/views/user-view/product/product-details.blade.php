@@ -292,7 +292,6 @@
                                         </div><!-- /.row -->
                                     </div><!-- /.quantity-container -->
 
-
                                 </div><!-- /.product-info -->
                             </div><!-- /.col-sm-7 -->
                         </div><!-- /.row -->
@@ -305,6 +304,7 @@
                                     <li class="active"><a data-toggle="tab" href="#description">DESCRIPTION</a></li>
                                     <li><a data-toggle="tab" href="#review">REVIEW</a></li>
                                     <li><a data-toggle="tab" href="#tags">TAGS</a></li>
+                                    <li><a data-toggle="tab" href="#share">SHARE THIS</a></li>
                                 </ul><!-- /.nav-tabs #product-tabs -->
                             </div>
                             <div class="col-sm-9">
@@ -454,6 +454,21 @@
                                         </div><!-- /.product-tab -->
                                     </div><!-- /.tab-pane -->
 
+                                    <div id="share" class="tab-pane">
+                                        <div class="product-tag">
+                                            <h4 class="title">Want to Share this Product ?</h4>
+                                            <div class="row">
+                                                <div class="col-md-1">
+                                                </div>
+                                                <div class="col-md-11">
+                                                    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                                                    <div class="addthis_inline_share_toolbox"></div>
+
+                                                </div>
+                                            </div>
+                                        </div><!-- /.product-tab -->
+                                    </div><!-- /.tab-pane -->
+
                                 </div><!-- /.tab-content -->
                             </div><!-- /.col -->
                         </div><!-- /.row -->
@@ -575,4 +590,9 @@
                 <div class="clearfix"></div>
             </div><!-- /.row -->
         </div>
+
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+        <script type="text/javascript"
+                src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6104d834deb0d2b9"></script>
+
 @endsection
