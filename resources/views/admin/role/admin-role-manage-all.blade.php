@@ -27,6 +27,8 @@
                         <div class="box-header with-border">
                             <h3 class="box-title">All Admin User List <span
                                     class="badge badge-pill badge-danger">{{count($adminUser)}}</span></h3>
+                            <a href="{{route('add.new.admin')}}" class="btn btn-danger" style="float: right">Add New
+                                Admin</a>
                         </div>
 
                         <!-- /.box-header -->
@@ -46,10 +48,8 @@
                                     <tbody>
                                     <tr>
                                         @foreach($adminUser as $user)
-                                            <td><img
-                                                    src="{{(!empty($user->profile_photo_path))?url('images/upload/admin-user/'.$user->profile_photo_path):url('images/upload/no_image.jpg')}}"
-                                                    alt=""
-                                                    style="width: 60px; height: 50px;"></td>
+                                            <td><img src="{{asset($user->profile_photo_path)}}"
+                                                     alt="" style="width: 50px;height: 50px"></td>
                                             <td>{{$user->name}}</td>
                                             <td>{{$user->email}}</td>
                                             <td>{{$user->phone}}</td>

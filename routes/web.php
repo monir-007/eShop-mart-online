@@ -234,6 +234,8 @@ Admin User Role All Routes
 */
 Route::prefix('admin-user-role')->group(function () {
     Route::get('/manage-all', [AdminUserController::class, 'adminRoleManage'])->name('admin.user.all');
+    Route::get('/add-new-admin', [AdminUserController::class, 'addNewAdmin'])->name('add.new.admin');
+    Route::post('/add-new-admin/store', [AdminUserController::class, 'addNewAdminStore'])->name('admin.new.user.store');
 
 });
 

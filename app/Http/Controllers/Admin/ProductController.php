@@ -12,7 +12,7 @@ use App\Models\SubSubcategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Intervention\Image\Facades\Image;
-use PhpParser\Node\Expr\AssignOp\Mul;
+
 
 class ProductController extends Controller
 {
